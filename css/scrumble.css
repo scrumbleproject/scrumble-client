@@ -1,0 +1,56 @@
+
+#page{
+	border:5px solid #ff9650;
+	height:800px;
+}
+
+#presence img{
+	margin:10px 0 0 0;
+}
+
+
+/* Customize Bootstrap.css */ 
+.navbar-inner{ 
+	/*background-image: -webkit-linear-gradient(top, #fff, #BBB);
+	background-image: -o-linear-gradient(top, #fff, #BBB);
+	background-image: linear-gradient(top, #fff, #BBB);
+	*/
+	background-image:none;
+	background-color:#ff9650;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+	-webkit-box-border-radius:0;
+	-moz-box-border-radius:0;
+	border-radius:0;
+}
+
+.navbar .nav > li{
+	margin:5px 0;
+}
+.navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret {
+	border-top-color: #444;
+	border-bottom-color: #444;
+}
+.navbar .nav > li.action-menu > a {
+	padding: 9px 10px 11px;
+	color: #222;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color:#ed9953;
+	border-radius:3px;
+	margin:0 20px 0 0;
+}
+.navbar .nav > li.action-menu > ul > li > a{
+	color:#fff;
+}
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	background-color:#ed9953;
+}
+.dropdown-menu {
+	background-color:#000;
+}
+
+.navbar .dropdown-menu::after {
+border-bottom: 6px solid #000;
+}
+
