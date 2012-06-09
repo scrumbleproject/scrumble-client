@@ -1,6 +1,6 @@
 
 #page{
-	border:5px solid #ff9650;
+	border:5px solid #2C2C2C;
 	height:800px;
 }
 
@@ -16,7 +16,7 @@
 	background-image: linear-gradient(top, #fff, #BBB);
 	*/
 	background-image:none;
-	background-color:#ff9650;
+	background-color:#2C2C2C;
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;
 	box-shadow:none;
@@ -36,7 +36,7 @@
 	padding: 9px 10px 11px;
 	color: #222;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color:#ed9953;
+	background-color:#D5D5D5;
 	border-radius:3px;
 	margin:0 20px 0 0;
 }
@@ -44,7 +44,7 @@
 	color:#fff;
 }
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	background-color:#ed9953;
+	background-color:#D5D5D5;
 }
 .dropdown-menu {
 	background-color:#000;
@@ -92,5 +92,104 @@ border-bottom: 6px solid #000;
 	color: black;
 }
 
+ul {
+    list-style: none;
+}
 
+
+
+.widget-header {
+    background-color: #2C2C2C;
+    border: 1px solid #D5D5D5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+
+.widget-header h3 {
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 800;
+    left: 10px;
+    line-height: 18px;
+    margin-right: 3em;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    top: 2px;
+}
+
+
+
+
+.widget-content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D5D5D5;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px 15px 15px;
+}
+
+.widget-content ul {
+    margin-left: 0;
+}
+
+.widget-nopad .widget-content {
+    padding: 0;
+}
+
+.news-items li {
+    border-bottom: 1px dotted #CCCCCC;
+    display: table;
+    margin-bottom: 1em;
+    padding-left: 5px;
+    padding-top: 0;
+}
+
+
+.news-item-date {
+    text-align: right;
+    vertical-align: middle;
+    width: 40px;
+}
+
+.news-item-day {
+    color: #888888;
+    display: block;
+    font-size: 24px;
+    margin-bottom: 0.25em;
+}
+
+.new-item-time{
+    color: #888888;
+    display: block;
+    font-size:10px;
+}
+
+.news-item-date {
+    text-align: left;
+    float:left;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+.news-item-month {
+    color: #888888;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    padding-right: 1px;
+}
+
+.news-item-detail p{
+  width: 350px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url("../img/glyphicons-halflings-white.png");
+    margin-left: 15px;
+    margin-top: 2px;
+
+}
 
