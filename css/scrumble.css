@@ -15,44 +15,129 @@
 	background-image: -o-linear-gradient(top, #fff, #BBB);
 	background-image: linear-gradient(top, #fff, #BBB);
 	*/
-	background-image:none;
-	background-color:#2C2C2C;
-	-webkit-box-shadow:none;
+	/*background-image:none;
+	background-color: #2C2C2C;/*#0B3640;/*#008a7b; /*#2C2C2C;*/
+	
+  /*-webkit-box-shadow:none;
 	-moz-box-shadow:none;
 	box-shadow:none;
 	-webkit-box-border-radius:0;
 	-moz-box-border-radius:0;
 	border-radius:0;
+	*/
 }
 
 .navbar .nav > li{
 	margin:5px 0;
 }
+.navbar .nav > li > a{
+  color:#fff;
+}
+
+.navbar .nav > li > a.logged-name {
+  font-weight:bold;
+}
+
 .navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret {
 	border-top-color: #444;
 	border-bottom-color: #444;
 }
+.navbar .nav > li.action-menu {
+  padding:0;
+  margin:0;
+  height:24px;
+}
 .navbar .nav > li.action-menu > a {
-	padding: 9px 10px 11px;
-	color: #222;
+	padding: 14px 10px 11px;
+	color: #fff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color:#D5D5D5;
-	border-radius:3px;
+	background-color: #222;
 	margin:0 20px 0 0;
+	height:100%;
+	font-weight:bold;
+	font-size:14px;
 }
 .navbar .nav > li.action-menu > ul > li > a{
 	color:#fff;
 }
+
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	background-color:#D5D5D5;
-}
-.dropdown-menu {
-	background-color:#000;
+	background-color:#FF9650;
+	color: #000;
 }
 
-.navbar .dropdown-menu::after {
-border-bottom: 6px solid #000;
+
+
+/***** BRAND ****/
+
+a.brand{
+    background:transparent url('../img/logoSimple2.png') no-repeat center left ;
+    width:120px;
 }
+
+/*** dropdown list for action-menu ***/
+.navbar .nav > li.action-menu > ul.dropdown-menu:before {
+  border-top:0px;
+  border-left:13px solid transparent;
+  border-right:13px solid transparent;
+  border-bottom:13px solid #444;
+  margin-top:-6px;
+  right: 50px;
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu:after {
+  border-top:0px;
+  border-left:13px solid transparent;
+  border-right:13px solid transparent;
+  border-bottom:13px solid #333;
+  margin-top:-7px;
+  right: 50px;
+}
+
+.navbar .nav > li.action-menu > ul.dropdown-menu {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top:27px;
+    width:200px;
+    min-height:200px;
+    
+    background-color: #2C2C2C;
+    background-image: -moz-linear-gradient(top, #333, #222);
+    background-image: -ms-linear-gradient(top, #333, #222);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333), to(#222));
+    background-image: -webkit-linear-gradient(top, #333, #222);
+    background-image: -o-linear-gradient(top, #333, #222);
+    background-image: linear-gradient(top, #333, #222);
+
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu > li > h2 {
+    margin : 10px 20px;
+    font-size:14px;
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu > li > a {
+    font-size:13px;
+    margin-right:15px;
+    margin-left:10px;
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu > li > a.action-button{
+    font-weight:bold;
+    margin-top:7px;
+    margin-bottom:5px;
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu > li > a.action-button:hover{
+    background-color: #FF9650;
+    color:#000;
+    
+}
+.navbar .nav > li.action-menu > ul.dropdown-menu > li.divider{
+    border-bottom:1px solid #444;
+    height:0;
+}
+
+/*************************************/
+
+
+
 
 #login {
 	margin-left: auto;
@@ -193,3 +278,33 @@ ul {
 
 }
 
+#projecthome .row{
+  padding: 20px 0px 40px 250px;
+}
+
+#projecthome .span4{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+    background-color: #bbbbbb;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+}
+
+#projecthome h2{
+    color: #fefefe;
+    margin-top: 40%;
+}
+
+
+.modal{
+  width: 90%;
+  left: 25%;
+} 
+ 
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+  float: right;
+  margin-right: 15px;
+}
