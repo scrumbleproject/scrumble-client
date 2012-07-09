@@ -308,3 +308,11 @@ ul {
   float: right;
   margin-right: 15px;
 }
+
+#newproject .btn{
+    text-shadow: 0 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+#newproject .dropdown-menu{
+    display : inline;
+}
