@@ -316,3 +316,17 @@ ul {
 #newproject .dropdown-menu{
     display : inline;
 }
+
+#newproject select {
+    width: 160px;
+}
+
+.newproject{
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#btnnewproject li {
+    text-align: center;
+}
