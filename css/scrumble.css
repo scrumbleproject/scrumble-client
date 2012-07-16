@@ -293,6 +293,12 @@ ul {
     width: 200px;
 }
 
+#projecthome .span4:hover{
+    height: 210px;
+    width: 210px;
+    background-color: #aaaaaa;
+}
+
 #projecthome h2{
     color: #fefefe;
     margin-top: 40%;
