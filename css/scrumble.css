@@ -335,7 +335,8 @@ ul {
 
 .modal{
   width: 90%;
-  left: 25%;
+  left: 5%;
+  margin:-250px 0 0 0;
 } 
  
 .radio input[type="radio"], .checkbox input[type="checkbox"] {
