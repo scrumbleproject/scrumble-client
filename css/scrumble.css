@@ -311,12 +311,14 @@ ul {
     background-image: -moz-linear-gradient(top, #0000cc, #0055cc);
     background-image: linear-gradient(top, #0000cc, #0055cc);
     background-repeat: repeat-x;
+    cursor:pointer;
 }
 
 #projecthome h2{
     color: #fefefe;
     margin-top: 40%;
 }
+
 
 
 .modal{
