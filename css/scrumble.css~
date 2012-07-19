@@ -70,10 +70,19 @@
 
 /***** BRAND ****/
 
+div.login-logo{
+	float:right;
+	margin-top:3px;
+	background:transparent url('../img/logoSimple2.png') no-repeat center left;
+	width:160px;
+	height:40px;
+}
+
 a.brand{
     background:transparent url('../img/logoSimple2.png') no-repeat center left ;
     width:120px;
 }
+
 
 /*** dropdown list for action-menu ***/
 .navbar .nav > li.action-menu > ul.dropdown-menu:before {
@@ -268,7 +277,10 @@ ul {
 }
 
 .news-item-detail p{
-  width: 350px;
+}
+
+.news-items li{
+	width:98%;
 }
 
 [class^="icon-"], [class*=" icon-"] {
