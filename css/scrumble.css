@@ -304,9 +304,13 @@ ul {
 }
 
 #projecthome .span4:hover{
-    height: 210px;
-    width: 210px;
-    background-color: #aaaaaa;
+    background-image: -ms-linear-gradient(top, #0000cc, #0055cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0000cc), to(#0055cc));
+    background-image: -webkit-linear-gradient(top, #0000cc, #0055cc);
+    background-image: -o-linear-gradient(top, #0000cc, #0055cc);
+    background-image: -moz-linear-gradient(top, #0000cc, #0055cc);
+    background-image: linear-gradient(top, #0000cc, #0055cc);
+    background-repeat: repeat-x;
 }
 
 #projecthome h2{
