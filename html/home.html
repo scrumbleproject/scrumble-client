@@ -23,6 +23,41 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
+    
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+    		
+    		$(document).ready( function() {
+    			
+    			
+    			$("a#newproject-button").click( function(e) {
+    				e.stopPropagation();
+    				$("ul#action-menu").html('<ul class="dropdown-menu">' +
+														  '<div id="newproject">' +
+															 '<div class="newproject">' +
+																 '<li>Create a New Project</li>' +
+																 '<li class="divider"></li>' +
+																 '<li><label>Title</label><input type="text" class="span2" placeholder="Name of project"></li>' +
+																 '<li><label>Visibility</label><select><option>Private</option><option>Public</option></select></li>' +
+																 '<li><div id="btnnewproject"><a class="btn" href="./projectHome.html">Create New Project</a></div></li>' +
+															 '</div>' +
+														  '</div>' +
+													  '</ul>' 				
+    				);
+    				
+    				//$("ul#action-menu").html('HELLO');
+    				$("li#fat-menu").addClass("open");
+    				//$("ul.dropdown-menu").css("display","inline-block");
+    				$("ul.dropdown-menu").show();
+    				//$("ul.dropdown-menu").css("position","absolute");
+					//$('.dropdown-toggle').dropdown();	
+  
+    			});
+    			
+    		});
+    
+    
+    </script>
 
   </head>
 
@@ -36,12 +71,12 @@
             <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown action-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul id="action-menu" class="dropdown-menu">
                 <li><h2>Your Projects</h2></li>
                 <li><a href="projectHome.html">Project 1</a></li>
                 <li><a href="#">Project 2</a></li>
                 <li class="divider"></li>
-                <li><a class="action-button" href="newproject.html">New project</a></li>
+                <li><a class="action-button" id="newproject-button" href="#">New project</a></li>
                 <li><a class="action-button" href="#">Action 2 </a></li>
                 <li><a class="action-button" href="#">Action 3</a></li>
               </ul>
@@ -112,7 +147,7 @@
 							
 					<div class="widget-header">
 						<i class="icon-list-alt"></i>
-						<h3>Recent News</h3>
+						<h3>Recent Notifications</h3>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">

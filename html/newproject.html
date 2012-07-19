@@ -23,6 +23,20 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+    		
+    		$(document).ready( function() {
+    			 			
+    			$("a#action-button").click( function() { alert('YES');});
+    			 			
+    			$("a#action-button").click();
+    			$("li#fat-menu").click();
+   
+    		});
+    
+    
+    </script>
     
   </head>
 
@@ -35,17 +49,17 @@
           <div class="nav-collapse">
             <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown action-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
+              <a id="action-button" href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
               <ul class="dropdown-menu">
-              <div id="newproject">
-                <div class="newproject">
-                <li>Create a New Project</li>
-                <li class="divider"></li>
-                <li><label>Title</label><input type="text" class="span2" placeholder="Name of project"></li>
-                <li><label>Visibility</label><select><option>Private</option><option>Public</option></select></li>
-                <div id="btnnewproject"><li><a class="btn" href="#">Create New Project</a></li></div>
-                </div>
-              </div>
+		           <div id="newproject">
+		             <div class="newproject">
+		             <li>Create a New Project</li>
+		             <li class="divider"></li>
+		             <li><label>Title</label><input type="text" class="span2" placeholder="Name of project"></li>
+		             <li><label>Visibility</label><select><option>Private</option><option>Public</option></select></li>
+		             <div id="btnnewproject"><li><a class="btn" href="./projectHome.html">Create New Project</a></li></div>
+		             </div>
+		           </div>
               </ul>
             </li>
             <li id="presence">
@@ -68,7 +82,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery.js"></script>
+    
     <script src="../js/bootstrap-transition.js"></script>
     <script src="../js/bootstrap-alert.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
