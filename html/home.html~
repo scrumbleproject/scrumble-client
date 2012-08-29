@@ -76,7 +76,6 @@
 				<ul>
 					<div id="newproject">
 						<div class="newproject">
-							<li>Create a New Project</li>
 							<li class="divider"></li>
 							<li><label>Title</label><input type="text" class="span2" placeholder="Name of project"></li>
 							<li><label>Visibility</label><select><option>Private</option><option>Public</option></select></li>
