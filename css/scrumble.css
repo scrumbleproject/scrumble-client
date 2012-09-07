@@ -365,3 +365,34 @@ ul {
 #btnnewproject li {
     text-align: center;
 }
+
+#createbacklog [class^="icon-"], [class*=" icon-"] {
+    background-image: url("../img/glyphicons-halflings.png");
+}
+
+#createbacklog .span3{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+    background-color: #0074cc;
+    *background-color: #0055cc;
+    background-image: -ms-linear-gradient(top, #0088cc, #0055cc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0055cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0055cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0055cc);
+    background-image: -moz-linear-gradient(top, #0088cc, #0055cc);
+    background-image: linear-gradient(top, #0088cc, #0055cc);
+    background-repeat: repeat-x;
+    border-color: #0055cc #0055cc #003580;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-align: center;
+    vertical-align: middle;
+    height: 70px;
+    width: 70px;
+}
+
+#createbacklog .row-fluid{
+    padding-top: 30px;
+    vertical-align: middle;
+}
