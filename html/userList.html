@@ -73,65 +73,49 @@
         </div><!--/span-->
 
 				<div class="span10">
-			    <h2>User</h2>
-			    
-          <form class="form-horizontal">
-          
-            <div class="control-group">
-              <label class="control-label" for="username">Username</label>
-              <div class="controls">
-                <input type="text" id="username" >
-              </div>
-            </div>
-          
-            <div class="control-group">
-              <label class="control-label" for="name">First Name</label>
-              <div class="controls">
-                <input type="text" id="name" >
-              </div>
-            </div>
-            
-             <div class="control-group">
-              <label class="control-label" for="name">Last Name</label>
-              <div class="controls">
-                <input type="text" id="name" >
-              </div>
-            </div>
-            
-             <div class="control-group">
-              <label class="control-label" for="password">Password</label>
-              <div class="controls">
-                <input type="password" id="password" >
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label class="control-label" for="mail">Mail</label>
-              <div class="controls">
-                <input type="text" id="mail" >
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label class="control-label" for="function">Function</label>
-              <div class="controls">
-                <select>
-                <option>Developper</option>
-                <option>Scrum master</option>
-                <option>Product owner</option>
-                <option>Customer</option>
-                </select>
-              </div>
-            </div>
-            
-            
-            
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Save</button>
-              <button type="button" class="btn">Cancel</button>
-            </div>
-           </form>
-					
+			    <h2>Users list</h2>
+			    <a class="btn btn-primary" href="user.html">New user</a>
+					<table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th>Mail</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>alphonse@scrumble.fr</td>
+                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
+                  <a class="btn" href="user.html"><i class="icon-remove"></i></a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                  <td>alphonse@scrumble.fr</td>
+                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
+                    <a class="btn" href="user.html"><i class="icon-remove"></i></a></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                  <td>alphonse@scrumble.fr</td>
+                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
+                    <a class="btn" href="user.html"><i class="icon-remove"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
 				</div>
        
       </div><!--/row-->
