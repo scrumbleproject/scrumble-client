@@ -304,12 +304,7 @@ ul {
 	width:98%;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-    background-image: url("../img/glyphicons-halflings-white.png");
-    margin-left: 15px;
-    margin-top: 2px;
 
-}
 
 #projecthome .row{
   padding: 20px 0px 40px 250px;
