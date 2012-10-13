@@ -27,117 +27,87 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="#">&nbsp;</a>
-          <div class="nav-collapse">
-            <ul class="nav pull-right">
-            <li id="fat-menu" class="dropdown action-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><h2>Your Projects</h2></li>
-                <li><a href="#">Project 1</a></li>
-                <li><a href="#">Project 2</a></li>
-                <li class="divider"></li>
-                <li><a class="action-button" href="#">New project</a></li>
-                <li><a class="action-button" href="#">Action 2 </a></li>
-                <li><a class="action-button" href="#">Action 3</a></li>
-              </ul>
-            </li>
-            <li id="presence">
-              <img src="../img/status_green.png" width="16px" border=0 />
-            </li>
-            <li>
-              <a href="#" class="dropdown-toggle logged-name" data-toggle="dropdown">John</b></a>
-            </li>
-          </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+<!-- Top navigation bar -->
+<div class="navbar navbar-fixed-top" id="nav-bar">  
+</div>
+<!-- End top navigation bar -->
 
+
+<!-- Left menu -->
 <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><a href="dashboard.html">Dashboard</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="sprint.html">Sprint</a></li>
-              <li><a href="storyList.html">Story</a></li>
-              <li><a href="modules.html">Modules</a></li>
-              <li class="active"><a href="memberList.html">Users</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+  <div class="row-fluid">
+    <div id="left-menu" class="span2">
+	</div><!--/span-->
+<!-- End left menu-->
 
-				<div class="span10">
-			    <h2>User</h2>
-                
-                
-			    
-          <form id="formUser" class="form-horizontal" action="#">
-			
+
+<!--Content -->
+	<div class="span10">
+    	<h2>Member form</h2>
+                      
+		<!-- Form --> 	    
+		<form id="formUser" class="form-horizontal" action="#">
+
 			<input type="hidden" name="idMember" id="idMember" >
-          
-            <div class="control-group">
-              <label class="control-label" for="login">Login</label>
-              <div class="controls">
-                <input type="text" name="login" id="login" >
-              </div>
-            </div>
-          
-            <div class="control-group">
-              <label class="control-label" for="firstname">First Name</label>
-              <div class="controls">
-                <input type="text" name="firstname" id="firstname" >
-              </div>
-            </div>
-            
-             <div class="control-group">
-              <label class="control-label" for="lastname">Last Name</label>
-              <div class="controls">
-                <input type="text" name="lastname" id="lastname" >
-              </div>
-            </div>
-            
-             <div class="control-group">
-              <label class="control-label" for="password">Password</label>
-              <div class="controls">
-                <input type="password" name="password" id="password" >
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label class="control-label" for="email">Mail</label>
-              <div class="controls">
-                <input type="text" name="email" id="email" >
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label class="control-label" for="function">Function</label>
-              <div class="controls">
-                <select id="idRole" >
-                <option>Developper</option>
-                <option>Scrum master</option>
-                <option>Product owner</option>
-                <option>Customer</option>
-                </select>
-              </div>
-            </div>
-            
-            
-            
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Save</button>
-              <button type="button" class="btn">Cancel</button>
-            </div>
-           </form>
-				</div>
-       
+
+			<div class="control-group">
+			  <label class="control-label" for="login">Login</label>
+			  <div class="controls">
+				<input type="text" name="login" id="login" >
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <label class="control-label" for="firstname">First Name</label>
+			  <div class="controls">
+				<input type="text" name="firstname" id="firstname" >
+			  </div>
+			</div>
+
+			 <div class="control-group">
+			  <label class="control-label" for="lastname">Last Name</label>
+			  <div class="controls">
+				<input type="text" name="lastname" id="lastname" >
+			  </div>
+			</div>
+
+			 <div class="control-group">
+			  <label class="control-label" for="password">Password</label>
+			  <div class="controls">
+				<input type="password" name="password" id="password" >
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <label class="control-label" for="email">Mail</label>
+			  <div class="controls">
+				<input type="text" name="email" id="email" >
+			  </div>
+			</div>
+
+			<div class="control-group">
+			  <label class="control-label" for="function">Function</label>
+			  <div class="controls">
+				<select id="idRole" >
+				<option>Developper</option>
+				<option>Scrum master</option>
+				<option>Product owner</option>
+				<option>Customer</option>
+				</select>
+			  </div>
+			</div>
+
+
+
+			<div class="form-actions">
+			  <button type="submit" class="btn btn-primary">Save</button>
+			  <button type="button" class="btn">Cancel</button>
+			</div>
+
+		</form>
+		<!-- End form --> 
+	</div>
+<!-- End content -->  
       </div><!--/row-->
 
       <hr>
@@ -151,11 +121,12 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="../js/jquery.js"></script>
+	<script src="../js/lib/jquery.js"></script>
 
 	<!-- Custom import -->
 	<script src="../js/custom/utils.js"></script>
     <script src="../js/custom/config.js"></script>
+	<script src="../js/custom/page.js"></script>
     <script src="../js/lib/jquery.getUrlParam.js"></script>
     <script src="../js/custom/member.js"></script>
 

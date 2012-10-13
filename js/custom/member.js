@@ -19,7 +19,7 @@ function displayInTable(items){
 		$("#memberList > tbody").html("");
 		$.each(items.member1, function(i, dico){
 			$("#memberList > tbody").append("<tr>");
-			$("#memberList > tbody").append("<td>"+dico.idMember+"</td>");
+			$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
@@ -32,7 +32,7 @@ function displayInTable(items){
 	}
 	else { //if only one member
 		$("#memberList > tbody").append("<tr>");
-		$("#memberList > tbody").append("<td>"+items.idMember+"</td>");
+		$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
 		$("#memberList > tbody").append("<td>"+items.firstname+"</td>");
 		$("#memberList > tbody").append("<td>"+items.lastname+"</td>");
 		$("#memberList > tbody").append("<td>"+items.login+"</td>");
