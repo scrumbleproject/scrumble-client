@@ -409,9 +409,22 @@ ul {
 
 
 /** USER STORIES **/
+
 #gridster > ul > li > div.title{
 	text-align:center;
 	font-weight:bold;
-	vertical-align:center;
+	padding:20px 4px 0; 
+}
+#gridster > ul > li > div.estimation{	
+	position:absolute;
+	bottom:0;
+	right:0;
+	font-weight:bold;
+	width:40px;
+	height:20px;
+	border:solid #bbb 1px;
+	border-right:none;
+	border-bottom:none;
+	text-align:center;
 }	
 

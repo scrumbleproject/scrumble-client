@@ -22,3 +22,12 @@ $.fn.serializeObject = function()
         
     return o;
 };
+
+
+/**
+ * Use this function to replace null value by a String to display instead of "undefined"
+ */
+$.nvl = function(value, replacement){
+	if (value == null) return replacement;
+	return value;
+}

@@ -20,6 +20,7 @@ function displayAllItems(items){
 			$("#gridster > ul").append("<li class='img-polaroid'"+
 				" data-row='"+(parseInt(i/maxNbCols)+1)+"' data-col='"+(i%maxNbCols+1)+"' data-sizex='1' data-sizey='1'>"+
 					"<div class='title'>"+ dico.title + "</div>" +
+					"<div class='estimation'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
 		});   
 	}
