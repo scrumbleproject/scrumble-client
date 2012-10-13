@@ -23,27 +23,6 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <script src="../js/jquery.js"></script>
-    <script type="text/javascript">
-    $(document).ready( function() {
-        $('#form_user').submit(function() {
-            $.ajax({
-                url:"http://192.168.0.11:8080/scrumble-server-web/scrumble/members/add",
-                type:"POST",
-                data: JSON.stringify($('#form_user').serializeObject()),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function(data) {
-                        alert(JSON.stringify($('#form_user').serializeObject()));
-                    }
-                });
-        //JSON.stringify($('#form_user').serializeObject()));
-        //alert(JSON.stringify($('#form_user').serializeObject()));
-        return false;
-        });
-	});
-    </script>
-
   </head>
 
   <body>
@@ -99,48 +78,49 @@
                 
                 
 			    
-          <form id="form_user" class="form-horizontal" action="#">
-
+          <form id="formUser" class="form-horizontal" action="#">
+			
+			<input type="hidden" name="idMember" id="idMember" >
           
             <div class="control-group">
               <label class="control-label" for="login">Login</label>
               <div class="controls">
-                <input type="text" id="login" >
+                <input type="text" name="login" id="login" >
               </div>
             </div>
           
             <div class="control-group">
               <label class="control-label" for="firstname">First Name</label>
               <div class="controls">
-                <input type="text" id="firstname" >
+                <input type="text" name="firstname" id="firstname" >
               </div>
             </div>
             
              <div class="control-group">
               <label class="control-label" for="lastname">Last Name</label>
               <div class="controls">
-                <input type="text" id="lastname" >
+                <input type="text" name="lastname" id="lastname" >
               </div>
             </div>
             
              <div class="control-group">
               <label class="control-label" for="password">Password</label>
               <div class="controls">
-                <input type="password" id="password" >
+                <input type="password" name="password" id="password" >
               </div>
             </div>
             
             <div class="control-group">
               <label class="control-label" for="email">Mail</label>
               <div class="controls">
-                <input type="text" id="email" >
+                <input type="text" name="email" id="email" >
               </div>
             </div>
             
             <div class="control-group">
               <label class="control-label" for="function">Function</label>
               <div class="controls">
-                <select>
+                <select name="idRole" id="idRole" >
                 <option>Developper</option>
                 <option>Scrum master</option>
                 <option>Product owner</option>
@@ -171,7 +151,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/custom/utils.js"></script>
     <script src="../js/custom/config.js"></script>
+	<script src="../js/bootbox.min.js"></script>
     <script src="../js/lib/jquery.getUrlParam.js"></script>
     <script src="../js/custom/member.js"></script>
     <script src="../js/bootstrap-transition.js"></script>
@@ -186,26 +169,6 @@
     <script src="../js/bootstrap-collapse.js"></script>
     <script src="../js/bootstrap-carousel.js"></script>
     <script src="../js/bootstrap-typeahead.js"></script>
-    <script type="text/javascript">
-        $.fn.serializeObject = function()
-        {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function() {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-                
-            return o;
-        };
-    </script>
-
 
   </body>
 </html>
