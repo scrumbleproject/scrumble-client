@@ -23,6 +23,26 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function() {
+        $('#form_user').submit(function() {
+            $.ajax({
+                url:"http://192.168.0.11:8080/scrumble-server-web/scrumble/members/add",
+                type:"POST",
+                data: JSON.stringify($('#form_user').serializeObject()),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function(data) {
+                        alert(JSON.stringify($('#form_user').serializeObject()));
+                    }
+                });
+        //JSON.stringify($('#form_user').serializeObject()));
+        //alert(JSON.stringify($('#form_user').serializeObject()));
+        return false;
+        });
+	});
+    </script>
 
   </head>
 
@@ -76,41 +96,43 @@
 
 				<div class="span10">
 			    <h2>User</h2>
+                
+                
 			    
-          <form class="form-horizontal">
+          <form id="form_user" class="form-horizontal" action="#">
           
             <div class="control-group">
               <label class="control-label" for="username">Username</label>
               <div class="controls">
-                <input type="text" id="username" >
+                <input type="text" id="username" name="login">
               </div>
             </div>
           
             <div class="control-group">
               <label class="control-label" for="name">First Name</label>
               <div class="controls">
-                <input type="text" id="name" >
+                <input type="text" id="firstName" name="firstname">
               </div>
             </div>
             
              <div class="control-group">
               <label class="control-label" for="name">Last Name</label>
               <div class="controls">
-                <input type="text" id="name" >
+                <input type="text" id="lastName" name="lastname">
               </div>
             </div>
             
              <div class="control-group">
               <label class="control-label" for="password">Password</label>
               <div class="controls">
-                <input type="password" id="password" >
+                <input type="password" id="password" name="password">
               </div>
             </div>
             
             <div class="control-group">
               <label class="control-label" for="mail">Mail</label>
               <div class="controls">
-                <input type="text" id="mail" >
+                <input type="text" id="mail" name="email">
               </div>
             </div>
             
@@ -133,7 +155,6 @@
               <button type="button" class="btn">Cancel</button>
             </div>
            </form>
-					
 				</div>
        
       </div><!--/row-->
@@ -149,7 +170,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap-transition.js"></script>
     <script src="../js/bootstrap-alert.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
@@ -162,6 +182,25 @@
     <script src="../js/bootstrap-collapse.js"></script>
     <script src="../js/bootstrap-carousel.js"></script>
     <script src="../js/bootstrap-typeahead.js"></script>
+    <script type="text/javascript">
+        $.fn.serializeObject = function()
+        {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+                
+            return o;
+        };
+    </script>
 
 
   </body>
