@@ -16,30 +16,30 @@ function fillForm(response) {
 //display all members in a <table><tbody></tbody></table> element
 function displayInTable(items){
 	if (items.member1.length>1){ //if more than one members
-		$("#usersList > tbody").html("");
+		$("#memberList > tbody").html("");
 		$.each(items.member1, function(i, dico){
-			$("#usersList > tbody").append("<tr>");
-			$("#usersList > tbody").append("<td>"+dico.idMember+"</td>");
-			$("#usersList > tbody").append("<td>"+dico.firstname+"</td>");
-			$("#usersList > tbody").append("<td>"+dico.lastname+"</td>");
-			$("#usersList > tbody").append("<td>"+dico.login+"</td>");
-			$("#usersList > tbody").append("<td></td>");
-			$("#usersList > tbody").append("<td>"+dico.email+"</td>");
-			$("#usersList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
+			$("#memberList > tbody").append("<tr>");
+			$("#memberList > tbody").append("<td>"+dico.idMember+"</td>");
+			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
+			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
+			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
+			$("#memberList > tbody").append("<td></td>");
+			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
+			$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>");
 			$("#usersList > tbody").append("</tr>");
 		});   
 	}
 	else { //if only one member
-		$("#usersList > tbody").append("<tr>");
-		$("#usersList > tbody").append("<td>"+items.idMember+"</td>");
-		$("#usersList > tbody").append("<td>"+items.firstname+"</td>");
-		$("#usersList > tbody").append("<td>"+items.lastname+"</td>");
-		$("#usersList > tbody").append("<td>"+items.login+"</td>");
-		$("#usersList > tbody").append("<td></td>");
-		$("#usersList > tbody").append("<td>"+items.email+"</td>");
-		$("#usersList > tbody").append("<td></td>");
-		$("#usersList > tbody").append("</tr>");
+		$("#memberList > tbody").append("<tr>");
+		$("#memberList > tbody").append("<td>"+items.idMember+"</td>");
+		$("#memberList > tbody").append("<td>"+items.firstname+"</td>");
+		$("#memberList > tbody").append("<td>"+items.lastname+"</td>");
+		$("#memberList > tbody").append("<td>"+items.login+"</td>");
+		$("#memberList > tbody").append("<td></td>");
+		$("#memberList > tbody").append("<td>"+items.email+"</td>");
+		$("#memberList > tbody").append("<td></td>");
+		$("#memberList > tbody").append("</tr>");
 	}
 }
 
