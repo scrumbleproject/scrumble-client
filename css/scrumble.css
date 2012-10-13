@@ -404,3 +404,14 @@ ul {
     padding-top: 30px;
     vertical-align: middle;
 }
+
+
+
+
+/** USER STORIES **/
+#gridster > ul > li > div.title{
+	text-align:center;
+	font-weight:bold;
+	vertical-align:center;
+}	
+

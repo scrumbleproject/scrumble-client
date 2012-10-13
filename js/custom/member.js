@@ -1,7 +1,7 @@
 
 /** Members methods **/
 
-//fill the form with data about one user
+//fill the form with data about one member
 function fillForm(response) {
   $("#idMember").val(response.idMember);
   //$("#idRole").val(response.idRole);
@@ -13,8 +13,8 @@ function fillForm(response) {
 }
 
 
-//display all members in a <table><tbody></tbody></table> element
-function displayInTable(items){
+//display all items
+function displayAllItems(items){
 	if (items.member1.length>1){ //if more than one members
 		$("#memberList > tbody").html("");
 		$.each(items.member1, function(i, dico){
@@ -33,12 +33,13 @@ function displayInTable(items){
 	else { //if only one member
 		$("#memberList > tbody").append("<tr>");
 		$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
-		$("#memberList > tbody").append("<td>"+items.firstname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.lastname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.login+"</td>");
+		$("#memberList > tbody").append("<td>"+items.member1.firstname+"</td>");
+		$("#memberList > tbody").append("<td>"+items.member1.lastname+"</td>");
+		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
 		$("#memberList > tbody").append("<td></td>");
-		$("#memberList > tbody").append("<td>"+items.email+"</td>");
-		$("#memberList > tbody").append("<td></td>");
+		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
+		$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
+          "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>");
 		$("#memberList > tbody").append("</tr>");
 	}
 }
@@ -79,9 +80,21 @@ function bindDeleteEvent(){
 }
 
 		
-/** Put here all calls taht you want to launch at the startup **/		
+/** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
 	
+	//load left-menu	
+	$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
+		if (status == "error") {
+			var msg = "Sorry leaf-menu cannot be loaded: ";
+			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
+		}
+		else { //if successful
+			//select the related option in left-menu
+			$("li#left-menu-option-member").addClass("active");
+		} 		
+	});
+
 	//get param idMember in url if exists
     var idMember = $(document).getUrlParam("idMember");		
 	
@@ -108,7 +121,7 @@ $(document).ready( function() {
             type:'GET',
 		    contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
-                displayInTable($.parseJSON(reponse));
+                displayAllItems($.parseJSON(reponse));
 				bindDeleteEvent();
             },
 		    error:function (xhr, status, error){

@@ -15,7 +15,9 @@
       }
     </style>
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/scrumble.css" rel="stylesheet">
+    <link href="../css/jquery.gridster.min.css" rel="stylesheet">
+	<link href="../css/scrumble.css" rel="stylesheet">
+
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -28,112 +30,34 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="#">&nbsp;</a>
-          <div class="nav-collapse">
-            <ul class="nav pull-right">
-            <li id="fat-menu" class="dropdown action-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><h2>Your Projects</h2></li>
-                <li><a href="#">Project 1</a></li>
-                <li><a href="#">Project 2</a></li>
-                <li class="divider"></li>
-                <li><a class="action-button" href="#">New project</a></li>
-                <li><a class="action-button" href="#">Action 2 </a></li>
-                <li><a class="action-button" href="#">Action 3</a></li>
-              </ul>
-            </li>
-            <li id="presence">
-              <img src="../img/status_green.png" width="16px" border=0 />
-            </li>
-            <li>
-              <a href="#" class="dropdown-toggle logged-name" data-toggle="dropdown">John</b></a>
-            </li>
-          </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+<!-- Top navigation bar -->
+<div class="navbar navbar-fixed-top" id="nav-bar">  
+</div>
+<!-- End top navigation bar -->
 
 <!-- Left menu -->
 <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><a href="dashboard.html">Dashboard</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="sprint.html">Sprint</a></li>
-              <li class="active"><a href="storyList.html">Story</a></li>
-              <li><a href="modules.html">Modules</a></li>
-              <li><a href="userList.html">Users</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+  <div class="row-fluid">
+    <div id="left-menu" class="span2">
+	</div><!--/span-->
 <!-- End left menu-->
 
-<!-- Content -->
-				<div class="span10">
-			    <h2>User stories</h2>
-			    <a class="btn btn-primary" href="story.html">New story</a>
-					<table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Estimation</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>Mise en place serveur production</td>
-                  <td>Technique</td>
-                  <td>6j</td>
-                  <td>En cours</td>
-                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
-                  <a class="btn btn-danger" href="user.html"><i class="icon-trash"></i></a></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Mise en place serveur production</td>
-                  <td>Technique</td>
-                  <td>6j</td>
-                  <td>En cours</td>
-                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
-                  <a class="btn btn-danger" href="user.html"><i class="icon-trash"></i></a></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Mise en place serveur production</td>
-                  <td>Technique</td>
-                  <td>6j</td>
-                  <td>En cours</td>
-                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
-                  <a class="btn btn-danger" href="user.html"><i class="icon-trash"></i></a></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Mise en place serveur production</td>
-                  <td>Technique</td>
-                  <td>6j</td>
-                  <td>En cours</td>
-                  <td><a class="btn" href="user.html"><i class="icon-pencil"></i></a>
-                  <a class="btn btn-danger" href="user.html"><i class="icon-trash"></i></a></td>
-                </tr>
-              </tbody>
-            </table>
-				</div>
 
-<!-- End content -->       
-      </div><!--/row-->
+<!-- Content -->
+	<div class="span10">
+    	<h2>User stories</h2>
+	    <a class="btn btn-primary" href="story.html">New story</a>
+		
+		<div class="gridster" id="gridster">
+			<ul>
+			</ul>
+		</div>
+			
+	</div>
+
+<!-- End content --> 
+      
+  </div><!--/row-->
 
       <hr>
 
@@ -141,25 +65,35 @@
         <p>Scrumble</p>
       </footer>
 
-    </div>
+</div>
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap-transition.js"></script>
-    <script src="../js/bootstrap-alert.js"></script>
-    <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/bootstrap-dropdown.js"></script>
-    <script src="../js/bootstrap-scrollspy.js"></script>
-    <script src="../js/bootstrap-tab.js"></script>
-    <script src="../js/bootstrap-tooltip.js"></script>
-    <script src="../js/bootstrap-popover.js"></script>
-    <script src="../js/bootstrap-button.js"></script>
-    <script src="../js/bootstrap-collapse.js"></script>
-    <script src="../js/bootstrap-carousel.js"></script>
-    <script src="../js/bootstrap-typeahead.js"></script>
+    <script src="../js/lib/jquery.js"></script>
 
+	<!-- Custom import -->
+	<script src="../js/custom/page.js"></script>
+	<script src="../js/custom/config.js"></script>	
+    <script src="../js/custom/userStory.js"></script>
+
+	<!-- Additional plugins -->
+	<script src="../js/lib/jquery.gridster.min.js"></script>
+
+	<!-- Bootstrap related import -->
+	<script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-dropdown.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-scrollspy.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-tab.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-tooltip.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-popover.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-button.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
 
   </body>
 </html>
