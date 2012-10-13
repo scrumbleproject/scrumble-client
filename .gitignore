@@ -1,0 +1,4 @@
+# Ignorer tous les backup file
+*.html~
+*.js~
+
