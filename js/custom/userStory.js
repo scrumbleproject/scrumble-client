@@ -4,7 +4,15 @@
 //fill the form with data about one user story
 function fillForm(response) {
   
-  //$("#id").val(response.id);
+	$("#idUserstory").val(response.idUserstory);
+	$("#title").val(response.title);
+	$("#demonstration").val(response.demonstration);
+	$("#estimation").val(response.estimation);
+	$("#importance").val(response.importance);
+	$("#note").val(response.note);
+
+	//add event on delete-button
+	bindDeleteEvent();
   
 }
 
@@ -16,7 +24,7 @@ function displayAllItems(items){
 		$("#userstories-list").html("");
 		$.each(items.userstory, function(i, dico){
 			$("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
-					"<a class='edit' href='story.html'><img class='icon-pencil'/></a>"+
+					"<a class='edit' href='story.html?idUserstory="+dico.idUserstory+"'><img class='icon-pencil'/></a>"+
 					"<div class='title'>"+ dico.title + "</div>" +
 					"<div class='estimation-label'>Days/Person</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
@@ -50,36 +58,36 @@ function displayAllItems(items){
 }
 
 
-//add an event on <a> delete button
+//add an event on delete <button> 
 function bindDeleteEvent(){
+
+	$("button.btn-delete").show();
 	
 	//fetch each <a> delete button
-	$("a.btn-delete").each( function(){
+	$("button.btn-delete").live('click', function(e){
 		
-		//get a reference on the current fetched element
-		$btn = $(this);
+		//show a confirm box
+		e.preventDefault();
+        bootbox.confirm("Are you sure to delete this user story ?", function(confirmed) {
 
-		//add event on click on this button
-		$btn.live('click', function(e){
-		
-			//show a confirm box
-			e.preventDefault();
-            bootbox.confirm("Are you sure to delete this member ?", function(confirmed) {
+			if (confirmed) {             
+				$.ajax({
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+$("#idUserstory").val(),
+					type:"DELETE",
+					success: function(data) {
+						var box = bootbox.alert("User story deleted successfully.");
+							setTimeout(function() {
+							box.modal('hide');
+							window.location.replace('storyList.html'); //redirect to storyList.html
+						}, 3000); 
+					},
+					error:function (xhr, status, error){
+						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+					}
+				});
+			}	
 
-				if (confirmed) {             
-					$.ajax({
-						//url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$btn.attr("href"),
-						type:"DELETE",
-						success: function(data) {
-							bootbox.alert("Member deleted successfully.");
-							location.reload(); //reload page
-						}
-					});
-				}	
-
-            });
-			
-		});	
+        });
 
 	});
 }
@@ -100,21 +108,87 @@ $(document).ready( function() {
 		} 		
 	});
 	
+	//get param idMember in url if exists
+    var idUserstory = $(document).getUrlParam("idUserstory");		
+	
+	//load data on list or on form
+    if ( (idUserstory !=="") && (idUserstory !==null)) {
+        $.ajax({
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory,
+            type:'GET',
+            contentType:'application/json; charset=UTF-8',
+            success: function(reponse) {
+                fillForm($.parseJSON(reponse));
+            },
+	        error:function (xhr, status, error){
+		        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+	        },
+            dataType: 'text',
+            converters: 'text json'
+        });
+	                      
+    }
+	else {
+	    $.ajax({
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/all',
+            type:'GET',
+		    contentType:'application/json; charset=UTF-8',
+            success: function(reponse) {
+                displayAllItems($.parseJSON(reponse));
+            },
+		    error:function (xhr, status, error){
+			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+		    },
+		    dataType: 'text',
+		    converters: 'text json'
+	    });	
+    }
 
-	//load all items
-	$.ajax({
-        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/all',
-        type:'GET',
-	    contentType:'application/json; charset=UTF-8',
-        success: function(reponse) {
-            displayAllItems($.parseJSON(reponse));
-			bindDeleteEvent();
-        },
-	    error:function (xhr, status, error){
-		    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-	    },
-	    dataType: 'text',
-	    converters: 'text json'
-    });	
+	//action on #formStory form
+	$('#formStory').submit(function() {
+		
+		//Get #idUserstory field value	
+		var idUserstory = $("#idUserstory").val();
+
+		if (idUserstory==null || idUserstory.length==0) {
+			//Case 1 : create a new story (idUserstory is empty)
+		    $.ajax({
+		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add',
+		        type:"POST",
+		        data: JSON.stringify($('#formStory').serializeObject()),
+		        dataType: "json",
+		        contentType: "application/json; charset=utf-8",
+		        success: function(data) {
+		                bootbox.alert('User story has been added successfully.');
+						window.location.replace('storyList.html'); //redirect to storyList.html
+		        },
+				error:function (xhr, status, error){
+					bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+				}
+		    });
+		}
+		else { //Case 2 : update an existing story (idUserstory is not empty)
+			$.ajax({
+                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories,
+                type:"PUT",
+                data: JSON.stringify($('#formStory').serializeObject()),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function(data) {
+					var box = bootbox.alert("User story has been updated successfully.");
+								setTimeout(function() {
+								box.modal('hide');
+								window.location.replace('storyList.html'); //redirect to storyList.html
+							}, 3000);
+                },
+				error:function (xhr, status, error){
+					bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+				}
+            });
+		}
+
+	    return false;
+    });
+
     
 });

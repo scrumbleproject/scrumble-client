@@ -46,18 +46,21 @@
     <h2>User story</h2>
 
     <!-- Story form -->
-		<form class="form-horizontal">
+		<form id="formStory" class="form-horizontal">
+			
+		<input type="hidden" name="idUserstory" id="idUserstory" >
+
 		<!-- Story name -->
 		<div class="control-group">
-		  <label class="control-label" for="name">Name</label>
+		  <label class="control-label" for="title">Title</label>
 		  <div class="controls">
-			<input type="text" id="name" >
+			<input type="text" id="title" name="title" >
 		  </div>
 		</div>
 		<!-- Story type -->
 		<div class="control-group">
-		  <label class="control-label" for="function">Type</label>
-		  <div class="controls">
+		  <label class="control-label" for="category">Category</label>
+		  <div class="controls" id="category">
 			<select>
 			<option>User stories</option>
 			<option>Technical user</option>
@@ -66,19 +69,35 @@
 			</select>
 		  </div>
 		</div>
+		
+		<!-- Story importance -->
+		 <div class="control-group">
+		  <label class="control-label" for="importance">Importance</label>
+		  <div class="controls input-append">
+			<input type="text" id="importance" name="importance">
+		  </div>
+		</div>
 		 
 		 <!-- Story estimation -->
 		 <div class="control-group">
 		  <label class="control-label" for="estimation">Estimation</label>
+		  <div class="controls input-append">
+			<input type="text" id="estimation" name="estimation"><span class="add-on">Days/Person</span>
+		  </div>
+		</div>
+		
+		<!-- Story how to demonstrate -->
+		<div class="control-group">
+		  <label class="control-label" for="demonstration">How to demonstrate</label>
 		  <div class="controls">
-			<input type="text" id="estimation" >
+			<textarea rows="3" id="demonstration" name="demonstration"></textarea>
 		  </div>
 		</div>
 
 		 <!-- Story status -->
 		 <div class="control-group">
 		  <label class="control-label" for="status">Status</label>
-		  <div class="controls">
+		  <div class="controls" id="status">
 			<select>
 			<option>Proposed</option>
 			<option>Accepted</option>
@@ -91,15 +110,16 @@
 		</div>
 
 		<div class="control-group">
-		  <label class="control-label" for="description">Description</label>
+		  <label class="control-label" for="note">Note</label>
 		  <div class="controls">
-			<textarea rows="3" id="description"></textarea>
+			<textarea rows="3" id="note" name="note"></textarea>
 		  </div>
 		</div>
 
 		<div class="form-actions">
-		  <button type="submit" class="btn btn-primary">Save</button>
+		  <button type="submit" class="btn btn-large btn-primary">Save</button>
 		  <button type="button" class="btn">Cancel</button>
+		  <button type="button" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
 		</div>
 	</form>
     
@@ -133,6 +153,7 @@
     <script src="../js/custom/userStory.js"></script>
 
 	<!-- Additional plugins -->
+	<script src="../js/lib/jquery.getUrlParam.js"></script>
 
 	<!-- Bootstrap related import -->
 	<script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>

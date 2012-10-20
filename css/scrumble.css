@@ -457,8 +457,16 @@ ul {
 	text-align:center;
 }	
 
+#formStory div.input-append{
+	display:block;
+}
+
+
+/**  **/
+
 .new{
   margin-bottom: 10px;
 }
-}
+
+
 
