@@ -423,9 +423,13 @@ ul {
 	width: 170px; 
 	height: 130px;  
 	text-align: center;
-	/*box-shadow: 1px 1px 1px 1px #888; 
-	border:1px solid #bbb;
-	background-color:#fff;*/
+}
+#userstories-list > li > a.edit {
+	position:absolute;
+	top:0;
+	right:0;
+	background-color:#eee;
+	padding:0px 4px;
 }
 #userstories-list > li > div.title{
 	text-align:center;
@@ -433,7 +437,14 @@ ul {
 	padding:20px 4px 0; 
 	height:60px;
 }
-#userstories-list > li > div.estimation{	
+#userstories-list > li > div.estimation-label{	
+	position:absolute;
+	bottom:0;
+	right:50px;
+	font-style:italic;
+	font-size:0.9em;
+}	
+#userstories-list > li > div.estimation-value{	
 	position:absolute;
 	bottom:0;
 	right:0;
@@ -446,12 +457,23 @@ ul {
 	text-align:center;
 }	
 
+#formStory div.input-append{
+	display:block;
+}
+
+
+/**  **/
+
 .new{
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 #formProject .fileupload{
   margin-left:160px;
 }
 }  
+=======
+
+>>>>>>> cc6e5a53daa02e6cbc356916757fd38ef688a3aa
 

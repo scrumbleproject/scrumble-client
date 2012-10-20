@@ -7,7 +7,8 @@ function fillForm(response) {
   $("#title").val(response.title);
   $("#description").val(response.description);
 }
-
+	//add event on delete-button
+	bindDeleteEvent();
 
 //display all items
 function displayAllItems(items){
@@ -33,36 +34,37 @@ function displayAllItems(items){
 //add an event on <a> delete button
 function bindDeleteEvent(){
 	
+	$("button.btn-delete").show();
+	
 	//fetch each <a> delete button
-	$("a.btn-delete").each( function(){
+	$("button.btn-delete").live('click', function(e){
 		
-		//get a reference on the current fetched element
-		$btn = $(this);
+		//show a confirm box
+		e.preventDefault();
+        bootbox.confirm("Are you sure to delete this user project ?", function(confirmed) {
 
-		//add event on click on this button
-		$btn.live('click', function(e){
-		
-			//show a confirm box
-			e.preventDefault();
-            bootbox.confirm("Are you sure to delete this project ?", function(confirmed) {
+			if (confirmed) {             
+				$.ajax({
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+$("#idProject").val(),
+					type:"DELETE",
+					success: function(data) {
+						var box = bootbox.alert("Project deleted successfully.");
+							setTimeout(function() {
+							box.modal('hide');
+							window.location.replace('projectsList.html'); //redirect to storyList.html
+						}, 3000); 
+					},
+					error:function (xhr, status, error){
+						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+					}
+				});
+			}	
 
-				if (confirmed) {             
-					$.ajax({
-						//url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$btn.attr("href"),
-						type:"DELETE",
-						success: function(data) {
-							bootbox.alert("Project deleted successfully.");
-							location.reload(); //reload page
-						}
-					});
-				}	
-
-            });
-			
-		});	
+        });
 
 	});
 }
+
 
 		
 /** Put here all calls that you want to launch at the page startup **/		
@@ -81,8 +83,8 @@ $(document).ready( function() {
 	});
 	
 
-	//get param idMember in url if exists
-    var idProject = $(document).getUrlParam("idProject");		
+	//get param idProject in url if exists
+    var idProject = $(document).getUrlParam("idProject");
 
 	//load all items
 	$.ajax({
@@ -100,16 +102,50 @@ $(document).ready( function() {
 	    converters: 'text json'
     });	
     
-});
 
 
-	//action on #formUser form
+	//load data on list or on form
+    if ( (idProject !=="") && (idProject !==null)) {
+        $.ajax({
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject,
+            type:'GET',
+            contentType:'application/json; charset=UTF-8',
+            success: function(reponse) {
+                fillForm($.parseJSON(reponse));
+            },
+	        error:function (xhr, status, error){
+		        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+	        },
+            dataType: 'text',
+            converters: 'text json'
+        });
+	                      
+    }
+	else {
+	    $.ajax({
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all',
+            type:'GET',
+		    contentType:'application/json; charset=UTF-8',
+            success: function(reponse) {
+                displayAllItems($.parseJSON(reponse));
+				bindDeleteEvent();
+            },
+		    error:function (xhr, status, error){
+			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+		    },
+		    dataType: 'text',
+		    converters: 'text json'
+	    });	
+    }
+
+
+	//action on #formProject form
 	$('#formProject').submit(function() {
 		
-		//Get #idMember field value	
+		//Get #idProject field value	
 		var idProject = $("#idProject").val();
 
-		if (idProject==null || idProject.length==0) {
+		if (idProject==null && idProject.length==0) {
 			//Case 1 : create a project (idProject is empty)
 		    $.ajax({
 		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/add',
@@ -126,7 +162,7 @@ $(document).ready( function() {
 				}
 		    });
 		}
-		else { //Case 2 : update an existing member (idMember is not empty)
+		else { //Case 2 : update an existing member (idProject is not empty)
 			$.ajax({
                 url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects,
                 type:"PUT",
@@ -135,10 +171,12 @@ $(document).ready( function() {
                 contentType: "application/json; charset=utf-8",
                 success: function(data) {
                     bootbox.alert("Project has been updated successfully.");
-					window.location.replace('projectsList.html'); //redirect to projectList.html
+					          window.location.replace('projectsList.html'); //redirect to projectList.html
                 }
             });
 		}
 
 	    return false;
     });
+    
+});
