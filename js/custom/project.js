@@ -86,24 +86,6 @@ $(document).ready( function() {
 	//get param idProject in url if exists
     var idProject = $(document).getUrlParam("idProject");
 
-	//load all items
-	$.ajax({
-        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all',
-        type:'GET',
-	    contentType:'application/json; charset=UTF-8',
-        success: function(reponse) {
-            displayAllItems($.parseJSON(reponse));
-			bindDeleteEvent();
-        },
-	    error:function (xhr, status, error){
-		    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-	    },
-	    dataType: 'text',
-	    converters: 'text json'
-    });	
-    
-
-
 	//load data on list or on form
     if ( (idProject !=="") && (idProject !==null)) {
         $.ajax({
