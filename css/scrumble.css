@@ -409,13 +409,31 @@ ul {
 
 
 /** USER STORIES **/
-
-#gridster > ul > li > div.title{
+#userstories-list {
+	list-style-type: none; 
+	margin: 20px 0; 
+	padding: 0; 
+	background-color:#ddd;
+}
+#userstories-list > li {
+	position:relative;
+	margin:8px 10px;
+	padding: 1px; 
+	float: left; 
+	width: 170px; 
+	height: 130px;  
+	text-align: center;
+	/*box-shadow: 1px 1px 1px 1px #888; 
+	border:1px solid #bbb;
+	background-color:#fff;*/
+}
+#userstories-list > li > div.title{
 	text-align:center;
 	font-weight:bold;
 	padding:20px 4px 0; 
+	height:60px;
 }
-#gridster > ul > li > div.estimation{	
+#userstories-list > li > div.estimation{	
 	position:absolute;
 	bottom:0;
 	right:0;

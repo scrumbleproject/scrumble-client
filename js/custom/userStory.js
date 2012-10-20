@@ -12,28 +12,36 @@ function fillForm(response) {
 //display all items
 function displayAllItems(items){
 
-	var maxNbCols = 4;
-
-	if (items.userstory.length>1){ //if more than one members
-		$("#gridster > ul").html("");
+	if (items.userstory.length>1){ //if more than one user story
+		$("#userstories-list").html("");
 		$.each(items.userstory, function(i, dico){
-			$("#gridster > ul").append("<li class='img-polaroid'"+
-				" data-row='"+(parseInt(i/maxNbCols)+1)+"' data-col='"+(i%maxNbCols+1)+"' data-sizex='1' data-sizey='1'>"+
+			$("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
 					"<div class='title'>"+ dico.title + "</div>" +
-					"<div class='estimation'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
+					"<div></div><div class='estimation'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
 		});   
 	}
-	else { //if only one member
-		$("#gridster > ul").append("<li class='img-polaroid' data-row='1' data-col='1' data-sizex='1' data-sizey='1'>"+items.userstory.title+"</li>");
+	else { //if only one user story
+		$("#userstories-list").append("<li class='img-polaroid'>"+items.userstory.title+"</li>");
 	}
 
-	//init gridster
-	$(".gridster ul").gridster({
-        widget_margins: [15, 15],
-        widget_base_dimensions: [200, 130],
-		max_size_x: maxNbCols
-    });
+	//init sortable list
+	$( "#userstories-list" ).sortable({
+		update: function(event, ui) {
+			//alert('new position = '+ui.item.index());	
+			//alert('userstory id = '+ui.item.attr("id"));
+			$.ajax({
+				url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+ui.item.attr("id")+'/'+ui.item.index(),
+				type:"POST",
+				success: function(data) {
+					console.log('User story : Order saved');
+				}
+			});	
+		}	
+	});
+    $( "#userstories-list" ).disableSelection();
+
+
 }
 
 
