@@ -9,7 +9,6 @@
 
     <!-- Le styles -->
     <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="../css/jasny-bootstrap.css" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
@@ -38,73 +37,32 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div id="left-menu" class="span2">
-	</div><!--/span-->
+  </div><!--/span-->
 <!-- End left menu-->
 
 <!--Content -->
-	<div class="span10">
-    <h2>New projects</h2>
-    
-    <!-- Form --> 	    
-		<form id="formProject" class="form-horizontal" action="#">
-
-			<input type="hidden" name="idProject" id="idProject" >
-
-      <!-- Input name -->
-      <div class="control-group">
-        <label class="control-label" for="title">Title</label>
-        <div class="controls">
-          <input type="text" name="title" id="title" >
-        </div>
-      </div>
-
-      <!-- Input or delete file logo -->
-      <div class="control-group">
-        <label class="control-label" for="logo">Logo</label>
-              <div class="fileupload fileupload-new" data-provides="fileupload">
-    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
-    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-    <div>
-    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+<div class=span10>
+    <h2>Projects</h2>
+    <a href="settings.html" class="btn btn-primary new">New project</a>
+    <div class="row-fluid">
+      <ul class="thumbnails" id="projects-list">
+        
+      </ul>
     </div>
-    </div>
-    </div>
-    
-    
-    <!-- Description textarea -->
-          <div class="control-group">
-			  <label class="control-label" for="description">Description</label>
-			  <div class="controls">
-				<textarea rows="3" name="description" id="description" ></textarea>
-			  </div>
-			</div>
-
-      <!-- Validation -->
-			<div class="form-actions">
-			  <button type="submit" class="btn btn-primary">Save</button>
-			  <button type="button" class="btn">Cancel</button>
-			</div>
-
-		</form>
-		<!-- End form --> 
-      
-	
-	</div>
+  </div>
 <!-- End content -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="../js/lib/jquery.js"></script>
+  <script src="../js/lib/jquery.js"></script>
 
-	<!-- Custom import -->
-	<script src="../js/custom/utils.js"></script>
+  <!-- Custom import -->
+    <script src="../js/custom/utils.js"></script>
     <script src="../js/custom/config.js"></script>
     <script src="../js/custom/page.js"></script>
     <script src="../js/lib/jquery.getUrlParam.js"></script>
     <script src="../js/custom/project.js"></script>
-
 
   <!-- Bootstrap related import -->
     <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>    
@@ -121,6 +79,5 @@
     <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-fileupload.js"></script>
-
   </body>
 </html>
