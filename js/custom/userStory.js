@@ -15,9 +15,9 @@ function displayAllItems(items){
 	if (items.userstory.length>1){ //if more than one user story
 		$("#userstories-list").html("");
 		$.each(items.userstory, function(i, dico){
-			$("#userstories-list").append("<li class='img-polaroid'>"+
+			$("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
 					"<div class='title'>"+ dico.title + "</div>" +
-					"<div class='estimation'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
+					"<div></div><div class='estimation'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
 		});   
 	}
@@ -26,8 +26,22 @@ function displayAllItems(items){
 	}
 
 	//init sortable list
-	$( "#userstories-list" ).sortable();
+	$( "#userstories-list" ).sortable({
+		update: function(event, ui) {
+			//alert('new position = '+ui.item.index());	
+			//alert('userstory id = '+ui.item.attr("id"));
+			$.ajax({
+				url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+ui.item.attr("id")+'/'+ui.item.index(),
+				type:"POST",
+				success: function(data) {
+					console.log('User story : Order saved');
+				}
+			});	
+		}	
+	});
     $( "#userstories-list" ).disableSelection();
+
+
 }
 
 
