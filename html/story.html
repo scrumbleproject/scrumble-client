@@ -46,7 +46,7 @@
     <h2>User story</h2>
 
     <!-- Story form -->
-		<form id="formStory" class="form-horizontal">
+	<form id="formStory" class="form-horizontal">
 			
 		<input type="hidden" name="idUserstory" id="idUserstory" >
 
@@ -117,16 +117,7 @@
 		</div>
 		
 		
-		<legend>Task</legend>
-		<div class="control-group">
-		  <label class="control-label" for="note">1</label>
-		  <div class="controls">
-			
-			<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">
-      <input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">
-      <a class="btn btn-primary" href="#"><i class="icon-plus-sign icon-white"></i> Add task</a>
-		  </div>
-		</div>
+		
 		
 		
 
@@ -136,9 +127,27 @@
 		  <button type="button" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
 		</div>
 	</form>
-    
-    
     <!-- End story form -->
+
+
+	<!-- Task form -->
+	<form id="formTask" class="form-horizontal">
+    	<legend>Task</legend>
+		<div class="control-group">
+			<label class="control-label" for="note">1</label>
+			<div class="controls">
+				<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">
+				<input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">
+				<a class="btn btn-primary" href="#"><i class="icon-plus-sign icon-white"></i> Add task</a>
+			</div>
+			<label class="control-label" for="note">1</label>
+			<div class="controls">
+				<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">
+				<input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">
+				<a class="btn btn-primary" href="#"><i class="icon-plus-sign icon-white"></i> Add task</a>
+			</div>
+		</div>
+    <!-- End task form -->
     
 	</div>
 
@@ -165,6 +174,7 @@
 	<script src="../js/custom/config.js"></script>
 	<script src="../js/custom/utils.js"></script>	
     <script src="../js/custom/userStory.js"></script>
+    <script src="../js/custom/task.js"></script>
 
 	<!-- Additional plugins -->
 	<script src="../js/lib/jquery.getUrlParam.js"></script>
