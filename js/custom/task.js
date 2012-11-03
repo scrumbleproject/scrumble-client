@@ -2,29 +2,30 @@
 /** Tasks methods **/
 
 $("a").live('click',function (e) {
-	e.preventDefault();
 
-	$(this).replaceWith('<a class="btn addTask" href="'+index+'"><i class="icon-pencil"></i> Update task</a>');
+	if ($(this).hasClass("addTask")) 
+	{
+		e.preventDefault();
+
+		$(this).replaceWith('<a class="btn addTask" href="'+index+'"><i class="icon-pencil"></i> Update task</a>');
 
 
-	//Add new form task
-	var index = $(this).attr("href");
-	index = parseInt(index);
-	index = index + 1;
-	$('#taskList').append(' <form id=formTask'+index+' class="form-horizontal formTask">'+
-	    '<div class="control-group">'+
-	      '<label class="control-label" for="'+index+'">'+index+'</label>'+
-	      '<div class="controls">'+
-	        '<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">'+
-	  '<input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">'+
-	  '<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
-	      '</div>'+
-	    '</div>'+
-	    '</form>');
+		//Add new form task
+		var index = $(this).attr("href");
+		index = parseInt(index);
+		index = index + 1;
+		$('#taskList').append(' <form id=formTask'+index+' class="form-horizontal formTask">'+
+		    '<div class="control-group">'+
+		      '<label class="control-label" for="'+index+'">'+index+'</label>'+
+		      '<div class="controls">'+
+		        '<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">'+
+		  '<input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">'+
+		  '<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
+		      '</div>'+
+		    '</div>'+
+		    '</form>');
+	}
 });
-
-
-
 
 
 
@@ -163,15 +164,15 @@ $(document).ready( function() {
 function test(){
 	//action on #formTask form
 	$('.formTask').each(function() {
-		alert("formTask");
+		//alert("formTask");
 		$form = $(this);
 		$(this).submit(function(){
 			//Get #idUserstory field value	
-			alert("submit");
+			//alert("submit");
 			var idTask = $form.children("input[name=idTask]").val();
-			alert("idTask = "+idTask);
+			//alert("idTask = "+idTask);
 			if (idTask==null ||idTask.length==0) {
-				alert("submit1");
+				//alert("submit1");
 				//Case 1 : create a new task (idTask is empty)
 			    $.ajax({
 			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/add',
@@ -189,7 +190,7 @@ function test(){
 			    });
 			}
 			else { //Case 2 : update an existing task (idTask is not empty)
-				alert("submit2");
+				//alert("submit2");
 				$.ajax({
 	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks,
 	                type:"PUT",
