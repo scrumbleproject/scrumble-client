@@ -27,7 +27,7 @@ function displayAllItems(items){
 			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
 			$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>");
-			$("#usersList > tbody").append("</tr>");
+			$("#memberList > tbody").append("</tr>");
 		});   
 	}
 	else { //if only one member

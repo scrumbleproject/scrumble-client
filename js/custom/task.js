@@ -1,70 +1,129 @@
 
 /** Tasks methods **/
 
-//fill the form with data about one task
-function fillForm(response) {
-  $("#idMember").val(response.idMember);
-  //$("#idRole").val(response.idRole);
-  $("#firstname").val(response.firstname);
-  $("#lastname").val(response.lastname);
-  $("#login").val(response.login);
-  $("#email").val(response.email);
-  $("#password").val(response.password);
-}
+$("a").live('click',function (e) {
+	e.preventDefault();
+
+	$(this).replaceWith('<a class="btn addTask" href="'+index+'"><i class="icon-pencil"></i> Update task</a>');
+
+
+	//Add new form task
+	var index = $(this).attr("href");
+	index = parseInt(index);
+	index = index + 1;
+	$('#taskList').append(' <form id=formTask'+index+' class="form-horizontal formTask">'+
+	    '<div class="control-group">'+
+	      '<label class="control-label" for="'+index+'">'+index+'</label>'+
+	      '<div class="controls">'+
+	        '<input class="span3" type="text" placeholder="Title" id="titleTask" name="titleTask">'+
+	  '<input class="span1" type="text" placeholder="Est" id="estimationTask" name="estimationTask">'+
+	  '<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
+	      '</div>'+
+	    '</div>'+
+	    '</form>');
+});
+
+
+
+
+
 
 //display all items
 function displayAllItems(items){
-	if (items.member1.length>1){ //if more than one tasks
-		$("#memberList > tbody").html("");
-		$.each(items.member1, function(i, dico){
-			$("#memberList > tbody").append("<tr>");
-			$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
-			$("#memberList > tbody").append("<td></td>");
-			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
-			$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
-          "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>");
-			$("#usersList > tbody").append("</tr>");
-		});   
+	if (items.task.length>1){ //if more than one tasks
+		$("#taskList").html("");
+		var nb = 0;
+		$.each(items.task, function(i, dico){
+			$("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-horizontal formTask\">");
+			$("#taskList").append("<label class=\"control-label\" for=\"note\">"+(i+1)+"</label>");
+			$("#taskList").append("<div class=\"controls\">");
+			$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">");
+			$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(i+1)+"\" name=\"titleTask_"+(i+1)+"\" value=\""+dico.title+"\">");
+			$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(i+1)+"\" name=\"estimationTask_"+(i+1)+"\" value=\""+dico.estimation+"\">");
+			$("#taskList").append("<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>");
+			$("#taskList").append("</div>");
+			$("#taskList").append("</form>");
+			nb=i;
+		});
+		$("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<label class=\"control-label\" for=\"note\">"+(nb+2)+"</label>");
+		$("#taskList").append("<div class=\"controls\">");
+		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
+		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(nb+2)+"\" name=\"titleTask_"+(nb+2)+"\">");
+		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(nb+2)+"\" name=\"estimationTask_"+(nb+2)+"\">");
+		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
+		$("#taskList").append("</div>");
+		$("#taskList").append("</form>");
 	}
-	else { //if only one member
-		$("#memberList > tbody").append("<tr>");
-		$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.firstname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.lastname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
-		$("#memberList > tbody").append("<td></td>");
-		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
-		$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
-          "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>");
-		$("#memberList > tbody").append("</tr>");
+	else { //if only one task
+		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<label class=\"control-label\" for=\"note\">1</label>");
+		$("#taskList").append("<div class=\"controls\">");
+		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\""+items.task.idTask+"\">");
+		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_1\" name=\"titleTask_1\" value=\""+items.task.title+"\">");
+		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_1\" name=\"estimationTask_1\" value=\""+items.task.estimation+"\">");
+		$("#taskList").append("<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>");
+		$("#taskList").append("</div><br/>");
+		$("#taskList").append("</form>");
+
+		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<label class=\"control-label\" for=\"note\">2</label>");
+		$("#taskList").append("<div class=\"controls\">");
+		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
+		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_2\" name=\"titleTask_2\">");
+		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_2\" name=\"estimationTask_2\">");
+		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
+		$("#taskList").append("</div>");
+		$("#taskList").append("</form>");
 	}
 }
 
+
+//add an event on <a> delete button
+function bindDeleteEvent(){
+	
+	//fetch each <a> delete button
+	$("a.btn-delete").each( function(){
+		
+		//get a reference on the current fetched element
+		$btn = $(this);
+
+		//add event on click on this button
+		$btn.live('click', function(e){
+		
+			//show a confirm box
+			e.preventDefault();
+            bootbox.confirm("Are you sure to delete this task ?", function(confirmed) {
+
+				if (confirmed) {             
+					$.ajax({
+						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$btn.attr("href"),
+						type:"DELETE",
+						success: function(data) {
+							bootbox.alert("Task deleted successfully.");
+							location.reload(); //reload page
+						}
+					});
+				}	
+
+            });
+			
+		});	
+
+	});
+}
+
+		
 /** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
 	
-	//load left-menu	
-	/*$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
-		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
-			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-		}
-		else { //if successful
-			//select the related option in left-menu
-			$("li#left-menu-option-member").addClass("active");
-		} 		
-	});*/
-
-	//get param idMember in url if exists
-    /*var idMember = $(document).getUrlParam("idMember");		
+	//get param idUserstory in url if exists
+    var idUserstory = $(document).getUrlParam("idUserstory");		
 	
 	//load data on list or on form
-    if ( (idMember !=="") && (idMember !==null)) {
+    /*if ( (idUserstory !=="") && (idUserstory !==null)) {
         $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idMember,
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory,
             type:'GET',
             contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
@@ -78,14 +137,15 @@ $(document).ready( function() {
         });
 	                      
     }
-	else {
+	else {*/
 	    $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/all',
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/userstories',
             type:'GET',
 		    contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
                 displayAllItems($.parseJSON(reponse));
-				bindDeleteEvent();
+				//bindDeleteEvent();
+				test();
             },
 		    error:function (xhr, status, error){
 			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
@@ -93,46 +153,60 @@ $(document).ready( function() {
 		    dataType: 'text',
 		    converters: 'text json'
 	    });	
-    }*/
+    /*}*/
 
-	//action on #formUser form
-	/*$('#formTask').submit(function() {
-		
-		//Get #idMember field value	
-		var idMember = $("#idMember").val();
-
-		if (idMember==null || idMember.length==0) {
-			//Case 1 : create a new member (idMember is empty)
-		    $.ajax({
-		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add',
-		        type:"POST",
-		        data: JSON.stringify($('#formUser').serializeObject()),
-		        dataType: "json",
-		        contentType: "application/json; charset=utf-8",
-		        success: function(data) {
-		                bootbox.alert('Member has been added successfully.');
-						window.location.replace('memberList.html'); //redirect to memberList.html
-		        },
-				error:function (xhr, status, error){
-					bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-				}
-		    });
-		}
-		else { //Case 2 : update an existing member (idMember is not empty)
-			$.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members,
-                type:"PUT",
-                data: JSON.stringify($('#formUser').serializeObject()),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function(data) {
-                    bootbox.alert("Member has been updated successfully.");
-					window.location.replace('memberList.html'); //redirect to memberList.html
-                }
-            });
-		}
-
-	    return false;
-    });*/
+	//action on #formTask form
+	
     
 });
+
+function test(){
+	//action on #formTask form
+	$('.formTask').each(function() {//.submit
+		console.log("hello ");
+
+		$form = $(this);
+		$(this).submit(function(){
+			//Get #idUserstory field value	
+			alert("submit");
+			var idTask = $form.children("input[name=idTask]").val();
+			alert("idTask = "+idTask);
+			if (idTask==null ||idTask.length==0) {
+				alert("submit1");
+				//Case 1 : create a new task (idTask is empty)
+			    $.ajax({
+			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/add',
+			        type:"POST",
+			        data: JSON.stringify($form.serializeObject()),
+			        dataType: "json",
+			        contentType: "application/json; charset=utf-8",
+			        success: function(data) {
+			                bootbox.alert('Task has been added successfully.');
+							//window.location.replace('story.html'); //redirect to taskList.html
+			        },
+					error:function (xhr, status, error){
+						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+					}
+			    });
+			}
+			else { //Case 2 : update an existing task (idTask is not empty)
+				alert("submit2");
+				$.ajax({
+	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks,
+	                type:"PUT",
+	                data: JSON.stringify($form.serializeObject()),
+	                dataType: "json",
+	                contentType: "application/json; charset=utf-8",
+	                success: function(data) {
+	                    bootbox.alert("Task has been updated successfully.");
+						//window.location.replace('story.html'); //redirect to taskList.html
+	                }
+	            });
+			}
+
+		    return false;
+
+		})
+		
+    });
+}
