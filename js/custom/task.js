@@ -34,26 +34,26 @@ function displayAllItems(items){
 		$("#taskList").html("");
 		var nb = 0;
 		$.each(items.task, function(i, dico){
-			$("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-horizontal formTask\">");
-			$("#taskList").append("<label class=\"control-label\" for=\"note\">"+(i+1)+"</label>");
-			$("#taskList").append("<div class=\"controls\">");
-			$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">");
-			$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(i+1)+"\" name=\"titleTask_"+(i+1)+"\" value=\""+dico.title+"\">");
-			$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(i+1)+"\" name=\"estimationTask_"+(i+1)+"\" value=\""+dico.estimation+"\">");
-			$("#taskList").append("<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>");
-			$("#taskList").append("</div>");
-			$("#taskList").append("</form>");
+			$("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-horizontal formTask\">"+
+			"<label class=\"control-label\" for=\"note\">"+(i+1)+"</label>"+
+			"<div class=\"controls\">"+
+			"<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">"+
+			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(i+1)+"\" name=\"titleTask_"+(i+1)+"\" value=\""+dico.title+"\">"+
+			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(i+1)+"\" name=\"estimationTask_"+(i+1)+"\" value=\""+dico.estimation+"\">"+
+			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			"</div>"+
+			"</form>");
 			nb=i;
 		});
-		$("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-horizontal formTask\">");
-		$("#taskList").append("<label class=\"control-label\" for=\"note\">"+(nb+2)+"</label>");
-		$("#taskList").append("<div class=\"controls\">");
-		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
-		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(nb+2)+"\" name=\"titleTask_"+(nb+2)+"\">");
-		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(nb+2)+"\" name=\"estimationTask_"+(nb+2)+"\">");
-		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
-		$("#taskList").append("</div>");
-		$("#taskList").append("</form>");
+		$("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-horizontal formTask\">"+
+		"<label class=\"control-label\" for=\"note\">"+(nb+2)+"</label>"+
+		"<div class=\"controls\">"+
+		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
+		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(nb+2)+"\" name=\"titleTask_"+(nb+2)+"\">"+
+		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(nb+2)+"\" name=\"estimationTask_"+(nb+2)+"\">"+
+		"<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
+		"</div>"+
+		"</form>");
 	}
 	else { //if only one task
 		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
@@ -162,9 +162,8 @@ $(document).ready( function() {
 
 function test(){
 	//action on #formTask form
-	$('.formTask').each(function() {//.submit
-		console.log("hello ");
-
+	$('.formTask').each(function() {
+		alert("formTask");
 		$form = $(this);
 		$(this).submit(function(){
 			//Get #idUserstory field value	
