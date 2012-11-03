@@ -31,3 +31,27 @@ $.nvl = function(value, replacement){
 	if (value == null) return replacement;
 	return value;
 }
+
+/**
+ * Use this fonction to convert simple ajax response into list of element (string)
+ */
+$.responseMemberToArrayString = function(items){
+	var results = new Array();
+	$.each(items.member1, function(i, dico){
+		results.push(dico.firstname+" "+dico.lastname);
+	});
+	return results;
+}
+
+/**
+ * Use this fonction to convert simple ajax response into dictonnary of element (string)
+ */
+$.responseMemberToDictionaryString = function(items){
+	var results = {};
+	$.each(items.member1, function(i, dico){
+		results[dico.idMember] = dico.firstname+" "+dico.lastname;
+	});
+	return results;
+}
+
+
