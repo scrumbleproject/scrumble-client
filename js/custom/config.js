@@ -12,6 +12,7 @@ var config = {
 	"resources": {
 			"members":"members",
 			"projects":"projects",
+			"projectMembers":"members",
 			"userStories":"userstories",
 			"tasks":"tasks",
 		}
