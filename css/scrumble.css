@@ -374,9 +374,7 @@ ul {
     text-align: center;
 }
 
-#createbacklog [class^="icon-"], [class*=" icon-"] {
-    background-image: url("../img/glyphicons-halflings.png");
-}
+
 
 #createbacklog .span3{
 	border-bottom-left-radius: 5px;
