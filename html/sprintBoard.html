@@ -44,70 +44,74 @@
 
 <!-- Content -->
 	<div class="span10">
-    	<h2>User stories</h2>
-	    <a class="btn btn-primary" href="story.html">New story</a>
-		
+    	<h2>Sprint Backlog</h2>
+    	
 		<div id="sprintboard">
 			
-			<div class="todo"><h2>TODO</h2>
+			<div class="todo"><h3>TODO</h3></div>
+			<div class="assigned"><h3>PROCESSING</h3></div>
+			<div class="done"><h3>DONE</h3></div>
 				
-				<div class="userstory">
-					<ul id="sortable1-1" class="droptrue">
-						<li class="userstory">User story 1</li>
-						<li class="task img-polaroid">Tache 1</li>
-						<li class="task img-polaroid">Tache 2</li>
-						<li class="task img-polaroid">Tache 3</li>
-						<li class="task img-polaroid">Tache 4</li>
-					</ul>
-				</div>
-				
-				<div class="userstory">
-					<ul id="sortable2-1" class="droptrue">
-						<li class="userstory">User story 2</li>
-						<li class="task img-polaroid">Tache 1</li>
-						<li class="task img-polaroid">Tache 2</li>
-						<li class="task img-polaroid">Tache 3</li>
-					</ul>
-				</div>
-				
-				<div class="userstory">
-					<ul id="sortable3-1" class="droptrue">
-						<li class="userstory">User story 3</li>
-						<li class="task img-polaroid">Tache 1</li>
-						<li class="task img-polaroid">Tache 2</li>
-						<li class="task img-polaroid">Tache 3</li>
-						<li class="task img-polaroid">Tache 4</li>
-						<li class="task img-polaroid">Tache 5</li>
-					</ul>
-				</div>
+			<div class="userstory odd">
+				<span>User story 1</span>
+				<ul id="sortable1-1">
+					<li class="task img-polaroid">Tache 1</li>
+					<li class="task img-polaroid">Tache 2</li>
+					<li class="task img-polaroid">Tache 3</li>
+					<li class="task img-polaroid">Tache 4</li>
+				</ul>
 			</div>
-			<div class="assigned"><h2>PROCESSING</h2>
-				<div class="userstory">
-					<ul id="sortable1-2" class="droptrue">
-					</ul>
-				</div>
-				<div class="userstory">
-					<ul id="sortable2-2" class="droptrue">
-					</ul>
-				</div>
-				<div class="userstory">
-					<ul id="sortable3-2" class="droptrue">
-					</ul>
-				</div>
+			
+			<div class="userstory odd">
+				<ul id="sortable1-2">
+				</ul>
 			</div>
-			<div class="done"><h2>DONE</h2>
-				<div class="userstory">
-					<ul id="sortable1-3" class="droptrue">
-					</ul>
-				</div>
-				<div class="userstory">
-					<ul id="sortable2-3" class="droptrue">
-					</ul>
-				</div>
-				<div class="userstory">
-					<ul id="sortable3-3" class="droptrue">
-					</ul>
-				</div>
+			
+			<div class="userstory odd">
+				<ul id="sortable1-3">
+				</ul>
+			</div>
+			
+			<div class="userstory even">
+				<span>User story 2</span>
+				<ul id="sortable2-1">
+					<li class="task img-polaroid">Tache 1</li>
+					<li class="task img-polaroid">Tache 2</li>
+					<li class="task img-polaroid">Tache 3</li>
+				</ul>
+			</div>
+			
+			<div class="userstory even">
+				<ul id="sortable2-2">
+				</ul>
+			</div>
+			
+			<div class="userstory even">
+				<ul id="sortable2-3">
+				</ul>
+			</div>
+			
+			<div class="userstory odd">
+				<span>User story 3</span>
+				<ul id="sortable3-1">
+					<li class="task img-polaroid">Tache 1</li>
+					<li class="task img-polaroid">Tache 2</li>
+					<li class="task img-polaroid">Tache 3</li>
+					<li class="task img-polaroid">Tache 4</li>
+					<li class="task img-polaroid">Tache 5</li>
+				</ul>
+			</div>
+				
+				
+			<div class="userstory odd">
+				<ul id="sortable3-2">
+				</ul>
+			</div>
+			
+			
+			<div class="userstory odd">
+				<ul id="sortable3-3">
+				</ul>
 			</div>
 			
 			
@@ -137,7 +141,7 @@
 	<script src="../js/custom/page.js"></script>
 	<script src="../js/custom/config.js"></script>
 	<script src="../js/custom/utils.js"></script>	
-    <script src="../js/custom/userStory.js"></script>
+    <script src="../js/custom/sprintBoard.js"></script>
 
 		<!-- Additional plugins -->
 	<script src="../js/lib/jquery.getUrlParam.js"></script>
@@ -156,29 +160,6 @@
     <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
-
-	<script type="text/javascript">
-		$(function() {
-		    $( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
-		        connectWith: "#sortable1-1, #sortable1-2, #sortable1-3"
-		    });
-		    $( "#sortable2-1, #sortable2-2, #sortable2-3" ).sortable({
-		        connectWith: "#sortable2-1, #sortable2-2, #sortable2-3"
-		    });
-		    $( "#sortable3-1, #sortable3-2, #sortable3-3" ).sortable({
-		        connectWith: "#sortable3-1, #sortable3-2, #sortable3-3"
-		    });
-	 
-		    $( "ul.dropfalse" ).sortable({
-		        connectWith: "ul",
-		        dropOnEmpty: false
-		    });
-	 
-		    $( "#sortable1-1, #sortable2-1, #sortable3-1" ).disableSelection();
-		    $( "#sortable1-2, #sortable2-2, #sortable3-2" ).disableSelection();
-		    $( "#sortable1-3, #sortable2-3, #sortable3-3" ).disableSelection();
-		});
-	</script>
 
   </body>
 </html>
