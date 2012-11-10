@@ -460,6 +460,26 @@ ul {
 }
 
 
+/** Task **/
+
+.addTask{
+  margin-left:10px;
+}
+
+.formTask .controls .estimation{
+  margin-left:10px;
+}
+
+#taskList .btn-primary{
+  margin-left:10px;
+  width: 120px;
+}
+
+.btn-delete-task{
+  margin-left:10px;
+
+}
+
 /**  **/
 
 .new{
