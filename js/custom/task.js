@@ -139,7 +139,7 @@ $(document).ready( function() {
 	                      
     }
 	else {*/
-	if (idUserstory !== null)
+	if (idUserstory !== null && idUserstory !=="")
 	{
 	    $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/userstories',
@@ -169,6 +169,7 @@ $(document).ready( function() {
 		$("#taskList").append("</div>");
 		$("#taskList").append("</form>");
     /*}*/
+	}
 
 	//action on #formTask form
 	
