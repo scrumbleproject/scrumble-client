@@ -374,6 +374,10 @@ ul {
     text-align: center;
 }
 
+#formProject .fileupload .btn{
+    max-width: 185px;
+}
+
 
 
 #createbacklog .span3{
@@ -485,12 +489,6 @@ ul {
 .new{
   margin-bottom: 10px;
 }
-
-
-#formProject .fileupload{
-  margin-left:160px;
-}
-
 
 /** SprintBoard **/
 #sprintboard {
