@@ -147,6 +147,8 @@ $(document).ready( function() {
 	                      
     }
 	else {*/
+	if (idUserstory !== null && idUserstory !=="")
+	{
 	    $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/userstories',
             type:'GET',
@@ -161,8 +163,21 @@ $(document).ready( function() {
 		    },
 		    dataType: 'text',
 		    converters: 'text json'
-	    });	
+	    });
+	}
+	else
+	{
+		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<label class=\"control-label\" for=\"note\">1</label>");
+		$("#taskList").append("<div class=\"controls\">");
+		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
+		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_1\" name=\"titleTask_1\">");
+		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_1\" name=\"estimationTask_1\">");
+		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
+		$("#taskList").append("</div>");
+		$("#taskList").append("</form>");
     /*}*/
+	}
 
 	//action on #formTask form
 	
