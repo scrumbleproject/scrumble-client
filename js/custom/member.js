@@ -4,7 +4,7 @@
 //fill the form with data about one member
 function fillForm(response) {
   $("#idMember").val(response.idMember);
-  //$("#idRole").val(response.idRole);
+  $("#idRole").val(response.idRole);
   $("#firstname").val(response.firstname);
   $("#lastname").val(response.lastname);
   $("#login").val(response.login);
@@ -23,7 +23,7 @@ function displayAllItems(items){
 			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
-			$("#memberList > tbody").append("<td></td>");
+			$("#memberList > tbody").append("<td>"+dico.idrole+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
 			$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>");
@@ -36,7 +36,7 @@ function displayAllItems(items){
 		$("#memberList > tbody").append("<td>"+items.member1.firstname+"</td>");
 		$("#memberList > tbody").append("<td>"+items.member1.lastname+"</td>");
 		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
-		$("#memberList > tbody").append("<td></td>");
+		$("#memberList > tbody").append("<td>"+items.member1.idrole+"</td>");
 		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
 		$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>");

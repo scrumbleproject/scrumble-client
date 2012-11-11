@@ -1,6 +1,10 @@
 
 /** Tasks methods **/
 
+  //add event on delete-button
+
+
+
 $("a").live('click',function (e) {
 
 	if ($(this).hasClass("addTask")) 
@@ -40,8 +44,9 @@ function displayAllItems(items){
 			"<div class=\"controls\">"+
 			"<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">"+
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(i+1)+"\" name=\"titleTask_"+(i+1)+"\" value=\""+dico.title+"\">"+
-			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(i+1)+"\" name=\"estimationTask_"+(i+1)+"\" value=\""+dico.estimation+"\">"+
+			"<input class=\"span1 estimation\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(i+1)+"\" name=\"estimationTask_"+(i+1)+"\" value=\""+dico.estimation+"\">"+
 			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			 "<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
 			"</div>"+
 			"</form>");
 			nb=i;
@@ -51,7 +56,7 @@ function displayAllItems(items){
 		"<div class=\"controls\">"+
 		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
 		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_"+(nb+2)+"\" name=\"titleTask_"+(nb+2)+"\">"+
-		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(nb+2)+"\" name=\"estimationTask_"+(nb+2)+"\">"+
+		"<input class=\"span1 estimation\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_"+(nb+2)+"\" name=\"estimationTask_"+(nb+2)+"\">"+
 		"<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
 		"</div>"+
 		"</form>");
@@ -62,17 +67,19 @@ function displayAllItems(items){
 		$("#taskList").append("<div class=\"controls\">");
 		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\""+items.task.idTask+"\">");
 		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_1\" name=\"titleTask_1\" value=\""+items.task.title+"\">");
-		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_1\" name=\"estimationTask_1\" value=\""+items.task.estimation+"\">");
+		$("#taskList").append("<input class=\"span1 estimation\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_1\" name=\"estimationTask_1\" value=\""+items.task.estimation+"\">");
 		$("#taskList").append("<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>");
+    $("#taskList").append("<button type=\"button\" class=\"btn btn-warning btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>");
+
 		$("#taskList").append("</div><br/>");
 		$("#taskList").append("</form>");
 
-		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<form id=\"formTask2\" class=\"form-horizontal formTask\">");
 		$("#taskList").append("<label class=\"control-label\" for=\"note\">2</label>");
 		$("#taskList").append("<div class=\"controls\">");
 		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
 		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_2\" name=\"titleTask_2\">");
-		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_2\" name=\"estimationTask_2\">");
+		$("#taskList").append("<input class=\"span1 estimation\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_2\" name=\"estimationTask_2\">");
 		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
 		$("#taskList").append("</div>");
 		$("#taskList").append("</form>");
@@ -83,36 +90,37 @@ function displayAllItems(items){
 //add an event on <a> delete button
 function bindDeleteEvent(){
 	
+	$("button.btn-delete").show();
+	
 	//fetch each <a> delete button
-	$("a.btn-delete").each( function(){
+	$("button.btn-delete").live('click', function(e){
 		
-		//get a reference on the current fetched element
-		$btn = $(this);
+		//show a confirm box
+		e.preventDefault();
+        bootbox.confirm("Are you sure to delete this Task ?", function(confirmed) {
 
-		//add event on click on this button
-		$btn.live('click', function(e){
-		
-			//show a confirm box
-			e.preventDefault();
-            bootbox.confirm("Are you sure to delete this task ?", function(confirmed) {
+			if (confirmed) {             
+				$.ajax({
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$("#idTask").val(),
+					type:"DELETE",
+					success: function(data) {
+						var box = bootbox.alert("Task deleted successfully.");
+							setTimeout(function() {
+							box.modal('hide');
+							window.location.replace('storyList.html.html'); //redirect to storyList.html
+						}, 3000); 
+					},
+					error:function (xhr, status, error){
+						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+					}
+				});
+			}	
 
-				if (confirmed) {             
-					$.ajax({
-						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$btn.attr("href"),
-						type:"DELETE",
-						success: function(data) {
-							bootbox.alert("Task deleted successfully.");
-							location.reload(); //reload page
-						}
-					});
-				}	
-
-            });
-			
-		});	
+        });
 
 	});
 }
+
 
 		
 /** Put here all calls that you want to launch at the page startup **/		
@@ -139,6 +147,8 @@ $(document).ready( function() {
 	                      
     }
 	else {*/
+	if (idUserstory !== null && idUserstory !=="")
+	{
 	    $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/userstories',
             type:'GET',
@@ -153,8 +163,21 @@ $(document).ready( function() {
 		    },
 		    dataType: 'text',
 		    converters: 'text json'
-	    });	
+	    });
+	}
+	else
+	{
+		$("#taskList").append("<form id=\"formTask1\" class=\"form-horizontal formTask\">");
+		$("#taskList").append("<label class=\"control-label\" for=\"note\">1</label>");
+		$("#taskList").append("<div class=\"controls\">");
+		$("#taskList").append("<input type=\"hidden\" name=\"idTask\" value=\"\">");
+		$("#taskList").append("<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"titleTask_1\" name=\"titleTask_1\">");
+		$("#taskList").append("<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimationTask_1\" name=\"estimationTask_1\">");
+		$("#taskList").append("<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>");
+		$("#taskList").append("</div>");
+		$("#taskList").append("</form>");
     /*}*/
+	}
 
 	//action on #formTask form
 	
