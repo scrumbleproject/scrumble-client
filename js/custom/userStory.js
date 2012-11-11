@@ -12,7 +12,7 @@ function fillForm(response) {
 	$("#note").val(response.note);
 
 	//add event on delete-button
-	bindDeleteEvent();
+	bindDeleteUserStoryEvent();
   
 }
 
@@ -61,10 +61,10 @@ function displayAllItems(items){
 //add an event on delete <button> 
 function bindDeleteUserStoryEvent(){
 
-	$("button.btn-delete").show();
+	$("button.btn-delete-userStory").show();
 	
 	//fetch each <a> delete button
-	$("button.btn-delete").live('click', function(e){
+	$("button.btn-delete-userStory").live('click', function(e){
 		
 		//show a confirm box
 		e.preventDefault();

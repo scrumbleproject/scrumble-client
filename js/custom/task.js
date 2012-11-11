@@ -66,7 +66,7 @@ function displayAllItems(items, idUserstory)
 	else
 	{ 
 		var nbr = 1;
-		if (items !== null && items !=="" && items.task.length==1)
+		if (items !== null && items !=="")
 		{
 			$("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
 			"<label class=\"control-label\" for=\"note\">"+nbr+"</label>"+
@@ -103,21 +103,22 @@ function bindDeleteTaskEvent(){
 	
 	//fetch each <a> delete button
 	$("button.btn-delete-task").live('click', function(e){
-		
+				
+		$btn = $(this)
 		//show a confirm box
 		e.preventDefault();
         bootbox.confirm("Are you sure to delete this Task ?", function(confirmed) 
         {
 			if (confirmed) 
-			{             
+			{   alert($btn.siblings("input[name=idTask]").val());          
 				$.ajax({
-					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$("#idTask").val(),
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$btn.siblings("input[name=idTask]").val(),
 					type:"DELETE",
 					success: function(data) {
 						var box = bootbox.alert("Task deleted successfully.");
 							setTimeout(function() {
 							box.modal('hide');
-							window.location.replace('storyList.html.html'); //redirect to storyList.html
+							window.location.reload(); //redirect to storyList.html
 						}, 3000); 
 					},
 					error:function (xhr, status, error){
