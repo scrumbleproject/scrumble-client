@@ -97,12 +97,12 @@ function displayAllItems(items, idUserstory)
 
 //add an event on <a> delete button
 
-function bindDeleteEvent(){
+function bindDeleteTaskEvent(){
 	
-	$("button.btn-delete").show();
+	$("button.btn-delete-task").show();
 	
 	//fetch each <a> delete button
-	$("button.btn-delete").live('click', function(e){
+	$("button.btn-delete-task").live('click', function(e){
 		
 		//show a confirm box
 		e.preventDefault();
@@ -147,7 +147,7 @@ $(document).ready( function()
 		    contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
                 displayAllItems($.parseJSON(reponse), idUserstory);
-				//bindDeleteEvent();
+				bindDeleteTaskEvent();
 				test();
             },
 		    error:function (xhr, status, error){

@@ -59,7 +59,7 @@ function displayAllItems(items){
 
 
 //add an event on delete <button> 
-function bindDeleteEvent(){
+function bindDeleteUserStoryEvent(){
 
 	$("button.btn-delete").show();
 	
@@ -119,6 +119,7 @@ $(document).ready( function() {
             contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
                 fillForm($.parseJSON(reponse));
+                bindDeleteUserStoryEvent();
             },
 	        error:function (xhr, status, error){
 		        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
