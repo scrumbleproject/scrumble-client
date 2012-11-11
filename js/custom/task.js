@@ -1,6 +1,7 @@
 
 /** Tasks methods **/
 
+  //add event on delete-button
 $("a").live('click',function (e) {
 
 	if ($(this).hasClass("addTask")) 
@@ -20,8 +21,8 @@ $("a").live('click',function (e) {
 		      '<input type="hidden" name="idTask" value="">'+
 		      '<input type="hidden" name="idUserstory" value="'+idUserstory+'">'+
 		        '<input class="span3" type="text" placeholder="Title" id="title" name="title">'+
-		  '<input class="span1" type="text" placeholder="Est" id="estimation" name="estimation">'+
-		  '<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
+		  		'<input class="span1" type="text" placeholder="Est" id="estimation" name="estimation">'+
+		  		'<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
 		      '</div>'+
 		    '</div>'+
 		    '</form>');
@@ -46,6 +47,7 @@ function displayAllItems(items, idUserstory)
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+(i+1)+"\" name=\"title\" value=\""+dico.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+(i+1)+"\" name=\"estimation\" value=\""+dico.estimation+"\">"+
 			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
 			"</div>"+
 			"</form>");
 			nb=i;
@@ -74,6 +76,7 @@ function displayAllItems(items, idUserstory)
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+nbr+"\" name=\"title\" value=\""+items.task.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+nbr+"\" name=\"estimation\" value=\""+items.task.estimation+"\">"+
 			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			"<button type=\"button\" class=\"btn btn-warning btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
 			"</div><br/>"+
 			"</form>");
 			nbr=2;
@@ -93,35 +96,39 @@ function displayAllItems(items, idUserstory)
 
 
 //add an event on <a> delete button
-function bindDeleteEvent()
-{
+
+function bindDeleteEvent(){
+	
+	$("button.btn-delete").show();
+	
 	//fetch each <a> delete button
-	$("a.btn-delete").each( function()
-	{
-		//get a reference on the current fetched element
-		$btn = $(this);
-
-		//add event on click on this button
-		$btn.live('click', function(e)
-		{
-			//show a confirm box
-			e.preventDefault();
-            bootbox.confirm("Are you sure to delete this task ?", function(confirmed) {
-
-				if (confirmed) {
-					$.ajax({
-						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$btn.attr("href"),
-						type:"DELETE",
-						success: function(data) {
-							bootbox.alert("Task deleted successfully.");
-							location.reload(); //reload page
-						}
-					});
-				}
-            });
-		});	
+	$("button.btn-delete").live('click', function(e){
+		
+		//show a confirm box
+		e.preventDefault();
+        bootbox.confirm("Are you sure to delete this Task ?", function(confirmed) 
+        {
+			if (confirmed) 
+			{             
+				$.ajax({
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$("#idTask").val(),
+					type:"DELETE",
+					success: function(data) {
+						var box = bootbox.alert("Task deleted successfully.");
+							setTimeout(function() {
+							box.modal('hide');
+							window.location.replace('storyList.html.html'); //redirect to storyList.html
+						}, 3000); 
+					},
+					error:function (xhr, status, error){
+						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+					}
+				});
+			}	
+        });
 	});
 }
+
 
 		
 /** Put here all calls that you want to launch at the page startup **/		

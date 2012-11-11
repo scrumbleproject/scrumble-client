@@ -374,6 +374,10 @@ ul {
     text-align: center;
 }
 
+#formProject .fileupload .btn{
+    max-width: 185px;
+}
+
 
 
 #createbacklog .span3{
@@ -460,17 +464,31 @@ ul {
 }
 
 
+/** Task **/
+
+.addTask{
+  margin-left:10px;
+}
+
+.formTask .controls .estimation{
+  margin-left:10px;
+}
+
+#taskList .btn-primary{
+  margin-left:10px;
+  width: 120px;
+}
+
+.btn-delete-task{
+  margin-left:10px;
+
+}
+
 /**  **/
 
 .new{
   margin-bottom: 10px;
 }
-
-
-#formProject .fileupload{
-  margin-left:160px;
-}
-
 
 /** SprintBoard **/
 #sprintboard {
