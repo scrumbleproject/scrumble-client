@@ -14,7 +14,7 @@ var config = {
 			"projects":"projects",
 			"projectMembers":"members",
 			"userStories":"userstories",
-			"tasks":"tasks",
+			"tasks":"userstories",
 			"sprints":"sprints"
 		}
 

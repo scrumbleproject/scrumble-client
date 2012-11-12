@@ -8,24 +8,26 @@ $("a").live('click',function (e) {
 	{
 		e.preventDefault();
 
-		$(this).replaceWith('<a class="btn addTask" href="'+index+'"><i class="icon-pencil"></i> Update task</a>');
+		$(this).replaceWith("<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button><button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>");
 
 		//Add new form task
 		var index = $(this).attr("href");
 		index = parseInt(index);
 		index = index + 1;
-		$('#taskList').append(' <form id=formTask'+index+' class="form-horizontal formTask">'+
-		    '<div class="control-group">'+
-		      '<label class="control-label" for="'+index+'">'+index+'</label>'+
-		      '<div class="controls">'+
-		      '<input type="hidden" name="idTask" value="">'+
-		      '<input type="hidden" name="idUserstory" value="'+idUserstory+'">'+
-		        '<input class="span3" type="text" placeholder="Title" id="title" name="title">'+
-		  		'<input class="span1" type="text" placeholder="Est" id="estimation" name="estimation">'+
-		  		'<button type="submit" class="btn btn-primary addTask" ><i class="icon-plus-sign icon-white"></i> Add task</button>'+
-		      '</div>'+
-		    '</div>'+
-		    '</form>');
+		console.log(index);
+
+		$("#taskList").append("<form id=\"formTask"+index+"\" class=\"form-horizontal formTask\">"+
+		"<label class=\"control-label\" for=\""+index+"\">"+index+"</label>"+
+		"<div class=\"controls\">"+
+		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
+		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+index+"\" name=\"title\">"+
+		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+index+"\" name=\"estimation\">"+
+		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
+		"<a class=\"btn btn-primary addTask\" href=\""+index+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
+		"</div>"+
+		"</form>");
+
+		$("#formTask"+(index-1)+"").submit();
 	}
 });
 
@@ -40,26 +42,26 @@ function displayAllItems(items, idUserstory)
 		var nb = 0;
 		$.each(items.task, function(i, dico){
 			$("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-horizontal formTask\">"+
-			"<label class=\"control-label\" for=\"note\">"+(i+1)+"</label>"+
+			"<label class=\"control-label\" for=\""+(i+1)+"\">"+(i+1)+"</label>"+
 			"<div class=\"controls\">"+
 			"<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">"+
-			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+(i+1)+"\" name=\"title\" value=\""+dico.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+(i+1)+"\" name=\"estimation\" value=\""+dico.estimation+"\">"+
-			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
+			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button>"+
 			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
 			"</div>"+
 			"</form>");
 			nb=i;
 		});
 		$("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-horizontal formTask\">"+
-		"<label class=\"control-label\" for=\"note\">"+(nb+2)+"</label>"+
+		"<label class=\"control-label\" for=\""+(nb+2)+"\">"+(nb+2)+"</label>"+
 		"<div class=\"controls\">"+
 		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
-		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
 		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+(nb+2)+"\" name=\"title\">"+
 		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+(nb+2)+"\" name=\"estimation\">"+
-		"<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
+		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
+		"<a class=\"btn btn-primary addTask\" href=\""+(nb+2)+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
 		"</div>"+
 		"</form>");
 	}
@@ -69,26 +71,26 @@ function displayAllItems(items, idUserstory)
 		if (items !== null && items !=="")
 		{
 			$("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
-			"<label class=\"control-label\" for=\"note\">"+nbr+"</label>"+
+			"<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
 			"<div class=\"controls\">"+
 			"<input type=\"hidden\" name=\"idTask\" value=\""+items.task.idTask+"\">"+
-			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+nbr+"\" name=\"title\" value=\""+items.task.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+nbr+"\" name=\"estimation\" value=\""+items.task.estimation+"\">"+
-			"<button type=\"submit\" class=\"btn addTask\" ><i class=\"icon-pencil\"></i> Update task</button>"+
-			"<button type=\"button\" class=\"btn btn-warning btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
+			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
+			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button>"+
+			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
 			"</div><br/>"+
 			"</form>");
 			nbr=2;
 		}
 		$("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
-		"<label class=\"control-label\" for=\"note\">"+nbr+"</label>"+
+		"<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
 		"<div class=\"controls\">"+
 		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
-		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
 		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+nbr+"\" name=\"title\">"+
 		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+nbr+"\" name=\"estimation\">"+
-		"<button type=\"submit\" class=\"btn btn-primary\" ><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
+		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
+		"<a class=\"btn btn-primary addTask\"  href=\""+nbr+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
 		"</div>"+
 		"</form>");	
 	}
@@ -97,7 +99,7 @@ function displayAllItems(items, idUserstory)
 
 //add an event on <a> delete button
 
-function bindDeleteTaskEvent(){
+function bindDeleteTaskEvent(idUserstory){
 	
 	$("button.btn-delete-task").show();
 	
@@ -112,7 +114,7 @@ function bindDeleteTaskEvent(){
 			if (confirmed) 
 			{   alert($btn.siblings("input[name=idTask]").val());          
 				$.ajax({
-					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+$btn.siblings("input[name=idTask]").val(),
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val(),
 					type:"DELETE",
 					success: function(data) {
 						var box = bootbox.alert("Task deleted successfully.");
@@ -143,13 +145,13 @@ $(document).ready( function()
 		$("#taskVisible").append('<legend>Task</legend><div class="control-group" id="taskList"></div>');
 
 	    $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/userstories',
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/all',
             type:'GET',
 		    contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
                 displayAllItems($.parseJSON(reponse), idUserstory);
-				bindDeleteTaskEvent();
-				test();
+				bindDeleteTaskEvent(idUserstory);
+				test(idUserstory);
             },
 		    error:function (xhr, status, error){
 			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
@@ -160,7 +162,7 @@ $(document).ready( function()
 	}
 });
 
-function test()
+function test(idUserstory)
 {
 	//action on #formTask form
 	$('.formTask').each(function() 
@@ -169,15 +171,15 @@ function test()
 		{
 			//{"idUserstory":"2","title":"Créer un nouveau projet","importance":"94","estimation":"","demonstration":"- Cliquer sur \"New project\"\r\n- choisir une méthode ou des modules\r\n- Renseigner les données du formulaire de création\r\n- Valider et revenir à la page d'accueil\r\n- Accéder au projet créé","note":""} 
 			var idTask = $("#"+$(this).attr("id")+" input[name=idTask]").val();
-			console.log("idtask: "+idTask);
+			/*console.log("idtask: "+idTask);
 			console.log("idForm: "+$(this).attr("id"));
-			console.log(JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()));
-			//JSON.stringify($('#formStory').serializeObject())
+			console.log(JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()));*/
+
 			if (idTask==null ||idTask.length==0 || idTask=="") 
 			{
 				//Case 1 : create a new task (idTask is empty)
 			    $.ajax({
-			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/add',
+			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/add',
 			        type:"POST",
 			        data: JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
 			        dataType: "json",
@@ -193,7 +195,7 @@ function test()
 			}
 			else { //Case 2 : update an existing task (idTask is not empty)
 				$.ajax({
-	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks,
+	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks',
 	                type:"PUT",
 	                data: JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
 	                dataType: "json",

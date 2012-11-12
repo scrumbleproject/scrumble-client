@@ -153,6 +153,7 @@ $(document).ready( function() {
 
 		if (idUserstory==null || idUserstory.length==0) {
 			//Case 1 : create a new story (idUserstory is empty)
+			console.log(JSON.stringify($('#formStory').serializeObject()));
 		    $.ajax({
 		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add',
 		        type:"POST",
@@ -169,6 +170,7 @@ $(document).ready( function() {
 		    });
 		}
 		else { //Case 2 : update an existing story (idUserstory is not empty)
+			console.log(JSON.stringify($('#formStory').serializeObject()));
 			$.ajax({
                 url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories,
                 type:"PUT",
