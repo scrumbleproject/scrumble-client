@@ -112,7 +112,7 @@ function bindDeleteTaskEvent(idUserstory){
         bootbox.confirm("Are you sure to delete this Task ?", function(confirmed) 
         {
 			if (confirmed) 
-			{   alert($btn.siblings("input[name=idTask]").val());          
+			{            
 				$.ajax({
 					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val(),
 					type:"DELETE",
