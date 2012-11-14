@@ -8,24 +8,13 @@ $("a").live('click',function (e) {
 	{
 		e.preventDefault();
 
-		$(this).replaceWith("<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button><button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>");
+		$(this).replaceWith("<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i></button><button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i></button>");
 
 		//Add new form task
 		var index = $(this).attr("href");
 		index = parseInt(index);
 		index = index + 1;
 		console.log(index);
-
-		$("#taskList").append("<form id=\"formTask"+index+"\" class=\"form-horizontal formTask\">"+
-		"<label class=\"control-label\" for=\""+index+"\">"+index+"</label>"+
-		"<div class=\"controls\">"+
-		"<input type=\"hidden\" name=\"idTask\" value=\"\">"+
-		"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+index+"\" name=\"title\">"+
-		"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+index+"\" name=\"estimation\">"+
-		"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
-		"<a class=\"btn btn-primary addTask\" href=\""+index+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
-		"</div>"+
-		"</form>");
 
 		$("#formTask"+(index-1)+"").submit();
 	}
@@ -48,8 +37,8 @@ function displayAllItems(items, idUserstory)
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+(i+1)+"\" name=\"title\" value=\""+dico.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+(i+1)+"\" name=\"estimation\" value=\""+dico.estimation+"\">"+
 			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
-			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button>"+
-			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
+			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i></button>"+
+			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i></button>"+
 			"</div>"+
 			"</form>");
 			nb=i;
@@ -77,8 +66,8 @@ function displayAllItems(items, idUserstory)
 			"<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+nbr+"\" name=\"title\" value=\""+items.task.title+"\">"+
 			"<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+nbr+"\" name=\"estimation\" value=\""+items.task.estimation+"\">"+
 			"<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
-			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i> Update task</button>"+
-			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i> Delete</button>"+
+			"<button type=\"submit\" class=\"btn\" ><i class=\"icon-pencil\"></i></button>"+
+			"<button type=\"button\" class=\"btn btn-danger btn-danger btn-delete btn-delete-task\" ><i class=\"icon-trash\"></i></button>"+
 			"</div><br/>"+
 			"</form>");
 			nbr=2;
@@ -186,7 +175,7 @@ function test(idUserstory)
 			        contentType: "application/json; charset=utf-8",
 			        success: function(data) {
 			                bootbox.alert('Task has been added successfully.');
-							//window.location.replace('story.html'); //redirect to story.html
+							window.location.reload();
 			        },
 					error:function (xhr, status, error){
 						bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
