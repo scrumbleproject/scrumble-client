@@ -41,102 +41,107 @@
 <!-- End left menu-->
 
 
-<!-- Content -->
+<!--Content -->
 	<div class="span10">
     <h2>User story</h2>
-
-    <!-- Story form -->
-	<form id="formStory" class="form-horizontal">
+	    <div class="bs-docs-example">
+            <ul class="nav nav-tabs" id="myTab">
+              <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+              <li class=""><a data-toggle="tab" href="#profile">Profile</a></li>
+              <li class=""><a data-toggle="tab" href="#document">Document</a></li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div id="home" class="tab-pane fade active in">
+                <form id="formStory" class="form-horizontal">
 			
-		<input type="hidden" name="idUserstory" id="idUserstory" >
+		              <input type="hidden" name="idUserstory" id="idUserstory" >
 
-		<!-- Story name -->
-		<div class="control-group">
-		  <label class="control-label" for="title">Title</label>
-		  <div class="controls">
-			<input type="text" id="title" name="title" >
-		  </div>
-		</div>
-		<!-- Story type -->
-		<div class="control-group">
-		  <label class="control-label" for="category">Category</label>
-		  <div class="controls" id="category">
-			<select>
-			<option>User stories</option>
-			<option>Technical user</option>
-			<option>Default</option>
-			<option>Customer</option>
-			</select>
-		  </div>
-		</div>
+		              <!-- Story name -->
+		              <div class="control-group">
+		                <label class="control-label" for="title">Title</label>
+		                <div class="controls">
+			              <input type="text" id="title" name="title" >
+		                </div>
+		              </div>
+		              <!-- Story type -->
+		              <div class="control-group">
+		                <label class="control-label" for="category">Category</label>
+		                <div class="controls" id="category">
+			              <select>
+			              <option>User stories</option>
+			              <option>Technical user</option>
+			              <option>Default</option>
+			              <option>Customer</option>
+			              </select>
+		                </div>
+		              </div>
 		
-		<!-- Story importance -->
-		 <div class="control-group">
-		  <label class="control-label" for="importance">Importance</label>
-		  <div class="controls input-append">
-			<input type="text" id="importance" name="importance">
-		  </div>
-		</div>
-		 
-		 <!-- Story estimation -->
-		 <div class="control-group">
-		  <label class="control-label" for="estimation">Estimation</label>
-		  <div class="controls input-append">
-			<input type="text" id="estimation" name="estimation"><span class="add-on">Days/Person</span>
-		  </div>
-		</div>
+		              <!-- Story importance -->
+		               <div class="control-group">
+		                <label class="control-label" for="importance">Importance</label>
+		                <div class="controls input-append">
+			              <input type="text" id="importance" name="importance">
+		                </div>
+		              </div>
+		               
+		               <!-- Story estimation -->
+		               <div class="control-group">
+		                <label class="control-label" for="estimation">Estimation</label>
+		                <div class="controls input-append">
+			              <input type="text" id="estimation" name="estimation"><span class="add-on">Days/Person</span>
+		                </div>
+		              </div>
 		
-		<!-- Story how to demonstrate -->
-		<div class="control-group">
-		  <label class="control-label" for="demonstration">How to demonstrate</label>
-		  <div class="controls">
-			<textarea rows="3" id="demonstration" name="demonstration"></textarea>
-		  </div>
-		</div>
+		              <!-- Story how to demonstrate -->
+		              <div class="control-group">
+		                <label class="control-label" for="demonstration">How to demonstrate</label>
+		                <div class="controls">
+			              <textarea rows="3" id="demonstration" name="demonstration"></textarea>
+		                </div>
+		              </div>
 
-		 <!-- Story status -->
-		 <div class="control-group">
-		  <label class="control-label" for="status">Status</label>
-		  <div class="controls" id="status">
-			<select>
-			<option>Proposed</option>
-			<option>Accepted</option>
-			<option>Estimated</option>
-			<option>To do</option>
-			<option>In progress</option>
-			<option>Done</option>
-			</select>
-		  </div>
-		</div>
+		               <!-- Story status -->
+		               <div class="control-group">
+		                <label class="control-label" for="status">Status</label>
+		                <div class="controls" id="status">
+			              <select>
+			              <option>Proposed</option>
+			              <option>Accepted</option>
+			              <option>Estimated</option>
+			              <option>To do</option>
+			              <option>In progress</option>
+			              <option>Done</option>
+			              </select>
+		                </div>
+		              </div>
 
-		<div class="control-group">
-		  <label class="control-label" for="note">Note</label>
-		  <div class="controls">
-			<textarea rows="3" id="note" name="note"></textarea>
-		  </div>
-		</div>
+		              <div class="control-group">
+		                <label class="control-label" for="note">Note</label>
+		                <div class="controls">
+			              <textarea rows="3" id="note" name="note"></textarea>
+		                </div>
+		              </div>
 		
 		
-		<div class="form-actions">
-		  <button type="submit" class="btn btn-large btn-primary">Save</button>
-		  <button type="button" class="btn">Cancel</button>
-		  <button type="button" class="btn btn-warning btn-delete btn-delete-userStory" style="display:none;">Delete</button>
-		</div>
-	</form>
-    <!-- End story form -->
-
-
-
-	<!--<legend>Task</legend>
-	<div class="control-group" id="taskList">
-	</div>-->
-	<div id="taskVisible">
+		              <div class="form-actions">
+		                <button type="submit" class="btn btn-large btn-primary">Save</button>
+		                <button type="button" class="btn">Cancel</button>
+		                <button type="button" class="btn btn-warning btn-delete btn-delete-userStory" style="display:none;">Delete</button>
+		              </div>
+	              </form>
+              </div>
+              <div id="profile" class="tab-pane fade">
+                <div id="taskVisible">
+                </div>
+              </div>
+              <div id="document" class="tab-pane fade">
+                <p>to do</p>
+              </div>
+            </div>
+          </div>
+	
 	</div>
-
-    
-	</div>
-
-<!-- End content --> 
+<!-- End content -->
       
   </div><!--/row-->
 
