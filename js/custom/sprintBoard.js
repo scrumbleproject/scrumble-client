@@ -6,14 +6,14 @@
 var dataTest = {
 	"userstory":[
 	{ "title":"Dépot","estimation":"4",
-		"task":[
+		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
 			{"title":"task 2","estimation":"2"},
 			{"title":"task 3","estimation":"1"},
 		]
 	},
 	{ "title":"Transfère d'argent","estimation":"6",
-		"task":[
+		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
 			{"title":"task 2","estimation":"2"},
 			{"title":"task 3","estimation":"1"},
@@ -22,7 +22,7 @@ var dataTest = {
 		]
 	},
 	{ "title":"Visualiser ses transactions","estimation":"2",
-		"task":[
+		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
 			{"title":"task 2","estimation":"1"},
 		]
@@ -52,9 +52,14 @@ function displayAllItems(items){
 				"<span>"+storyDico.title+"</span>"+
 				"<ul id='sortable"+(i+1)+"-1'>";
 			
-			$.each(storyDico.task, function(i, taskDico){
-				htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
-			});
+			if (storyDico.taskCollection.length>1){
+				$.each(storyDico.taskCollection, function(i, taskDico){
+					htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
+				});
+			}
+			else {
+				htmlContent += "<li class='task img-polaroid'>"+storyDico.taskCollection.title+"</li>";
+			}
 			
 			htmlContent += "</ul></div>";
 			
@@ -83,14 +88,27 @@ function displayAllItems(items){
 		
 		//append content
 		var htmlContent = "<div class='userstory odd'>" +
-			"<span>"+storyDico.title+"</span>"+
+			"<span>"+items.userstory.title+"</span>"+
 			"<ul id='sortable1-1'>";
 		
-		$.each(storyDico.task, function(i, taskDico){
-			htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
-		});
+		if (items.userstory.taskCollection.length>1){
+			$.each(items.userstory.taskCollection, function(i, taskDico){
+				htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
+			});
+		}
+		else {
+			htmlContent += "<li class='task img-polaroid'>"+items.userstory.taskCollection.title+"</li>";
+		}
 		
 		htmlContent += "</ul></div>";
+		
+		htmlContent += "<div class='userstory odd'>" +
+				"<ul id='sortable1-2'>"+
+				"</ul></div>";
+			
+		htmlContent += "<div class='userstory odd'>" +
+				"<ul id='sortable1-3'>"+
+				"</ul></div>";
 		
 		$("#sprintboard").append(htmlContent);
 		
@@ -105,6 +123,7 @@ function displayAllItems(items){
 
 
 }
+
 
 
 
@@ -136,7 +155,7 @@ $(document).ready( function() {
 		//load data on list or on form
 		if ( (idSprint !=="") && (idSprint !==null)) {
 		    $.ajax({
-		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint,
+		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/"+config.resources.userStories,
 		        type:'GET',
 		        contentType:'application/json; charset=UTF-8',
 		        success: function(response) {
