@@ -169,35 +169,43 @@ a.brand{
 
 
 
+/*****************START LOGIN********************/
 
-
-#login h3 {
-	border: solid 1px #000000;
-	padding: 10px 0px 10px 20px;
-	background-color: #000000;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	color: #fff;
+#login-page {
+    background-color: #343537;
+    padding-top:100px;
+    color: white;
+    
 }
 
-#login form {
-	background-color: #fff;
-	border: solid 1px #d8d8d8;
-	padding: 20px 20px 40px 20px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+label#login.checkbox {
+  margin-left: 9px;
+
 }
 
-#login form input {
-	width: 400px;
-	font-size: 20px;
-	padding: 10px;
+label#login.checkbox input  {
+    float: left;
 }
 
-#login  .control-label {
-	font-size: 14px;
-	color: black;
+
+#login-page .loginForm {
+  margin-top: 10px;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    box-shadow: none;
 }
+
+#login-page input[type="text"], #login input[type="password"] {
+    width: 84%;
+}
+
+#login-page button {
+  float: right;
+  margin-right:5px;
+  margin-top: 10px;
+}
+
+/******************END LOGIN**********************/
 
 ul {
     list-style: none;
