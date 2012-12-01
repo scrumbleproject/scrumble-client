@@ -30,6 +30,108 @@ var dataTest = {
 	/*]*/
 }
 
+//function utils for get htmlContent about tasks
+function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, backgroundClass){
+	
+	var htmlContent = "";
+
+	if (taskCollection.length>1){ //tasks are retrieved by status order from "to do" to "done"
+		var newColumnTag = 1;
+		var lastCodeStatus = '';
+		$.each(taskCollection, function(i, taskDico){
+
+			//create empty column(s) before
+			for (var j=1; lastCodeStatus=='' && j<=3  ;j++){
+
+				//break this loop if a task has to be displayed in the current column
+				if (j==1 && taskDico.idProcessStatus.codeStatus == config.processStatus.toDo ||
+					j==2 && taskDico.idProcessStatus.codeStatus == config.processStatus.inProgress || 
+					j==3 && taskDico.idProcessStatus.codeStatus == config.processStatus.done) {
+					break;	
+				}
+
+				htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+								"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>" +
+								"</ul></div>";
+
+			}
+
+			//check if we have to begin a new column
+			if (lastCodeStatus != taskDico.idProcessStatus.codeStatus){
+				if (newColumnTag!=1){ //close last column each time except the first time
+					htmlContent += "</ul></div>";
+					newColumnTag = 1;
+				}
+				//keep the current code status
+				lastCodeStatus = taskDico.idProcessStatus.codeStatus;
+			}
+
+
+
+			if (newColumnTag == 1) { //tag says we have to open a new column
+				if (taskDico.idProcessStatus.codeStatus == config.processStatus.toDo){
+					htmlContent += "<div class='userstory "+backgroundClass+"'>" + 
+									"<ul id='sortable"+(userStoryIndex+1)+"-1'>";
+					newColumnTag = 0;
+
+				} else if (taskDico.idProcessStatus.codeStatus == config.processStatus.inProgress) {
+					htmlContent += "<div class='userstory "+backgroundClass+"'>" + 
+									"<ul id='sortable"+(userStoryIndex+1)+"-2'>";
+					newColumnTag = 0;
+
+				} else if (taskDico.idProcessStatus.codeStatus == config.processStatus.done) {
+					htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+									"<ul id='sortable"+(userStoryIndex+1)+"-3'>";
+					newColumnTag = 0;
+				}
+			}
+
+			htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
+
+		});
+
+		//close last column
+		htmlContent += "</ul></div>";
+
+		//create empty column(s) after
+		for (var j=1; lastCodeStatus!=config.processStatus.done && j<=3; j++){
+
+			if (lastCodeStatus == config.processStatus.toDo && j>1 ||
+				lastCodeStatus == config.processStatus.inProgress && j>2) {
+				
+				htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+								"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>" +
+								"</ul></div>";
+			}
+
+		}
+
+	}
+	else { //juste one task to display
+		
+		//create all columns
+		for (var j=1; j<=3; j++){
+
+			//open column
+			htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+							"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>";
+
+			//check in which column we have to display it
+			if (j==1 && taskCollection.idProcessStatus.codeStatus == config.processStatus.toDo ||
+				j==2 && taskCollection.idProcessStatus.codeStatus == config.processStatus.inProgress || 
+				j==3 && taskCollection.idProcessStatus.codeStatus == config.processStatus.done) {
+				htmlContent += "<li class='task img-polaroid'>"+taskCollection.title+"</li>";	
+			}
+			
+			//close column
+			htmlContent += "</ul></div>";	
+		}
+		
+	}
+
+	return htmlContent;
+}
+
 
 //display all items
 function displayAllItems(items){
@@ -47,29 +149,10 @@ function displayAllItems(items){
 			var backgroundClass = "odd";
 			if (i % 2 == 1) backgroundClass = "even";
 			
-			var htmlContent = "<div class='userstory "+backgroundClass+"'>" +
-				"<span>"+storyDico.title+"</span>"+
-				"<ul id='sortable"+(i+1)+"-1'>";
-			
-			if (storyDico.taskCollection.length>1){
-				$.each(storyDico.taskCollection, function(i, taskDico){
-					htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
-				});
-			}
-			else {
-				htmlContent += "<li class='task img-polaroid'>"+storyDico.taskCollection.title+"</li>";
-			}
-			
-			htmlContent += "</ul></div>";
-			
-			htmlContent += "<div class='userstory "+backgroundClass+"'>" +
-				"<ul id='sortable"+(i+1)+"-2'>"+
-				"</ul></div>";
-			
-			htmlContent += "<div class='userstory "+backgroundClass+"'>" +
-				"<ul id='sortable"+(i+1)+"-3'>"+
-				"</ul></div>";
-			
+			var htmlContent = "<div class='userstory-title'>"+storyDico.title+"</div>";
+
+			htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
+						
 			$("#sprintboard").append(htmlContent);
 			
 			//init current sortable list
@@ -86,38 +169,15 @@ function displayAllItems(items){
 			"<div class='done'><h3>DONE</h3></div>");
 
 		//append content
-		var htmlContent = "<div class='userstory odd'>" +
-			"<span>"+items.userstory.title+"</span>"+
-			"<ul id='sortable1-1'>";
-		
-		if (items.userstory.taskCollection.length>1){
-			$.each(items.userstory.taskCollection, function(i, taskDico){
-				htmlContent += "<li id='"+taskDico.title+"' class='task img-polaroid' onChange='console.log(\"bou\");'>"+taskDico.title+"</li>";
-			});
-		}
-		else {
-			htmlContent += "<li class='task img-polaroid'>"+items.userstory.taskCollection.title+"</li>";
-		}
+		var htmlContent = "<div class='userstory-title'>"+items.userstory.title+"</div>";
 
-		htmlContent += "</ul></div>";
-		
-		htmlContent += "<div class='userstory odd'>" +
-				"<ul id='sortable1-2'>"+
-				"</ul></div>";
-			
-		htmlContent += "<div class='userstory odd'>" +
-				"<ul id='sortable1-3'>"+
-				"</ul></div>";
+		htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 1 , "odd");
 		
 		$("#sprintboard").append(htmlContent);
 		
 		//init sortable list
-		$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
+		/*$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
 		    connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
-	        /*update: function() {
-				console.log(this.id);
-				console.log($("#"+this.id+""));
-	        }*/
 			update: function (event, ui) {
 			        var start_pos = ui.item.data('start_pos');
 			        console.log(start_pos);
@@ -128,7 +188,7 @@ function displayAllItems(items){
 	        receive: function() {
 				console.log(this.id);
 				//console.log($("#"+this.id+""));
-	        }/*function(event, ui) {
+	        }function(event, ui) {
             var start_pos = ui.item.data('start_pos');
             var index = ui.placeholder.index();
             console.log(start_pos);
@@ -138,8 +198,9 @@ function displayAllItems(items){
             } else {
                 $('#'+this.id+' li:eq(' + (index + 1) + ')').addClass('highlights');
             }
-        	}*/
+        	}
 		}).disableSelection();
+		*/
 
 	}
 

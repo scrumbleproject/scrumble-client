@@ -16,7 +16,17 @@ var config = {
 			"userStories":"userstories",
 			"tasks":"userstories",
 			"sprints":"sprints"
+		},
+
+	"processStatus" : {
+			"proposed" : "pro",
+			"accepted" : "acc",
+			"estimated" : "est",
+			"toDo" : "tod",
+			"inProgress" : "inp",
+			"done" : "don"
 		}
+
 
 
 };
