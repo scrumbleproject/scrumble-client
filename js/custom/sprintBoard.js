@@ -35,6 +35,11 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 	
 	var htmlContent = "";
 
+	var statusColumns = [];
+	statusColumns[0] = config.processStatus.toDo;
+	statusColumns[1] = config.processStatus.inProgress;
+	statusColumns[2] = config.processStatus.done;
+
 	if (taskCollection.length>1){ //tasks are retrieved by status order from "to do" to "done"
 		var newColumnTag = 1;
 		var lastCodeStatus = '';
@@ -50,7 +55,7 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 					break;	
 				}
 
-				htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+				htmlContent += "<div id='column-"+statusColumns[j-1]+"' class='userstory "+backgroundClass+"'>" +
 								"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>" +
 								"</ul></div>";
 
@@ -70,23 +75,23 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 
 			if (newColumnTag == 1) { //tag says we have to open a new column
 				if (taskDico.idProcessStatus.codeStatus == config.processStatus.toDo){
-					htmlContent += "<div class='userstory "+backgroundClass+"'>" + 
+					htmlContent += "<div id='column-"+statusColumns[0]+"' class='userstory "+backgroundClass+"'>" + 
 									"<ul id='sortable"+(userStoryIndex+1)+"-1'>";
 					newColumnTag = 0;
 
 				} else if (taskDico.idProcessStatus.codeStatus == config.processStatus.inProgress) {
-					htmlContent += "<div class='userstory "+backgroundClass+"'>" + 
+					htmlContent += "<div id='column-"+statusColumns[1]+"' class='userstory "+backgroundClass+"'>" + 
 									"<ul id='sortable"+(userStoryIndex+1)+"-2'>";
 					newColumnTag = 0;
 
 				} else if (taskDico.idProcessStatus.codeStatus == config.processStatus.done) {
-					htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+					htmlContent += "<div id='column-"+statusColumns[2]+"' class='userstory "+backgroundClass+"'>" +
 									"<ul id='sortable"+(userStoryIndex+1)+"-3'>";
 					newColumnTag = 0;
 				}
 			}
 
-			htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
+			htmlContent += "<li class='task img-polaroid' id='task-"+taskDico.idTask+"'>"+taskDico.title+"</li>";
 
 		});
 
@@ -99,7 +104,7 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 			if (lastCodeStatus == config.processStatus.toDo && j>1 ||
 				lastCodeStatus == config.processStatus.inProgress && j>2) {
 				
-				htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+				htmlContent += "<div id='column-"+statusColumns[j-1]+"' class='userstory "+backgroundClass+"'>" +
 								"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>" +
 								"</ul></div>";
 			}
@@ -113,14 +118,14 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 		for (var j=1; j<=3; j++){
 
 			//open column
-			htmlContent += "<div class='userstory "+backgroundClass+"'>" +
+			htmlContent += "<div id='column-"+statusColumns[j-1]+"' class='userstory "+backgroundClass+"'>" +
 							"<ul id='sortable"+(userStoryIndex+1)+"-"+j+"'>";
 
 			//check in which column we have to display it
 			if (j==1 && taskCollection.idProcessStatus.codeStatus == config.processStatus.toDo ||
 				j==2 && taskCollection.idProcessStatus.codeStatus == config.processStatus.inProgress || 
 				j==3 && taskCollection.idProcessStatus.codeStatus == config.processStatus.done) {
-				htmlContent += "<li class='task img-polaroid'>"+taskCollection.title+"</li>";	
+				htmlContent += "<li class='task img-polaroid' id='task-"+taskCollection.idTask+"'>"+taskCollection.title+"</li>";	
 			}
 			
 			//close column
@@ -157,7 +162,27 @@ function displayAllItems(items){
 			
 			//init current sortable list
 			$( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3" ).sortable({
-				connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3"
+				connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3",
+				update: function(event, ui) {
+					//build a suitable id integer for ajax request
+					var toRemove = 'task-';
+					var idTask = ui.item.attr("id").replace(toRemove,'');
+
+					toRemove = 'column-';
+					$column = ui.item.closest("div");
+					var status = $column.attr("id").replace(toRemove,'');
+
+					alert('idTask='+idTask+" ; status="+status);
+		 
+					//run ajax request
+					$.ajax({
+						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
+						type:"POST",
+						success: function(data) {
+							console.log('Task status updated');
+						}
+					});	
+				}	
 			}).disableSelection();
 		});   
 	}

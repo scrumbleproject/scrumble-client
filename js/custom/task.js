@@ -103,7 +103,7 @@ function bindDeleteTaskEvent(idUserstory){
 			if (confirmed) 
 			{            
 				$.ajax({
-					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val(),
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val(),
 					type:"DELETE",
 					success: function(data) {
 						var box = bootbox.alert("Task deleted successfully.");
@@ -134,7 +134,7 @@ $(document).ready( function()
 		$("#taskVisible").append('<legend>Task</legend><div class="control-group" id="taskList"></div>');
 
 	    $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/all',
+            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/all',
             type:'GET',
 		    contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
@@ -168,7 +168,7 @@ function test(idUserstory)
 			{
 				//Case 1 : create a new task (idTask is empty)
 			    $.ajax({
-			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks/add',
+			        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add',
 			        type:"POST",
 			        data: JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
 			        dataType: "json",
@@ -184,7 +184,7 @@ function test(idUserstory)
 			}
 			else { //Case 2 : update an existing task (idTask is not empty)
 				$.ajax({
-	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idUserstory+'/tasks',
+	                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks',
 	                type:"PUT",
 	                data: JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
 	                dataType: "json",
