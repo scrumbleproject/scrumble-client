@@ -171,7 +171,7 @@ $(document).ready( function() {
 	else {
 	
 		//get param in url if exists
-		var idSprint = $(document).getUrlParam("idSprint");		
+		var idSprint = $(document).getUrlParam("sprint");		
 	
 		//load data on list or on form
 		if ( (idSprint !=="") && (idSprint !==null)) {

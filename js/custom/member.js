@@ -25,7 +25,7 @@ function displayAllItems(items){
 			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.idrole+"</td>");
 			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
-			$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
+			$("#memberList > tbody").append("<td><a class='btn' href='member.html?member="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>");
 			$("#memberList > tbody").append("</tr>");
 		});   
@@ -38,7 +38,7 @@ function displayAllItems(items){
 		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
 		$("#memberList > tbody").append("<td>"+items.member1.idrole+"</td>");
 		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
-		$("#memberList > tbody").append("<td><a class='btn' href='member.html?idMember="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
+		$("#memberList > tbody").append("<td><a class='btn' href='member.html?member="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>");
 		$("#memberList > tbody").append("</tr>");
 	}
@@ -96,7 +96,7 @@ $(document).ready( function() {
 	});
 
 	//get param idMember in url if exists
-    var idMember = $(document).getUrlParam("idMember");		
+    var idMember = $(document).getUrlParam("member");		
 	
 	//load data on list or on form
     if ( (idMember !=="") && (idMember !==null)) {

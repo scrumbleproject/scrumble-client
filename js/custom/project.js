@@ -18,14 +18,14 @@ function displayAllItems(items){
 		$.each(items.project, function(i, dico){
 		
 		
-			$("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?idProject=" + dico.idProject +"'><h3>"+ dico.title + "</h3></a>"+
+			$("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?project=" + dico.idProject +"'><h3>"+ dico.title + "</h3></a>"+
 					"<p>" + dico.description + "</p> </div> </div> </li>" 
 					
 					);
 		});   
 	}
 	else { //if only one project
-		$("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?idProject=" + items.project.idProject +"'><h3>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
+		$("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?project=" + items.project.idProject +"'><h3>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
 	}
 
 }
@@ -84,7 +84,7 @@ $(document).ready( function() {
 	
 
 	//get param idProject in url if exists
-    var idProject = $(document).getUrlParam("idProject");
+    var idProject = $(document).getUrlParam("project");
 
 	//load data on list or on form
     if ( (idProject !=="") && (idProject !==null)) {

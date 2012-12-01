@@ -24,7 +24,7 @@ function displayAllItems(items){
 		$("#userstories-list").html("");
 		$.each(items.userstory, function(i, dico){
 			$("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
-					"<a class='edit' href='story.html?idUserstory="+dico.idUserstory+"'><img class='icon-pencil'/></a>"+
+					"<a class='edit' href='story.html?userstory="+dico.idUserstory+"'><img class='icon-pencil'/></a>"+
 					"<div class='title'>"+ dico.title + "</div>" +
 					"<div class='estimation-label'>Days/Person</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
@@ -109,7 +109,7 @@ $(document).ready( function() {
 	});
 	
 	//get param idMember in url if exists
-    var idUserstory = $(document).getUrlParam("idUserstory");		
+    var idUserstory = $(document).getUrlParam("userstory");		
 	
 	//load data on list or on form
     if ( (idUserstory !=="") && (idUserstory !==null)) {

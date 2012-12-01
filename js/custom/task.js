@@ -127,7 +127,7 @@ function bindDeleteTaskEvent(idUserstory){
 $(document).ready( function() 
 {
 	//get param idUserstory in url if exists
-    var idUserstory = $(document).getUrlParam("idUserstory");		
+    var idUserstory = $(document).getUrlParam("userstory");		
 	
 	if (idUserstory !== null && idUserstory !=="")
 	{

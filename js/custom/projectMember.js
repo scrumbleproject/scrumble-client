@@ -48,7 +48,7 @@ function bindDeleteEvent(){
 			//show a confirm box
 			e.preventDefault();
 			
-			var idProject = $(document).getUrlParam("idProject");
+			var idProject = $(document).getUrlParam("project");
 			if (idProject != null && idProject > 0) {
 		        bootbox.confirm("Are you sure to remove this member from the project ?", function(confirmed) {
 
@@ -92,7 +92,7 @@ $(document).ready( function() {
 	});
 	
 	//get param idMember in url if exists
-    var idProject = $(document).getUrlParam("idProject");
+    var idProject = $(document).getUrlParam("project");
 	
 	//enable autocompletion display
 	var idMembers = new Array();
@@ -152,7 +152,7 @@ $(document).ready( function() {
 		e.preventDefault();
 		
 		//Get #idProject and #idMember field value	
-		var idProject = $(document).getUrlParam("idProject");
+		var idProject = $(document).getUrlParam("project");
 		var idMember = $("#idMember").val();
 		
 		if (idProject!=null && idProject.length>0 &&
