@@ -82,18 +82,6 @@ function bindDeleteEvent(){
 		
 /** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
-	
-	//load left-menu	
-	$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
-		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
-			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-		}
-		else { //if successful
-			//select the related option in left-menu
-			$("li#left-menu-option-member").addClass("active");
-		} 		
-	});
 
 	//get param idMember in url if exists
     var idMember = $(document).getUrlParam("member");		
