@@ -80,9 +80,9 @@ function bindTypeAheadEvent(){
 $(document).ready( function() {
 	
 	//load left-menu	
-	$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
+	$('#left-menu').load('leftMenuProject.html', function(response, status, xhr) {
 		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
+			var msg = "Sorry left-menu cannot be loaded: ";
 			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
 		}
 		else { //if successful

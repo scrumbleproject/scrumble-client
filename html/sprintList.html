@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Le styles -->
     <link href="../css/bootstrap.css" rel="stylesheet">
     <style>
@@ -36,78 +35,45 @@
 <!-- Left menu -->
 <div class="container-fluid">
   <div class="row-fluid">
+    <!-- EN DUR-->
     <div id="left-menu" class="span2">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <li class="nav-header">Sidebar</li>
-          <li id="left-menu-option-dashboard"><a href="dashboard.html">Dashboard</a></li>
-          <li id="left-menu-option-project"><a href="projectsList.html">Projects</a></li>
-          <li id="left-menu-option-module" class="active"><a href="modules.html">Modules</a></li>
-          <li id="left-menu-option-member"><a href="memberList.html">Members</a></li>
+          <li id="left-menu-option-project"><a href="dashboardProject.html?project=1">Project</a></li>
+          <li id="left-menu-option-sprint" class="active"><a href="sprintList.html?project=1">Sprint</a></li>
+          <li id="left-menu-option-story"><a href="storyList.html?project=1">Story</a></li>
+          <li id="left-menu-option-member"><a href="projectMember.html?project=1">Members</a></li>
         </ul>
       </div>
     </div>
+    <!--<div id="left-menu" class="span2">
+    </div>-->
     <!-- End left menu-->
 
     <!--Content -->
     <div class="span10">
-      <h4>Paramétrage des modules</h4>
-      <br>
-      Attention, leftMenu en DUR !<br/><br/>
-      <div class="accordion-group">
-        <div class="accordion-heading"> <a class="accordion-toggle" href="#item1" data-toggle="collapse">SCRUM</a> </div>
-        <div id="item1" class="collapse">
-          <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Module 1
-         </label>
-         <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Module 2
-         </label>
-         <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Module 3
-         </label>
-         <label class="checkbox">
-          <input type="checkbox" value="option1" name="optionsCheckboxList1">
-          Action 1
-         </label>
-        </div>
-      </div>
-      
-      <div class="accordion-group">
-        <div class="accordion-heading"> <a class="accordion-toggle" href="#item2" data-toggle="collapse">KANBAN</a> </div>
-        <div id="item2" class="collapse">
-         <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Backlog
-         </label>
-         <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Itération
-         </label>
-         <label class="checkbox">
-           <input type="checkbox" value="option1" name="optionsCheckboxList1">
-           Action 1
-         </label>
-         <label class="checkbox">
-          <input type="checkbox" value="option1" name="optionsCheckboxList1">
-          Action 2
-         </label>
-        </div>
-      </div>
-    </div>
-       
+      <div class="row-fluid">
+          <h2>Page affichant la liste des sprints pour un PROJECT</h2>
+          Listing des différents sprints pour le projet, avec des liens vers ceux ci<br/><!--J'aime les br ! -->
+          Cette page est à faire.<br/>
+          Attention, leftMenu en DUR !<br/><br/>
+          Liens : <br/><br/>
+            <a href="sprintBoard.html?sprint=1">Lien vers le sprintboard du sprint numéro 1</a><br/>
       </div><!--/row-->
+      <div class="row-fluid">
+        
+      </div><!--/row-->
+    </div><!--/span-->
+  </div><!--/row-->
 
-      <hr>
+  <hr>
 
-      <footer>
-        <p>Scrumble</p>
-      </footer>
+  <footer>
+    <p>Scrumble</p>
+  </footer>
 
-    </div>
+</div>
 
   <!-- Le javascript
   ================================================== -->
@@ -119,7 +85,7 @@
   <script src="../js/custom/utils.js"></script>
   <script src="../js/custom/page.js"></script>
   <script src="../js/lib/jquery.getUrlParam.js"></script>
-  
+
   <!-- Bootstrap related import -->
   <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
   <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
@@ -134,7 +100,6 @@
   <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
   <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
   <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
-
 
   </body>
 </html>

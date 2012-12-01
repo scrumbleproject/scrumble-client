@@ -18,14 +18,14 @@ function displayAllItems(items){
 		$.each(items.project, function(i, dico){
 		
 		
-			$("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?project=" + dico.idProject +"'><h3>"+ dico.title + "</h3></a>"+
+			$("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='dashboardProject.html?project=" + dico.idProject +"'><h3>"+ dico.title + "</h3></a>"+
 					"<p>" + dico.description + "</p> </div> </div> </li>" 
 					
 					);
 		});   
 	}
 	else { //if only one project
-		$("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='settings.html?project=" + items.project.idProject +"'><h3>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
+		$("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='dashboardProject.html?project=" + items.project.idProject +"'><h3>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
 	}
 
 }
@@ -70,24 +70,24 @@ function bindDeleteEvent(){
 /** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
 	
-	//load left-menu	
-	$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
-		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
-			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-		}
-		else { //if successful
-			//select the related option in left-menu
-			$("li#left-menu-option-project").addClass("active");
-		} 		
-	});
-	
-
 	//get param idProject in url if exists
     var idProject = $(document).getUrlParam("project");
 
 	//load data on list or on form
     if ( (idProject !=="") && (idProject !==null)) {
+
+    	//load left-menu	
+		$('#left-menu').load('leftMenuProject.html', function(response, status, xhr) {
+			if (status == "error") {
+				var msg = "Sorry left-menu cannot be loaded: ";
+				bootbox.alert(msg + xhr.status + " " + xhr.statusText);
+			}
+			else { //if successful
+				//select the related option in left-menu
+				$("li#left-menu-option-project").addClass("active");
+			} 		
+		});
+
         $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject,
             type:'GET',
@@ -104,6 +104,19 @@ $(document).ready( function() {
 	                      
     }
 	else {
+
+		//load left-menu	
+		$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
+			if (status == "error") {
+				var msg = "Sorry left-menu cannot be loaded: ";
+				bootbox.alert(msg + xhr.status + " " + xhr.statusText);
+			}
+			else { //if successful
+				//select the related option in left-menu
+				$("li#left-menu-option-project").addClass("active");
+			} 		
+		});
+
 	    $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all',
             type:'GET',

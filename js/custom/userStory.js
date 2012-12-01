@@ -97,9 +97,9 @@ function bindDeleteUserStoryEvent(){
 $(document).ready( function() {
 	
 	//load left-menu	
-	$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
+	$('#left-menu').load('leftMenuProject.html', function(response, status, xhr) {
 		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
+			var msg = "Sorry left-menu cannot be loaded: ";
 			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
 		}
 		else { //if successful
@@ -130,19 +130,26 @@ $(document).ready( function() {
 	                      
     }
 	else {
-	    $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/all',
-            type:'GET',
-		    contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                displayAllItems($.parseJSON(reponse));
-            },
-		    error:function (xhr, status, error){
-			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-		    },
-		    dataType: 'text',
-		    converters: 'text json'
-	    });	
+		var idProject = $(document).getUrlParam("project");		
+	
+		//load data on list or on form
+	    if ( (idProject !=="") && (idProject !==null)) 
+	    {
+		    $.ajax({
+	            //url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/all',
+	            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject+'/projects',            
+	            type:'GET',
+			    contentType:'application/json; charset=UTF-8',
+	            success: function(reponse) {
+	                displayAllItems($.parseJSON(reponse));
+	            },
+			    error:function (xhr, status, error){
+				    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+			    },
+			    dataType: 'text',
+			    converters: 'text json'
+		    });	
+		}
     }
 
 	//action on #formStory form
