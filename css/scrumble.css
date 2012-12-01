@@ -531,7 +531,7 @@ ul {
   width:89.5%;
   color:white;
   background-color:#343537;
-  border-radius: 0.2em 0.2em 0 0;
+  border-radius: 0.3em 0.3em 0 0;
 }
 #sprintboard ul {
 	display:block;
@@ -546,12 +546,15 @@ ul {
 #sprintboard li.task{
 	position:relative;
 	margin:2px 3px;
-	padding: 1px; 
+	padding: 1px 4px; 
 	float: left; 
-	width: 120px; 
+	width: 77px; 
 	height: 75px;  
-	text-align: center;
+	text-align: left;
+  font-size: 11px;
+  line-height:18px;
 	background-color:#F3F781;
+  overflow:hidden;
 }
 
  

@@ -54,4 +54,16 @@ $.responseMemberToDictionaryString = function(items){
 	return results;
 }
 
+/**
+ * Use this fonction to truncate text at a specified string length
+ */
+$.truncateText = function(text, length){
+    if (text.length<=length) {
+        return text;
+    }
+    else {
+        return $.trim(text).substring(0, length)  + "...";
+    }
+}
+
 

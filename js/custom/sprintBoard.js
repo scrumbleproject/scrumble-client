@@ -62,7 +62,7 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 				}
 			}
 
-			htmlContent += "<li class='task img-polaroid' id='task-"+taskDico.idTask+"'>"+taskDico.title+"</li>";
+			htmlContent += "<li class='task img-polaroid' id='task-"+taskDico.idTask+"'>"+$.truncateText(taskDico.title, 40)+"</li>";
 
 		});
 
@@ -96,7 +96,7 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 			if (j==1 && taskCollection.idProcessStatus.codeStatus == config.processStatus.toDo ||
 				j==2 && taskCollection.idProcessStatus.codeStatus == config.processStatus.inProgress || 
 				j==3 && taskCollection.idProcessStatus.codeStatus == config.processStatus.done) {
-				htmlContent += "<li class='task img-polaroid' id='task-"+taskCollection.idTask+"'>"+taskCollection.title+"</li>";	
+				htmlContent += "<li class='task img-polaroid' id='task-"+taskCollection.idTask+"'>"+$.truncateText(taskCollection.title, 40)+"</li>";	
 			}
 			
 			//close column
