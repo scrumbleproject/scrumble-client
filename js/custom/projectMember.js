@@ -38,18 +38,17 @@ function bindDeleteEvent(){
 	
 	//fetch each <a> delete button
 	$("a.btn-delete").each( function(){
-		
-		//get a reference on the current fetched element
-		$btn = $(this);
 
 		//add event on click on this button
-		$btn.live('click', function(e){
-		
+		$(this).live('click', function(e){
+
+			//get a reference on the current element
+			$btn = $(this);
+
 			//show a confirm box
 			e.preventDefault();
 			
 			var idProject = $(document).getUrlParam("idProject");
-			
 			if (idProject != null && idProject > 0) {
 		        bootbox.confirm("Are you sure to remove this member from the project ?", function(confirmed) {
 
