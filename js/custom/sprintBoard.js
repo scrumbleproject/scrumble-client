@@ -4,14 +4,14 @@
 
 //test set of data
 var dataTest = {
-	"userstory":[
+	"userstory":/*[*/
 	{ "title":"Dépot","estimation":"4",
 		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
 			{"title":"task 2","estimation":"2"},
 			{"title":"task 3","estimation":"1"},
 		]
-	},
+	}/*,
 	{ "title":"Transfère d'argent","estimation":"6",
 		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
@@ -20,23 +20,22 @@ var dataTest = {
 			{"title":"task 4","estimation":"1"},
 			{"title":"task 5","estimation":"1"},
 		]
-	},
+	}*//*,
 	{ "title":"Visualiser ses transactions","estimation":"2",
 		"taskCollection":[
 			{"title":"task 1","estimation":"1"},
 			{"title":"task 2","estimation":"1"},
 		]
-	}
-	]
+	}*/
+	/*]*/
 }
 
 
 //display all items
 function displayAllItems(items){
 
-
 	if (items.userstory.length>1){ //if more than one user story
-		
+
 		//reinit div content
 		$("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
 			"<div class='assigned'><h3>PROCESSING</h3></div>"+
@@ -80,12 +79,12 @@ function displayAllItems(items){
 		});   
 	}
 	else { //if only one user story
-		
+
 		//reinit div content
 		$("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
 			"<div class='assigned'><h3>PROCESSING</h3></div>"+
 			"<div class='done'><h3>DONE</h3></div>");
-		
+
 		//append content
 		var htmlContent = "<div class='userstory odd'>" +
 			"<span>"+items.userstory.title+"</span>"+
@@ -93,13 +92,13 @@ function displayAllItems(items){
 		
 		if (items.userstory.taskCollection.length>1){
 			$.each(items.userstory.taskCollection, function(i, taskDico){
-				htmlContent += "<li class='task img-polaroid'>"+taskDico.title+"</li>";
+				htmlContent += "<li id='"+taskDico.title+"' class='task img-polaroid' onChange='console.log(\"bou\");'>"+taskDico.title+"</li>";
 			});
 		}
 		else {
 			htmlContent += "<li class='task img-polaroid'>"+items.userstory.taskCollection.title+"</li>";
 		}
-		
+
 		htmlContent += "</ul></div>";
 		
 		htmlContent += "<div class='userstory odd'>" +
@@ -114,13 +113,35 @@ function displayAllItems(items){
 		
 		//init sortable list
 		$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
-		    connectWith: "#sortable1-1, #sortable1-2, #sortable1-3"
+		    connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
+	        /*update: function() {
+				console.log(this.id);
+				console.log($("#"+this.id+""));
+	        }*/
+			update: function (event, ui) {
+			        var start_pos = ui.item.data('start_pos');
+			        console.log(start_pos);
+			        var end_pos = ui.item.index();
+			        console.log(end_pos);
+			        //$('#sortable li').removeClass('highlights');
+			    },
+	        receive: function() {
+				console.log(this.id);
+				//console.log($("#"+this.id+""));
+	        }/*function(event, ui) {
+            var start_pos = ui.item.data('start_pos');
+            var index = ui.placeholder.index();
+            console.log(start_pos);
+            console.log(index);
+            if (start_pos < index) {
+                $('#'+this.id+' li:nth-child(' + index + ')').addClass('highlights');
+            } else {
+                $('#'+this.id+' li:eq(' + (index + 1) + ')').addClass('highlights');
+            }
+        	}*/
 		}).disableSelection();
+
 	}
-
-	
-    
-
 
 }
 
