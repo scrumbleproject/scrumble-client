@@ -1,35 +1,6 @@
 
 /** Sprintboard methods **/
 
-
-//test set of data
-var dataTest = {
-	"userstory":/*[*/
-	{ "title":"Dépot","estimation":"4",
-		"taskCollection":[
-			{"title":"task 1","estimation":"1"},
-			{"title":"task 2","estimation":"2"},
-			{"title":"task 3","estimation":"1"},
-		]
-	}/*,
-	{ "title":"Transfère d'argent","estimation":"6",
-		"taskCollection":[
-			{"title":"task 1","estimation":"1"},
-			{"title":"task 2","estimation":"2"},
-			{"title":"task 3","estimation":"1"},
-			{"title":"task 4","estimation":"1"},
-			{"title":"task 5","estimation":"1"},
-		]
-	}*//*,
-	{ "title":"Visualiser ses transactions","estimation":"2",
-		"taskCollection":[
-			{"title":"task 1","estimation":"1"},
-			{"title":"task 2","estimation":"1"},
-		]
-	}*/
-	/*]*/
-}
-
 //function utils for get htmlContent about tasks
 function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, backgroundClass){
 	
@@ -172,14 +143,12 @@ function displayAllItems(items){
 					$column = ui.item.closest("div");
 					var status = $column.attr("id").replace(toRemove,'');
 
-					alert('idTask='+idTask+" ; status="+status);
-		 
 					//run ajax request
 					$.ajax({
 						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
 						type:"POST",
 						success: function(data) {
-							console.log('Task status updated');
+							//console.log('Task status updated');
 						}
 					});	
 				}	
@@ -223,34 +192,30 @@ $(document).ready( function() {
 		} 		
 	});
 	
-	var test = $(document).getUrlParam("test");
-	if (test=="1") { //if needing test data only
-		displayAllItems(dataTest);
+	
+	
+	//get param in url if exists
+	var idSprint = $(document).getUrlParam("sprint");		
+
+	//load data on list or on form
+	if ( (idSprint !=="") && (idSprint !==null)) {
+	    $.ajax({
+	        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/"+config.resources.userStories,
+	        type:'GET',
+	        contentType:'application/json; charset=UTF-8',
+	        success: function(response) {
+	            displayAllItems($.parseJSON(response));
+	        },
+		    error:function (xhr, status, error){
+			    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+		    },
+	        dataType: 'text',
+	        converters: 'text json'
+	    });
+		                  
 	}
-	else {
 	
-		//get param in url if exists
-		var idSprint = $(document).getUrlParam("sprint");		
 	
-		//load data on list or on form
-		if ( (idSprint !=="") && (idSprint !==null)) {
-		    $.ajax({
-		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/"+config.resources.userStories,
-		        type:'GET',
-		        contentType:'application/json; charset=UTF-8',
-		        success: function(response) {
-		            displayAllItems($.parseJSON(response));
-		        },
-			    error:function (xhr, status, error){
-				    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-			    },
-		        dataType: 'text',
-		        converters: 'text json'
-		    });
-			                  
-		}
-	
-	}
 	
 
     
