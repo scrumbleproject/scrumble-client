@@ -76,18 +76,6 @@ $(document).ready( function() {
 	//load data on list or on form
     if ( (idProject !=="") && (idProject !==null)) {
 
-    	//load left-menu	
-		$('#left-menu').load('leftMenuProject.html', function(response, status, xhr) {
-			if (status == "error") {
-				var msg = "Sorry left-menu cannot be loaded: ";
-				bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-			}
-			else { //if successful
-				//select the related option in left-menu
-				$("li#left-menu-option-project").addClass("active");
-			} 		
-		});
-
         $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject,
             type:'GET',
@@ -104,18 +92,6 @@ $(document).ready( function() {
 	                      
     }
 	else {
-
-		//load left-menu	
-		$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
-			if (status == "error") {
-				var msg = "Sorry left-menu cannot be loaded: ";
-				bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-			}
-			else { //if successful
-				//select the related option in left-menu
-				$("li#left-menu-option-project").addClass("active");
-			} 		
-		});
 
 	    $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all',

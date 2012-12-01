@@ -180,20 +180,6 @@ function displayAllItems(items){
 /** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
 	
-	//load left-menu	
-	$('#left-menu').load('leftMenuProject.html', function(response, status, xhr) {
-		if (status == "error") {
-			var msg = "Sorry leaf-menu cannot be loaded: ";
-			bootbox.alert(msg + xhr.status + " " + xhr.statusText);
-		}
-		else { //if successful
-			//select the related option in left-menu
-			$("li#left-menu-option-sprint").addClass("active");
-		} 		
-	});
-	
-	
-	
 	//get param in url if exists
 	var idSprint = $(document).getUrlParam("sprint");		
 
