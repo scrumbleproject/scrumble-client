@@ -199,33 +199,6 @@ function displayAllItems(items){
 		htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 1 , "odd");
 		
 		$("#sprintboard").append(htmlContent);
-		
-		//init sortable list
-		/*$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
-		    connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
-			update: function (event, ui) {
-			        var start_pos = ui.item.data('start_pos');
-			        console.log(start_pos);
-			        var end_pos = ui.item.index();
-			        console.log(end_pos);
-			        //$('#sortable li').removeClass('highlights');
-			    },
-	        receive: function() {
-				console.log(this.id);
-				//console.log($("#"+this.id+""));
-	        }function(event, ui) {
-            var start_pos = ui.item.data('start_pos');
-            var index = ui.placeholder.index();
-            console.log(start_pos);
-            console.log(index);
-            if (start_pos < index) {
-                $('#'+this.id+' li:nth-child(' + index + ')').addClass('highlights');
-            } else {
-                $('#'+this.id+' li:eq(' + (index + 1) + ')').addClass('highlights');
-            }
-        	}
-		}).disableSelection();
-		*/
 
 	}
 
