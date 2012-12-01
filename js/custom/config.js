@@ -4,8 +4,8 @@
 var config = {
 
 	//host configuration
-	"hostname":"gnupyx.fr",
-	"port":"8082",
+	"hostname":"localhost",
+	"port":"8080",
 	"rootPath":"scrumble-server-web/scrumble",
 
 	//here are listed all available resources for Rest Webservices. Don't forget to update it each time a new resource is created
