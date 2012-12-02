@@ -81,7 +81,7 @@ $(document).ready( function() {
 	
 	//get param idMember in url if exists
     var idProject = $(document).getUrlParam("project");
-	
+
 	//enable autocompletion display
 	var idMembers = new Array();
 	var subjects = new Array();

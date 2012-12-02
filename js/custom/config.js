@@ -45,7 +45,7 @@ var config = {
 
 };
 
-var leftMenu = {
+var leftMenu= {
 			"dashboardProject.html" : "left-menu-option-project",
 			"settings.html" : "left-menu-option-project",
 			"sprintList.html" : "left-menu-option-sprint",
@@ -59,3 +59,56 @@ var leftMenu = {
 			"memberList.html" : "left-menu-option-member",
 			"member.html" : "left-menu-option-member"
 			};
+
+
+/*var leftMenu = new Array(); 
+leftMenu["dashboardProject.html"] = {
+			"lien" : "left-menu-option-project",
+			"type" : "project"
+			};
+leftMenu["settings.html"] = {
+			"lien" : "left-menu-option-project",
+			"type" : "general"
+			};
+leftMenu["sprintList.html"] = {
+			"lien" : "left-menu-option-sprint",
+			"type" : "project"
+			};
+leftMenu["sprintBoard.html"] = {
+			"lien" : "left-menu-option-sprint",
+			"type" : "project"
+			};
+leftMenu["storyList.html"] = {
+			"lien" : "left-menu-option-story",
+			"type" : "project"
+			};
+leftMenu["story.html"] = {
+			"lien" : "left-menu-option-story",
+			"type" : "project"
+			};
+leftMenu["projectMember.html"] = {
+			"lien" : "left-menu-option-member",
+			"type" : "project"
+			};
+
+
+leftMenu["dashboard.html"] = {
+			"lien" : "left-menu-option-dashboard",
+			"type" : "general"
+			};
+leftMenu["projectsList.html"] = {
+			"lien" : "left-menu-option-project",
+			"type" : "general"
+			};
+leftMenu["modules.html"] = {
+			"lien" : "left-menu-option-module",
+			"type" : "general"
+			};
+leftMenu["memberList.html"] = {
+			"lien" : "left-menu-option-member",
+			"type" : "general"
+			};
+leftMenu["member.html"] = {
+			"lien" : "left-menu-option-member",
+			"type" : "general"
+			};*/

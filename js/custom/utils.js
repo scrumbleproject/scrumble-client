@@ -69,7 +69,7 @@ $.truncateText = function(text, length){
 /**
  * Use this fonction to show left menu dynamically
  */
-$.showLeftMenu = function(idProject, active){
+$.showLeftMenu = function(idProject, active, type){
     if(idProject !=="" && idProject !==null)
     {
         $('#left-menu').append('<div class="well sidebar-nav">'+
