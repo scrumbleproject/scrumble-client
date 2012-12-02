@@ -10,10 +10,6 @@ function fillForm(response) {
 	$("#estimation").val(response.estimation);
 	$("#importance").val(response.importance);
 	$("#note").val(response.note);
-
-	//add event on delete-button
-	bindDeleteUserStoryEvent();
-  
 }
 
 
@@ -24,7 +20,7 @@ function displayAllItems(items){
 		$("#userstories-list").html("");
 		$.each(items.userstory, function(i, dico){
 			$("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
-					"<a class='edit' href='story.html?userstory="+dico.idUserstory+"'><img class='icon-pencil'/></a>"+
+					"<a class='edit' href='story.html?userstory="+dico.idUserstory+"&project="+dico.idProject.idProject+"'><img class='icon-pencil'/></a>"+
 					"<div class='title'>"+ dico.title + "</div>" +
 					"<div class='estimation-label'>Days/Person</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
 				"</li>");
@@ -59,7 +55,7 @@ function displayAllItems(items){
 
 
 //add an event on delete <button> 
-function bindDeleteUserStoryEvent(){
+function bindDeleteUserStoryEvent(idProject){
 
 	$("button.btn-delete-userStory").show();
 	
@@ -78,7 +74,7 @@ function bindDeleteUserStoryEvent(){
 						var box = bootbox.alert("User story deleted successfully.");
 							setTimeout(function() {
 							box.modal('hide');
-							window.location.replace('storyList.html'); //redirect to storyList.html
+							window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
 						}, 3000); 
 					},
 					error:function (xhr, status, error){
@@ -97,8 +93,9 @@ function bindDeleteUserStoryEvent(){
 $(document).ready( function() {
 	
 	//get param idMember in url if exists
-    var idUserstory = $(document).getUrlParam("userstory");		
-	
+    var idUserstory = $(document).getUrlParam("userstory");
+	var idProject = $(document).getUrlParam("project");
+	$('#newstorybtn').append('<a class="btn btn-primary" href="story.html?project='+idProject+'">New story</a>');
 	//load data on list or on form
     if ( (idUserstory !=="") && (idUserstory !==null)) {
         $.ajax({
@@ -107,19 +104,16 @@ $(document).ready( function() {
             contentType:'application/json; charset=UTF-8',
             success: function(reponse) {
                 fillForm($.parseJSON(reponse));
-                bindDeleteUserStoryEvent();
+                bindDeleteUserStoryEvent(idProject);
             },
 	        error:function (xhr, status, error){
 		        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
 	        },
             dataType: 'text',
             converters: 'text json'
-        });
-	                      
+        });             
     }
-	else {
-		var idProject = $(document).getUrlParam("project");		
-	
+	else {	
 		//load data on list or on form
 	    if ( (idProject !=="") && (idProject !==null)) 
 	    {
@@ -150,14 +144,14 @@ $(document).ready( function() {
 			//Case 1 : create a new story (idUserstory is empty)
 			console.log(JSON.stringify($('#formStory').serializeObject()));
 		    $.ajax({
-		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add',
+		        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add/'+idProject,
 		        type:"POST",
 		        data: JSON.stringify($('#formStory').serializeObject()),
 		        dataType: "json",
 		        contentType: "application/json; charset=utf-8",
 		        success: function(data) {
 		                bootbox.alert('User story has been added successfully.');
-						window.location.replace('storyList.html'); //redirect to storyList.html
+						window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
 		        },
 				error:function (xhr, status, error){
 					bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
@@ -167,7 +161,7 @@ $(document).ready( function() {
 		else { //Case 2 : update an existing story (idUserstory is not empty)
 			console.log(JSON.stringify($('#formStory').serializeObject()));
 			$.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories,
+                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject,
                 type:"PUT",
                 data: JSON.stringify($('#formStory').serializeObject()),
                 dataType: "json",
@@ -176,7 +170,7 @@ $(document).ready( function() {
 					var box = bootbox.alert("User story has been updated successfully.");
 								setTimeout(function() {
 								box.modal('hide');
-								window.location.replace('storyList.html'); //redirect to storyList.html
+								window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
 							}, 3000);
                 },
 				error:function (xhr, status, error){

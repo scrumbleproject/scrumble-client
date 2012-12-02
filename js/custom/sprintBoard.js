@@ -118,7 +118,7 @@ function displayAllItems(items){
 		$("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
 			"<div class='assigned'><h3>PROCESSING</h3></div>"+
 			"<div class='done'><h3>DONE</h3></div>");
-		
+		console.log(items.userstory);
 		//append content
 		$.each(items.userstory, function(i, storyDico){
 		
