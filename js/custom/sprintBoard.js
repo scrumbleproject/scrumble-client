@@ -165,9 +165,32 @@ function displayAllItems(items){
 		//append content
 		var htmlContent = "<div class='userstory-title'>"+items.userstory.title+"</div>";
 
-		htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 1 , "odd");
+		htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
 		
 		$("#sprintboard").append(htmlContent);
+
+		//init current sortable list
+		$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
+			connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
+			update: function(event, ui) {
+				//build a suitable id integer for ajax request
+				var toRemove = 'task-';
+				var idTask = ui.item.attr("id").replace(toRemove,'');
+
+				toRemove = 'column-';
+				$column = ui.item.closest("div");
+				var status = $column.attr("id").replace(toRemove,'');
+
+				//run ajax request
+				$.ajax({
+					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
+					type:"POST",
+					success: function(data) {
+						//console.log('Task status updated');
+					}
+				});	
+			}	
+		}).disableSelection();
 
 	}
 
