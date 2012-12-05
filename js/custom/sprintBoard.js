@@ -38,6 +38,15 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 					htmlContent += "</ul></div>";
 					newColumnTag = 1;
 				}
+
+
+				//create empty column in middle if needed
+				if (lastCodeStatus == config.processStatus.toDo && taskDico.idProcessStatus.codeStatus == config.processStatus.done){
+					htmlContent += "<div id='column-"+statusColumns[1]+"' class='userstory "+backgroundClass+"'>" +
+								"<ul id='sortable"+(userStoryIndex+1)+"-2'>" +
+								"</ul></div>";	
+				}
+
 				//keep the current code status
 				lastCodeStatus = taskDico.idProcessStatus.codeStatus;
 			}
