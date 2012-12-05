@@ -15,7 +15,8 @@ var config = {
 			"projectMembers":"members",
 			"userStories":"userstories",
 			"tasks":"tasks",
-			"sprints":"sprints"
+			"sprints":"sprints",
+			"roles":"roles"
 		},
 
 	"processStatus" : {
@@ -25,24 +26,7 @@ var config = {
 			"toDo" : "tod",
 			"inProgress" : "inp",
 			"done" : "don"
-		}/*,
-	"leftMenu" : {
-			"dashboardProject.html" : "left-menu-option-project",
-			"settings.html" : "left-menu-option-project",
-			"sprintList.html" : "left-menu-option-sprint",
-			"sprintBoard.html" : "left-menu-option-sprint",
-			"storyList.html" : "left-menu-option-story",
-			"story.html" : "left-menu-option-story",
-			"projectMember.html" : "left-menu-option-member",
-			"dashboard.html" : "left-menu-option-dashboard",
-			"projectsList.html" : "left-menu-option-project",
-			"Modules.html" : "left-menu-option-module",
-			"memberList.html" : "left-menu-option-member",
-			"member.html" : "left-menu-option-member"
-		}*/
-
-
-
+		}
 };
 
 var leftMenu= {
