@@ -557,5 +557,28 @@ ul {
   overflow:hidden;
 }
 
+
+/*****************SPRINT LIST********************/
+
+#sprintList h2 {
+  margin-bottom: 30px;
+}
+
+
+
+
+#sprintList .accordion-group {
+  margin-bottom: 50px;
+}
+
+
+#sprintList .accordion-heading .accordion-toggle {
+    background-color: #343537;
+    color: white;
+    border-radius: 0.3em 0.3em 0 0;
+}
+    
+
+
  
 

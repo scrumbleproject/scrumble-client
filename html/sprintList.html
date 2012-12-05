@@ -42,20 +42,46 @@
 
     <!--Content -->
     <div class="span10">
-      <div class="row-fluid">
-          <h2>Page affichant la liste des sprints pour un PROJECT</h2>
-          Listing des différents sprints pour le projet, avec des liens vers ceux ci<br/><!--J'aime les br ! -->
-          Cette page est à faire.<br/><br/>
-          Liens : <br/><br/>
-            <a href="sprintBoard.html?sprint=1&project=1">Lien vers le sprintboard du sprint numéro 1</a><br/>
-      </div><!--/row-->
-      <div class="row-fluid">
-        
-      </div><!--/row-->
+      <div id="sprintList">
+          <ul class="breadcrumb">
+            <li><a href="dashboardProject.html?project=1">Project 1</a> <span class="divider">/</span></li>
+            <li class="active">Sprint</li>
+         </ul>
+      </div>
+      <div id="sprintList">
+        <div class="row-fluid">
+          <h2>Sprints</h2>
+	        <div class="accordion" id="accordion2">
+		        <div class="accordion-group">
+		          <div class="accordion-heading">
+		            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+		              Sprint 1
+		            </a>
+		          </div>
+		          <div id="collapseOne" class="accordion-body collapse in">
+		            <div class="accordion-inner">
+		              <p>Je sais pas quoi mettre !!!!</p>
+		              <a href="sprintBoard.html?sprint=1&project=1">Lien vers le sprintboard du sprint numéro 1</a>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="accordion-group">
+		          <div class="accordion-heading">
+		            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+		              Sprint 2
+		            </a>
+		          </div>
+		          <div id="collapseTwo" class="accordion-body collapse">
+		            <div class="accordion-inner">
+		              <p>Toujours pas d'idée</p>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	      </div><!--/row-->
+       </div><!-- /sprintList-->
     </div><!--/span-->
-  </div><!--/row-->
-
-  <hr>
+  </div><!-- row-fluid -->
 
   <footer>
     <p>Scrumble</p>
