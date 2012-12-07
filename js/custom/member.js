@@ -8,6 +8,8 @@ function fillForm(response) {
     $("#lastname").val(response.lastname);
     $("#login").val(response.login);
     $("#email").val(response.email);
+    $("#internalPhone").val(reponse.internalPhone);
+    $("#mobilePhone").val(reponse.externalPhone);
     $("#password").val(response.password);
     return response.idRole.idRole;
 }
@@ -25,6 +27,8 @@ function displayAllItems(items){
                                             "<td>"+dico.login+"</td>"+
                                             "<td>"+dico.idRole.title+"</td>"+
                                             "<td>"+dico.email+"</td>"+
+                                            "<td>"+dico.internalPhone+"</td>"+
+                                            "<td>"+dico.mobilePhone+"</td>"+
                                             "<td><a class='btn' href='member.html?member="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>"+
                                             "</tr>");
@@ -38,6 +42,8 @@ function displayAllItems(items){
                                             "<td>"+items.member1.login+"</td>"+
                                             "<td>"+items.member1.idRole.title+"</td>"+
                                             "<td>"+items.member1.email+"</td>"+
+                                            "<td>"+items.member1.internalPhone+"</td>"+
+                                            "<td>"+items.member1.mobilePhone+"</td>"+
                                             "<td><a class='btn' href='member.html?member="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>"+
                                         "</tr>");
