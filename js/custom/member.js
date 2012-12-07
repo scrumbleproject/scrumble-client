@@ -9,7 +9,7 @@ function fillForm(response) {
     $("#login").val(response.login);
     $("#email").val(response.email);
     $("#internalPhone").val(reponse.internalPhone);
-    $("#mobilePhone").val(reponse.externalPhone);
+    $("#mobilePhone").val(reponse.mobilePhone);
     $("#password").val(response.password);
     return response.idRole.idRole;
 }
