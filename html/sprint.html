@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Scrumble project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/datepicker.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../css/scrumble.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+  </head>
+
+  <body>
+
+<!-- Top navigation bar -->
+<div class="navbar navbar-fixed-top" id="nav-bar">  
+</div>
+<!-- End top navigation bar -->
+
+
+<!-- Left menu -->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div id="left-menu" class="span2">
+	</div><!--/span-->
+<!-- End left menu-->
+
+<!--Content -->
+	<div class="span10">
+    <h2>New sprint</h2>
+    
+    <!-- Form --> 	    
+		<form id="formSprint" class="form-horizontal" action="#">
+
+			<input type="hidden" name="idSprint" id="idSprint" >
+			<inpuut type="hidden" name="num_sprint" id="num_sprint" >
+			<input type="hidden" name="idProject" id="idProject">
+
+      <!-- Input name -->
+      <div class="control-group">
+        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+          <input type="text" name="title" id="title" >
+        </div>
+      </div>
+
+      <!-- Input velocity -->
+      <div class="control-group">
+        <label class="control-label" for="velocity">Velocity</label>
+        <div class="controls">
+          <input type="text" name="velocity" id="velocity" >
+        </div>
+      </div>
+      
+      <!-- Input date start -->
+      <div class="control-group">
+        <label class="control-label" for="dateStart">Date start</label>
+        <div class="controls">
+          <input type="text" name="dateStart" id="dateStart" >
+        </div>
+      </div>
+      
+      <!-- Input date end -->
+      <div class="control-group">
+        <label class="control-label" for="dateStart">Date start</label>
+        <div class="controls">
+          <input type="text" name="dateStart" id="dateStart" >
+        </div>
+      </div>
+      
+      <!-- Input duration -->
+      <div class="control-group">
+        <label class="control-label" for="duration">Duration</label>
+        <div class="controls">
+          <input type="text" name="duration" id="duration" >
+        </div>
+      </div>
+
+
+      <!-- Validation -->
+			<div class="form-actions">
+			  <button type="submit" class="btn btn-primary">Save</button>
+			  <button type="button" class="btn">Cancel</button>
+			  <button type="button" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
+			</div>
+
+		</form>
+		<!-- End form --> 
+      
+	
+	</div>
+<!-- End content -->
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/lib/jquery.js"></script>
+
+  <!-- Custom import -->
+    <script src="../js/custom/utils.js"></script>
+    <script src="../js/custom/config.js"></script>
+    <script src="../js/custom/page.js"></script>
+    <script src="../js/custom/utils.js"></script>	
+    <script src="../js/lib/jquery.getUrlParam.js"></script>
+    <script src="../js/custom/project.js"></script>
+
+
+  <!-- Bootstrap related import -->
+    <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>    
+    <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-dropdown.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-scrollspy.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-tab.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-tooltip.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-popover.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-button.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
+    <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
+    <script src="../js/lib/bootstrap-plugins/bootstrap-datepicker.js"></script>
+  </body>
+</html>
