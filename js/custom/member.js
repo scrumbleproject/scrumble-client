@@ -8,8 +8,8 @@ function fillForm(response) {
     $("#lastname").val(response.lastname);
     $("#login").val(response.login);
     $("#email").val(response.email);
-    $("#internalPhone").val(reponse.internalPhone);
-    $("#mobilePhone").val(reponse.mobilePhone);
+    $("#internalPhone").val(response.internalPhone);
+    $("#mobilePhone").val(response.mobilePhone);
     $("#password").val(response.password);
     return response.idRole.idRole;
 }
@@ -197,7 +197,7 @@ $(document).ready( function() {
         if (idMember==null || idMember.length==0) {
             //Case 1 : create a new member (idMember is empty)
             $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add',
+                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add/'+idRole,
                 type:"POST",
                 data: JSON.stringify($('#formUser').serializeObject()),
                 dataType: "json",
@@ -213,7 +213,7 @@ $(document).ready( function() {
         }
         else { //Case 2 : update an existing member (idMember is not empty)
             $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members,
+                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idRole,
                 type:"PUT",
                 data: JSON.stringify($('#formUser').serializeObject()),
                 dataType: "json",
