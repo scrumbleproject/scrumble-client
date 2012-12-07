@@ -8,9 +8,12 @@ function fillForm(response) {
     $("#lastname").val(response.lastname);
     $("#login").val(response.login);
     $("#email").val(response.email);
+    $("#internalPhone").val(reponse.internalPhone);
+    $("#mobilePhone").val(reponse.externalPhone);
     $("#password").val(response.password);
     return response.idRole.idRole;
 }
+
 
 
 //display all items
@@ -25,6 +28,8 @@ function displayAllItems(items){
                                             "<td>"+dico.login+"</td>"+
                                             "<td>"+dico.idRole.title+"</td>"+
                                             "<td>"+dico.email+"</td>"+
+                                            "<td>"+dico.internalPhone+"</td>"+
+                                            "<td>"+dico.mobilePhone+"</td>"+
                                             "<td><a class='btn' href='member.html?member="+dico.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-trash'></i></a></td>"+
                                             "</tr>");
@@ -38,6 +43,8 @@ function displayAllItems(items){
                                             "<td>"+items.member1.login+"</td>"+
                                             "<td>"+items.member1.idRole.title+"</td>"+
                                             "<td>"+items.member1.email+"</td>"+
+                                            "<td>"+items.member1.internalPhone+"</td>"+
+                                            "<td>"+items.member1.mobilePhone+"</td>"+
                                             "<td><a class='btn' href='member.html?member="+items.member1.idMember+"'><i class='icon-pencil'></i></a>" +
           "<a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-trash'></i></a></td>"+
                                         "</tr>");
@@ -45,17 +52,45 @@ function displayAllItems(items){
 }
 
 
-//display all roles
-function displayRoles(items, selected_role){
-    //console.log(selected_role);
+
+//get the list of all roles
+function getRoles(selected_role)
+{
+
+    $.ajax({
+        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.roles+'/all',
+        type:'GET',
+        contentType:'application/json; charset=UTF-8',
+        success: function(reponse) 
+        {
+            displayRoles($.parseJSON(reponse),selected_role);
+        },
+        error:function (xhr, status, error){
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+        },
+        dataType: 'text',
+        converters: 'text json'
+    });
+}
+
+
+
+//display roles
+function displayRoles(items, selected_role)
+{
     $("#idRole").html("");
+
     if (items.role.length>1){ //if more than one members
         var chaine="";
         $.each(items.role, function(i, dico){
             if(selected_role!=dico.idRole)
+            {
                 chaine += "<option value='"+dico.idRole+"'>"+dico.title+"</option>";
+            }
             else
+            {
                 chaine += "<option value='"+dico.idRole+"' selected>"+dico.title+"</option>";
+            }
         });   
     }
     else { //if only one role
@@ -109,8 +144,8 @@ $(document).ready( function() {
     var idMember = $(document).getUrlParam("member");
     
     //load data on list or on form
-    if (displayed_page!="memberList.html"){
-
+    if (displayed_page!="memberList.html")
+    {
         var selected_role="";
         if ( (idMember !=="") && (idMember !==null)) 
         {
@@ -120,6 +155,7 @@ $(document).ready( function() {
                 contentType:'application/json; charset=UTF-8',
                 success: function(reponse) {
                     selected_role=fillForm($.parseJSON(reponse));
+                    getRoles(selected_role);
                 },
                 error:function (xhr, status, error){
                     bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
@@ -128,21 +164,10 @@ $(document).ready( function() {
                 converters: 'text json'
             });
         }
-        
-        //Display all roles
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.roles+'/all',
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                displayRoles($.parseJSON(reponse),selected_role);
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType: 'text',
-            converters: 'text json'
-        });
+        else
+        {
+            getRoles(selected_role);
+        }
     }
     else{//member list
         $.ajax({

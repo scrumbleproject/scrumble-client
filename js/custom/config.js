@@ -4,7 +4,7 @@
 var config = {
 
 	//host configuration
-	"hostname":"localhost",
+	"hostname":"192.168.1.74",
 	"port":"8080",
 	"rootPath":"scrumble-server-web/scrumble",
 
