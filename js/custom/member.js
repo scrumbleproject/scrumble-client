@@ -56,7 +56,6 @@ function displayAllItems(items){
 //get the list of all roles
 function getRoles(selected_role)
 {
-
     $.ajax({
         url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.roles+'/all',
         type:'GET',
@@ -169,7 +168,7 @@ $(document).ready( function() {
             getRoles(selected_role);
         }
     }
-    else{//member list
+    else{//get all the member list
         $.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all',
             type:'GET',
@@ -187,13 +186,13 @@ $(document).ready( function() {
     }
 
 
-    
-
     //action on #formUser form
     $('#formUser').submit(function() {
         
         //Get #idMember field value 
         var idMember = $("#idMember").val();
+        //Get #idRole field value 
+        var idRole = $("#idRole").val();
 
         if (idMember==null || idMember.length==0) {
             //Case 1 : create a new member (idMember is empty)
