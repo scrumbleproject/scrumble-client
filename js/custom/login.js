@@ -1,6 +1,13 @@
 
 /** Login methods **/
 
+function handleAuthenticationResponse(login, token){
+
+    if (typeof(token)!='undefined' && token.length>6){
+        alert("login="+login+"\ntoken="+token);
+        $.createCookie(login, token);
+    }
+}
 
         
 /** Put here all calls that you want to launch at the page startup **/      
@@ -25,9 +32,15 @@ $(document).ready( function() {
             $.ajax({
                 url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.authentication+'/'+login+'/'+pwd,
                 type:"POST",
-                success: function(data) {
-                    alert("response="+data);
-                    window.location.replace('dashboard.html'); //redirect to memberList.html
+                dataType:"text",
+                success: function(response) {
+                    if ($.trim(response) != ''){
+                        handleAuthenticationResponse(login, $.trim(response));
+                        window.location.replace('dashboard.html'); //redirect to memberList.html
+                    }
+                    else {
+                        bootbox.alert('Authentication failed ! please retry !'); 
+                    }
                 },
                 error:function (xhr, status, error){
                     bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');

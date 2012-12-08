@@ -27,7 +27,9 @@ var config = {
             "toDo" : "tod",
             "inProgress" : "inp",
             "done" : "don"
-        }
+        },
+        
+    "cookieName" : "scrumble"
 };
 
 var leftMenu= {

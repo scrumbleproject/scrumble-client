@@ -205,6 +205,10 @@ label#login.checkbox input  {
   margin-top: 10px;
 }
 
+#login-page .modal-body {
+  color:#333333;
+}
+
 /******************END LOGIN**********************/
 
 ul {
