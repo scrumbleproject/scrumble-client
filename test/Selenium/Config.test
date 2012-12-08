@@ -4,39 +4,18 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="file:///C:/Users/PRESTA_2/Documents/GitHub/scrumble-client/html/login.html" />
-<title>Essai</title>
+<title>New Test</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Essai</td></tr>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>file:///C:/Users/PRESTA_2/Documents/GitHub/scrumble-client/html/login.html</td>
-	<td></td>
+	<td>store</td>
+    <td>address</td>
+	<td>file:///C:/Users/PRESTA_2/Documents/GitHub/scrumble-client/html/</td>
 </tr>
-<tr>
-	<td>verifyText</td>
-	<td>xpath=id('login')</td>
-	<td>Remember me Sign in</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=inputUsername</td>
-	<td>romain</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=inputPassword</td>
-	<td>jsn21/10</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//button[@type='submit']</td>
-	<td></td>
-</tr>
-
 </tbody></table>
 </body>
 </html>
