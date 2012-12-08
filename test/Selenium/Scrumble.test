@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>Test Suite Function Tests - Priority 1</title>
+</head>
+<body>
+<table>
+  <tr><td><b>Suite Of Tests</b></td></tr>
+  <tr><td><a href="./Login.test">Login</a></td></tr>
+</table>
+</body>
+</html>
