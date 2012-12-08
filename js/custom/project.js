@@ -69,6 +69,8 @@ function bindDeleteEvent(){
 		
 /** Put here all calls that you want to launch at the page startup **/		
 $(document).ready( function() {
+
+  
 	
 	//get param idProject in url if exists
     var idProject = $(document).getUrlParam("project");

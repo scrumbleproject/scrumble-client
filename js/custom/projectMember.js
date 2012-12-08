@@ -15,6 +15,8 @@ function displayAllItems(items){
 			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
 			$("#memberList > tbody").append("<td></td>");
 			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
+			$("#memberList > tbody").append("<td>"+dico.internalPhone+"</td>");
+			$("#memberList > tbody").append("<td>"+dico.mobilePhone+"</td>");
 			$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>");
 			$("#usersList > tbody").append("</tr>");
 		});   
@@ -27,6 +29,8 @@ function displayAllItems(items){
 		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
 		$("#memberList > tbody").append("<td></td>");
 		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
+		$("#memberList > tbody").append("<td>"+items.member1.internalPhone+"</td>");
+		$("#memberList > tbody").append("<td>"+items.member1.mobilePhone+"</td>");
 		$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>");
 		$("#memberList > tbody").append("</tr>");
 	}
