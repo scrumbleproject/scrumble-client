@@ -33,6 +33,7 @@ var leftMenu= {
             "dashboardProject.html" : "left-menu-option-project",
             "settings.html" : "left-menu-option-project",
             "sprintList.html" : "left-menu-option-sprint",
+            "sprint.html" : "left-menu-option-sprint",
             "sprintBoard.html" : "left-menu-option-sprint",
             "storyList.html" : "left-menu-option-story",
             "story.html" : "left-menu-option-story",
