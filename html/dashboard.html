@@ -22,6 +22,7 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
+  
 
   </head>
 
@@ -128,10 +129,12 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="../js/lib/jquery.js"></script>
+  <script src="../js/lib/jquery.cookie.js"></script>
 
   <!-- Custom import -->
   <script src="../js/custom/config.js"></script>
   <script src="../js/custom/utils.js"></script>
+  <script src="../js/custom/auth.js"></script>
   <script src="../js/custom/page.js"></script>
   <script src="../js/lib/jquery.getUrlParam.js"></script>
   
@@ -149,6 +152,16 @@
   <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
   <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
   <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      var login = $.getLoginFromCookie();
+      if (login!=''){
+        alert(login);
+        $('span#user-app-login').html(login);
+      }
+    });
+  </script>
 
   </body>
 </html>
