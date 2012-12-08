@@ -16,7 +16,8 @@ var config = {
             "userStories":"userstories",
             "tasks":"tasks",
             "sprints":"sprints",
-            "roles":"roles"
+            "roles":"roles",
+            "authentication":"auth"
         },
 
     "processStatus" : {
