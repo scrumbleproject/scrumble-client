@@ -36,14 +36,14 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div id="left-menu" class="span2">
-	</div><!--/span-->
+    </div><!--/span-->
 <!-- End left menu-->
 
 
 <!--Content -->
-	<div class="span10">
+    <div class="span10">
     <h2>User story</h2>
-	    <div class="user_story">
+        <div class="user_story">
             <ul class="nav nav-tabs" id="myTab">
               <li class="active"><a data-toggle="tab" href="#storie">Story</a></li>
               <li class=""><a data-toggle="tab" href="#tasks">Tasks</a></li>
@@ -53,82 +53,82 @@
             <div class="tab-content" id="myTabContent">
               <div id="storie" class="tab-pane fade active in">
                 <form id="formStory" class="form-horizontal">
-			
-		              <input type="hidden" name="idUserstory" id="idUserstory" >
+            
+                      <input type="hidden" name="idUserstory" id="idUserstory" >
 
-		              <!-- Story name -->
-		              <div class="control-group">
-		                <label class="control-label" for="title">Title</label>
-		                <div class="controls">
-			              <input type="text" id="title" name="title" >
-		                </div>
-		              </div>
-		              <!-- Story type -->
-		              <div class="control-group">
-		                <label class="control-label" for="category">Category</label>
-		                <div class="controls" id="category">
-			              <select>
-			              <option>User stories</option>
-			              <option>Technical user</option>
-			              <option>Default</option>
-			              <option>Customer</option>
-			              </select>
-		                </div>
-		              </div>
-		
-		              <!-- Story importance -->
-		               <div class="control-group">
-		                <label class="control-label" for="importance">Importance</label>
-		                <div class="controls input-append">
-			              <input type="text" id="importance" name="importance">
-		                </div>
-		              </div>
-		               
-		               <!-- Story estimation -->
-		               <div class="control-group">
-		                <label class="control-label" for="estimation">Estimation</label>
-		                <div class="controls input-append">
-			              <input type="text" id="estimation" name="estimation"><span class="add-on">Days/Person</span>
-		                </div>
-		              </div>
-		
-		              <!-- Story how to demonstrate -->
-		              <div class="control-group">
-		                <label class="control-label" for="demonstration">How to demonstrate</label>
-		                <div class="controls">
-			              <textarea rows="3" id="demonstration" name="demonstration"></textarea>
-		                </div>
-		              </div>
+                      <!-- Story name -->
+                      <div class="control-group">
+                        <label class="control-label" for="title">Title</label>
+                        <div class="controls">
+                          <input type="text" id="title" name="title" >
+                        </div>
+                      </div>
+                      <!-- Story type -->
+                      <div class="control-group">
+                        <label class="control-label" for="category">Category</label>
+                        <div class="controls" id="category">
+                          <select>
+                              <option>User stories</option>
+                              <option>Technical user</option>
+                              <option>Default</option>
+                              <option>Customer</option>
+                          </select>
+                        </div>
+                      </div>
+        
+                      <!-- Story importance -->
+                       <div class="control-group">
+                        <label class="control-label" for="importance">Importance</label>
+                        <div class="controls input-append">
+                          <input type="text" id="importance" name="importance">
+                        </div>
+                      </div>
+                       
+                       <!-- Story estimation -->
+                       <div class="control-group">
+                        <label class="control-label" for="estimation">Estimation</label>
+                        <div class="controls input-append">
+                          <input type="text" id="estimation" name="estimation"><span class="add-on">Days/Person</span>
+                        </div>
+                      </div>
+        
+                      <!-- Story how to demonstrate -->
+                      <div class="control-group">
+                        <label class="control-label" for="demonstration">How to demonstrate</label>
+                        <div class="controls">
+                          <textarea rows="3" id="demonstration" name="demonstration"></textarea>
+                        </div>
+                      </div>
 
-		               <!-- Story status -->
-		               <div class="control-group">
-		                <label class="control-label" for="status">Status</label>
-		                <div class="controls" id="status">
-			              <select>
-			              <option>Proposed</option>
-			              <option>Accepted</option>
-			              <option>Estimated</option>
-			              <option>To do</option>
-			              <option>In progress</option>
-			              <option>Done</option>
-			              </select>
-		                </div>
-		              </div>
+                       <!-- Story status -->
+                       <div class="control-group">
+                        <label class="control-label" for="status">Status</label>
+                        <div class="controls" id="status">
+                          <select>
+                          <option>Proposed</option>
+                          <option>Accepted</option>
+                          <option>Estimated</option>
+                          <option>To do</option>
+                          <option>In progress</option>
+                          <option>Done</option>
+                          </select>
+                        </div>
+                      </div>
 
-		              <div class="control-group">
-		                <label class="control-label" for="note">Note</label>
-		                <div class="controls">
-			              <textarea rows="3" id="note" name="note"></textarea>
-		                </div>
-		              </div>
-		
-		
-		              <div class="form-actions">
-		                <button type="submit" class="btn btn-large btn-primary">Save</button>
-		                <button type="button" class="btn">Cancel</button>
-		                <button type="button" class="btn btn-warning btn-delete btn-delete-userStory" style="display:none;">Delete</button>
-		              </div>
-	              </form>
+                      <div class="control-group">
+                        <label class="control-label" for="note">Note</label>
+                        <div class="controls">
+                          <textarea rows="3" id="note" name="note"></textarea>
+                        </div>
+                      </div>
+        
+        
+                      <div class="form-actions">
+                        <button type="submit" class="btn btn-large btn-primary">Save</button>
+                        <button type="button" class="btn">Cancel</button>
+                        <button type="button" class="btn btn-warning btn-delete btn-delete-userStory" style="display:none;">Delete</button>
+                      </div>
+                  </form>
               </div>
               <div id="tasks" class="tab-pane fade">
                 <div id="taskVisible">
@@ -142,8 +142,8 @@
               </div>
             </div>
           </div>
-	
-	</div>
+    
+    </div>
 <!-- End content -->
       
   </div><!--/row-->
@@ -160,20 +160,20 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../js/lib/jquery.js"></script>
-	<script src="../js/lib/jquery-ui.js"></script>
+    <script src="../js/lib/jquery-ui.js"></script>
 
-	<!-- Custom import -->
-	<script src="../js/custom/page.js"></script>
-	<script src="../js/custom/config.js"></script>
-	<script src="../js/custom/utils.js"></script>	
+    <!-- Custom import -->
+    <script src="../js/custom/page.js"></script>
+    <script src="../js/custom/config.js"></script>
+    <script src="../js/custom/utils.js"></script>   
     <script src="../js/custom/userStory.js"></script>
     <script src="../js/custom/task.js"></script>
 
-	<!-- Additional plugins -->
-	<script src="../js/lib/jquery.getUrlParam.js"></script>
+    <!-- Additional plugins -->
+    <script src="../js/lib/jquery.getUrlParam.js"></script>
 
-	<!-- Bootstrap related import -->
-	<script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
+    <!-- Bootstrap related import -->
+    <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>

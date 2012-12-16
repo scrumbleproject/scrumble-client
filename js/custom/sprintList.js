@@ -1,6 +1,8 @@
 
 /** sprintList functions **/
 
+
+
 //Display all sprints
 function displayAllItems(items)
 {
@@ -48,11 +50,12 @@ function displayAllItems(items)
             }
 
             //Sprint start
-            if (typeof dico.date_start != "undefined")
+            if (typeof dico.dateStart!= "undefined")
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.date_start+'</h3>'+
+                            '<h3>'+dico.dateStart.substr(8,2)+'/'+dico.dateStart.substr(5,2)+'/'+dico.dateStart.substr(0,4)+
+                            '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
                             '<p>Sprint start</p>'+
@@ -61,11 +64,12 @@ function displayAllItems(items)
             }
 
             //Sprint end
-            if (typeof dico.date_end != "undefined")
+            if (typeof dico.dateEnd != "undefined")
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.date_end+'</h3>'+
+                            '<h3>'+dico.dateEnd.substr(8,2)+'/'+dico.dateEnd.substr(5,2)+'/'+dico.dateEnd.substr(0,4)+
+                            '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
                             '<p>Sprint end</p>'+
@@ -78,7 +82,7 @@ function displayAllItems(items)
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.date_end+'</h3>'+
+                            '<h3>'+dico.duree+'</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
                             '<p>Duration</p>'+
@@ -142,11 +146,12 @@ function displayAllItems(items)
         }
 
         //Sprint start
-        if (typeof items.sprint.date_start != "undefined")
+        if (typeof items.sprint.dateStart != "undefined")
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.date_start+'</h3>'+
+                        '<h3>'+items.sprint.dateStart.substr(8,2)+'/'+items.sprint.dateStart.substr(5,2)+'/'+items.sprint.dateStart.substr(0,4)+
+                        '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
                         '<p>Sprint start</p>'+
@@ -155,11 +160,12 @@ function displayAllItems(items)
         }
 
         //Sprint end
-        if (typeof items.sprint.date_end != "undefined")
+        if (typeof items.sprint.dateEnd != "undefined")
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.date_end+'</h3>'+
+                        '<h3>'+items.sprint.dateEnd.substr(8,2)+'/'+items.sprint.dateEnd.substr(5,2)+'/'+items.sprint.dateEnd.substr(0,4)+
+                        '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
                         '<p>Sprint end</p>'+
@@ -172,7 +178,7 @@ function displayAllItems(items)
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.date_end+'</h3>'+
+                        '<h3>'+items.sprint.duree+'</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
                         '<p>Duration</p>'+
@@ -198,10 +204,10 @@ function displayAllItems(items)
 }
 
 
-  
-/** Put here all calls that you want to launch at the page startup **/      
-$(document).ready( function() {
 
+/** Put here all calls that you want to launch at the page startup **/      
+$(document).ready(function()
+{
     //Get parameter idProject in url if it exists
     var idProject = $(document).getUrlParam("project");
     

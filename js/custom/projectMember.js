@@ -8,27 +8,31 @@ function displayAllItems(items){
 	if (items.member1.length>1){ //if more than one members
 		$("#memberList > tbody").html("");
 		$.each(items.member1, function(i, dico){
-			$("#memberList > tbody").append("<tr>");
-			$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
-			$("#memberList > tbody").append("<td></td>");
-			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
-			$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>");
-			$("#usersList > tbody").append("</tr>");
+			$("#memberList > tbody").append("<tr>"+
+											"<td>"+(i+1)+"</td>"+
+											"<td>"+dico.firstname+"</td>"+
+											"<td>"+dico.lastname+"</td>"+
+											"<td>"+dico.login+"</td>"+
+											"<td>"+dico.idRole.title+"</td>"+
+											"<td>"+dico.email+"</td>"+
+											"<td>"+dico.internalPhone+"</td>"+
+                                            "<td>"+dico.mobilePhone+"</td>"+
+											"<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>"+
+											"</tr>");
 		});   
 	}
 	else { //if only one member
-		$("#memberList > tbody").append("<tr>");
-		$("#memberList > tbody").append("<td>1</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.firstname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.lastname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
-		$("#memberList > tbody").append("<td></td>");
-		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
-		$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>");
-		$("#memberList > tbody").append("</tr>");
+		$("#memberList > tbody").append("<tr>"+
+										"<td>1</td>"+
+										"<td>"+items.member1.firstname+"</td>"+
+										"<td>"+items.member1.lastname+"</td>"+
+										"<td>"+items.member1.login+"</td>"+
+										"<td>"+items.member1.idRole.title+"</td>"+
+										"<td>"+items.member1.email+"</td>"+
+										"<td>"+items.member1.internalPhone+"</td>"+
+                                        "<td>"+items.member1.mobilePhone+"</td>"+
+										"<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>"+
+										"</tr>");
 	}
 }
 

@@ -10,16 +10,16 @@
         <!-- Le styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <style>
-          body {
+            body {
             padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
-          }
+            }
         </style>
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/scrumble.css" rel="stylesheet">
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
         <!-- Le fav and touch icons -->
@@ -27,79 +27,80 @@
 
     <body>
         <!-- Top navigation bar -->
-        <div class="navbar navbar-fixed-top" id="nav-bar">  
-        </div>
+        <div class="navbar navbar-fixed-top" id="nav-bar"></div>
         <!-- End top navigation bar -->
 
-
-        <!-- Left menu -->
         <div class="container-fluid">
-        <div class="row-fluid">
-        <div id="left-menu" class="span2">
-        </div>
-        <!-- End left menu-->
+            <div class="row-fluid">
+                <!-- Left menu -->
+                <div id="left-menu" class="span2"></div>
+                <!-- End left menu-->
 
+                <!-- Content -->
+                <div class="span10">
+                    <h2>Sprint</h2>
 
-        <!--Content -->
-        <div class="span10">
-            <h2>New sprint</h2>
+                    <!-- Form -->       
+                    <form id="formSprint" class="form-horizontal" action="#">
+                        <input type="hidden" name="idSprint" id="idSprint">
+                        <input type="hidden" name="numSprint" id="numSprint">
 
-            <!-- Form -->       
-            <form id="formSprint" class="form-horizontal" action="#">
-                <input type="hidden" name="idSprint" id="idSprint">
-                <input type="hidden" name="numSprint" id="numSprint">
-                <input type="hidden" name="idProject" id="idProject">
+                        <!-- Input name -->
+                        <div class="control-group">
+                            <label class="control-label" for="title">Title</label>
+                            <div class="controls">
+                                <input type="text" name="title" id="title">
+                            </div>
+                        </div>
 
-                <!-- Input name -->
-                <div class="control-group">
-                    <label class="control-label" for="title">Title</label>
-                    <div class="controls">
-                        <input type="text" name="title" id="title">
-                    </div>
-                </div>
+                        <!-- Input velocity -->
+                        <div class="control-group">
+                            <label class="control-label" for="velocity">Velocity</label>
+                            <div class="controls">
+                                <input type="text" name="velocity" id="velocity">
+                            </div>
+                        </div>
 
-                <!-- Input velocity -->
-                <div class="control-group">
-                    <label class="control-label" for="velocity">Velocity</label>
-                    <div class="controls">
-                        <input type="text" name="velocity" id="velocity">
-                    </div>
-                </div>
+                        <!-- Input date start -->
+                        <div class="control-group">
+                            <label class="control-label" for="dateStart">Date start</label>
+                            <div class="controls">
+                                <input type="text" name="dateStart" id="dateStart">
+                            </div>
+                        </div>
 
-                <!-- Input date start -->
-                <div class="control-group">
-                    <label class="control-label" for="dateStart">Date start</label>
-                    <div class="controls">
-                        <input type="text" name="dateStart" id="dateStart">
-                    </div>
-                </div>
+                        <!-- Input date end -->
+                        <div class="control-group">
+                            <label class="control-label" for="dateEnd">Date end</label>
+                            <div class="controls">
+                                <input type="text" name="dateEnd" id="dateEnd">
+                            </div>
+                        </div>
 
-                <!-- Input date end -->
-                <div class="control-group">
-                    <label class="control-label" for="dateEnd">Date end</label>
-                    <div class="controls">
-                        <input type="text" name="dateEnd" id="dateEnd">
-                    </div>
-                </div>
+                        <!-- Input duration -->
+                        <div class="control-group">
+                            <label class="control-label" for="duree">Duration</label>
+                            <div class="controls">
+                                <input type="text" name="duree" id="duree">
+                            </div>
+                        </div>
 
-                <!-- Input duration -->
-                <div class="control-group">
-                    <label class="control-label" for="duree">Duration</label>
-                    <div class="controls">
-                        <input type="text" name="duree" id="duree">
-                    </div>
-                </div>
+                        <!-- Validation -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn">Cancel</button>
+                            <button type="button" id="btn-delete" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
+                        </div>
+                    </form>
+                    <!-- End form --> 
+                </div><!-- /span10 -->
+                <!-- End content -->
+            </div><!-- /row-fluid -->
 
-                <!-- Validation -->
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn">Cancel</button>
-                    <button type="button" id="btn-delete" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
-                </div>
-            </form>
-            <!-- End form --> 
-        </div>
-        <!-- End content -->
+            <footer>
+                <p>Scrumble</p>
+            </footer>
+        </div><!-- /container-fluid -->
 
 
         <!-- Le javascript
@@ -108,10 +109,9 @@
         <script src="../js/lib/jquery.js"></script>
 
         <!-- Custom import -->
-        <script src="../js/custom/utils.js"></script>
         <script src="../js/custom/config.js"></script>
-        <script src="../js/custom/page.js"></script>
         <script src="../js/custom/utils.js"></script>
+        <script src="../js/custom/page.js"></script>
         <script src="../js/custom/sprint.js"></script>
         <script src="../js/lib/jquery.getUrlParam.js"></script>
 
