@@ -9,10 +9,12 @@
 
         <!-- Le styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/jasny-bootstrap.css" rel="stylesheet">
         <style>
-        body {
-        padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
-        }
+            body
+            {
+                padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+            }
         </style>
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/scrumble.css" rel="stylesheet">
@@ -38,84 +40,65 @@
 
                 <!--Content -->
                 <div class="span10">
-                    <h2>Member</h2>
+                    <h2>Project</h2>
 
-                    <!-- Form -->       
-                    <form id="formUser" class="form-horizontal" action="#">
-                        <input type="hidden" name="idMember" id="idMember" >
+                    <!-- Form -->
+                    <form id="formProject" class="form-horizontal" action="#">
+                        <input type="hidden" name="idProject" id="idProject">
 
+                        <!-- Input name -->
                         <div class="control-group">
-                            <label class="control-label" for="login">Login</label>
+                            <label class="control-label" for="title">Title</label>
                             <div class="controls">
-                                <input type="text" name="login" id="login" >
+                                <input type="text" name="title" id="title" >
                             </div>
                         </div>
 
+                        <!-- Input or delete file logo -->
                         <div class="control-group">
-                            <label class="control-label" for="firstname">First Name</label>
+                            <label class="control-label" for="logo">Logo</label>
                             <div class="controls">
-                                <input type="text" name="firstname" id="firstname" >
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                        <span class="btn btn-file">
+                                            <span class="fileupload-new">Select image</span>
+                                            <span class="fileupload-exists">Change</span>
+                                            <input type="file" />
+                                        </span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- Description textarea -->
                         <div class="control-group">
-                            <label class="control-label" for="lastname">Last Name</label>
+                            <label class="control-label" for="description">Description</label>
                             <div class="controls">
-                                <input type="text" name="lastname" id="lastname" >
+                                <textarea rows="3" name="description" id="description" ></textarea>
                             </div>
                         </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="password">Password</label>
-                            <div class="controls">
-                                <input type="password" name="password" id="password" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="email">Mail</label>
-                            <div class="controls">
-                                <input type="text" name="email" id="email" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="email">Internal phone</label>
-                            <div class="controls">
-                                <input type="text" name="internalPhone" id="internalPhone" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="email">Mobile phone</label>
-                            <div class="controls">
-                                <input type="text" name="mobilePhone" id="mobilePhone" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="function">Function</label>
-                            <div class="controls">
-                                <select name="idRole" id="idRole">
-                                </select>
-                            </div>
-                        </div>
-
+                        <!-- Validation -->
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Save</button>
                             <button type="button" class="btn">Cancel</button>
-                            <button type="button" id="btn-delete" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
+                            <button type="button" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
                         </div>
                     </form>
                     <!-- End form --> 
                 </div>
-                <!-- End content -->  
+                <!-- End content -->
             </div><!--/row-->
 
             <hr>
 
             <footer>
-            <p>Scrumble</p>
+                <p>Scrumble</p>
             </footer>
         </div>
 
@@ -128,8 +111,9 @@
         <script src="../js/custom/utils.js"></script>
         <script src="../js/custom/config.js"></script>
         <script src="../js/custom/page.js"></script>
+        <script src="../js/custom/utils.js"></script>
         <script src="../js/lib/jquery.getUrlParam.js"></script>
-        <script src="../js/custom/member.js"></script>
+        <script src="../js/custom/project.js"></script>
 
         <!-- Bootstrap related import -->
         <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>    
@@ -145,5 +129,6 @@
         <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
         <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
         <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-fileupload.js"></script>
     </body>
 </html>

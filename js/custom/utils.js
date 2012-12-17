@@ -75,7 +75,7 @@ $.showLeftMenu = function(idProject, active, type){
         $('#left-menu').append('<div class="well sidebar-nav">'+
                                 '<ul class="nav nav-list">'+
                                   '<li class="nav-header">Sidebar</li>'+
-                                  '<li id="left-menu-option-project"><a href="dashboardProject.html?project='+idProject+'">Project</a></li>'+
+                                  '<li id="left-menu-option-project"><a href="projectDashboard.html?project='+idProject+'">Project</a></li>'+
                                   '<li id="left-menu-option-sprint"><a href="sprintList.html?project='+idProject+'">Sprint</a></li>'+
                                   '<li id="left-menu-option-story"><a href="storyList.html?project='+idProject+'">Story</a></li>'+
                                   '<li id="left-menu-option-member"><a href="projectMember.html?project='+idProject+'">Members</a></li>'+
@@ -88,7 +88,7 @@ $.showLeftMenu = function(idProject, active, type){
                                     '<ul class="nav nav-list">'+
                                       '<li class="nav-header">Sidebar</li>'+
                                       '<li id="left-menu-option-dashboard"><a href="dashboard.html">Dashboard</a></li>'+
-                                      '<li id="left-menu-option-project"><a href="projectsList.html">Projects</a></li>'+
+                                      '<li id="left-menu-option-project"><a href="projectList.html">Projects</a></li>'+
                                       '<li id="left-menu-option-module"><a href="modules.html">Modules</a></li>'+
                                       '<li id="left-menu-option-member"><a href="memberList.html">Members</a></li>'+
                                     '</ul>'+

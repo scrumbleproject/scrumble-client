@@ -33,8 +33,8 @@ var config = {
 };
 
 var leftMenu= {
-            "dashboardProject.html" : "left-menu-option-project",
-            "settings.html" : "left-menu-option-project",
+            "projectDashboard.html" : "left-menu-option-project",
+            "project.html" : "left-menu-option-project",
             "sprintList.html" : "left-menu-option-sprint",
             "sprint.html" : "left-menu-option-sprint",
             "sprintBoard.html" : "left-menu-option-sprint",
@@ -42,7 +42,7 @@ var leftMenu= {
             "story.html" : "left-menu-option-story",
             "projectMember.html" : "left-menu-option-member",
             "dashboard.html" : "left-menu-option-dashboard",
-            "projectsList.html" : "left-menu-option-project",
+            "projectList.html" : "left-menu-option-project",
             "modules.html" : "left-menu-option-module",
             "memberList.html" : "left-menu-option-member",
             "member.html" : "left-menu-option-member"

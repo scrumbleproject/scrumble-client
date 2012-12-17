@@ -1,98 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Scrumble project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>Scrumble project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="../css/scrumble.css" rel="stylesheet">
+        <!-- Le styles -->
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <style>
+            body
+            {
+                padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+        <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="../css/scrumble.css" rel="stylesheet">
 
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!-- Le fav and touch icons -->
+    </head>
 
-    <!-- Le fav and touch icons -->
+    <body>
+        <!-- Top navigation bar -->
+        <div class="navbar navbar-fixed-top" id="nav-bar"></div>
+        <!-- End top navigation bar -->
 
-  </head>
+        <!-- Left menu -->
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div id="left-menu" class="span2"></div><!--/span2-->
+                <!-- End left menu-->
 
-  <body>
-<!-- Top navigation bar -->
-<div class="navbar navbar-fixed-top" id="nav-bar">  
-</div>
-<!-- End top navigation bar -->
+                <!-- Content -->
+                <div class="span10">
+                    <h2>Sprint Backlog</h2>
+                    <div id="sprintboard"></div>
+                </div><!--/span10-->
+                <!-- End content --> 
+            </div><!--/row-fluid-->
 
-<!-- Left menu -->
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div id="left-menu" class="span2">
-	</div><!--/span-->
-<!-- End left menu-->
+            <hr>
 
+            <footer>
+                <p>Scrumble</p>
+            </footer>
+        </div>
 
-<!-- Content -->
-	<div class="span10">
-    	<h2>Sprint Backlog</h2>
-    	
-		<div id="sprintboard">
-			
-		</div>
-			
-	</div>
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="../js/lib/jquery.js"></script>
+        <script src="../js/lib/jquery-ui.js"></script>
 
-<!-- End content --> 
-      
-  </div><!--/row-->
+        <!-- Custom import -->
+        <script src="../js/custom/page.js"></script>
+        <script src="../js/custom/config.js"></script>
+        <script src="../js/custom/utils.js"></script>
+        <script src="../js/lib/jquery.getUrlParam.js"></script>
+        <script src="../js/custom/sprintBoard.js"></script>
 
-      <hr>
-
-      <footer>
-        <p>Scrumble</p>
-      </footer>
-
-</div>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/lib/jquery.js"></script>
-  	<script src="../js/lib/jquery-ui.js"></script>
-
-  	<!-- Custom import -->
-  	<script src="../js/custom/page.js"></script>
-  	<script src="../js/custom/config.js"></script>
-  	<script src="../js/custom/utils.js"></script>	
-    <script src="../js/custom/sprintBoard.js"></script>
-
-  	<!-- Additional plugins -->
-  	<script src="../js/lib/jquery.getUrlParam.js"></script>
-
-  	<!-- Bootstrap related import -->
-  	<script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-dropdown.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-scrollspy.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-tab.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-tooltip.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-popover.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-button.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
-
-  </body>
+        <!-- Bootstrap related import -->
+        <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-dropdown.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-scrollspy.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-tab.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-tooltip.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-popover.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-button.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
+        <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
+    </body>
 </html>
-
