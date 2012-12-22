@@ -3,6 +3,14 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+}
+
+
+
 //Display all sprints
 function displayAllItems(items)
 {
@@ -222,19 +230,6 @@ $(document).ready(function()
                                     '</div>'+
                                 '</div>');
 
-        //Get all sprints for the project and display the list
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/projects',
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                displayAllItems($.parseJSON(reponse));
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType: 'text',
-            converters: 'text json'
-        }); 
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/projects');
     }
 });

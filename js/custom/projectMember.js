@@ -3,6 +3,38 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    var dico = $.responseMemberToDictionaryString($.parseJSON(reponse));
+    $.each(dico, function(key,value) {
+        idMembers.push(key); 
+        subjects.push(value); 
+    });
+    $('#input-member').typeahead({
+        source: subjects,
+        updater: function(selectedObj) { 
+            var index = $.inArray(selectedObj, subjects);
+            if (index > -1) {
+                $("#idMember").val(idMembers[index]);
+            } 
+            return selectedObj;                     
+        },                  
+    });
+    bindTypeAheadEvent();
+}
+
+
+
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjSecondLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+    bindDeleteEvent();
+}
+
+
+
 //display all items
 function displayAllItems(items)
 {
@@ -93,54 +125,15 @@ $(document).ready( function() {
     var idProject = $(document).getUrlParam("project");
 
     //enable autocompletion display
-    var idMembers = new Array();
-    var subjects = new Array();
-    $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/no',
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(response) {
-                var dico = $.responseMemberToDictionaryString($.parseJSON(response));
-                $.each(dico, function(key,value) {
-                    idMembers.push(key); 
-                    subjects.push(value); 
-                });
-                $('#input-member').typeahead({
-                    source: subjects,
-                    updater: function(selectedObj) { 
-                        var index = $.inArray(selectedObj, subjects);
-                        if (index > -1) {
-                            $("#idMember").val(idMembers[index]);
-                        } 
-                        return selectedObj;                     
-                    },                  
-                });
-                bindTypeAheadEvent();
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType: 'text',
-            converters: 'text json'
-        });
+    idMembers = new Array();
+    subjects = new Array();
+
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/no');
 
     //load data on list or on form
-    if ( (idProject !=="") && (idProject !==null)) {
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers,
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                displayAllItems($.parseJSON(reponse));
-                bindDeleteEvent();
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType: 'text',
-            converters: 'text json'
-        });
-                          
+    if ( (idProject !=="") && (idProject !==null))
+    {
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers, 2);
     }
 
     //action on #formProjectMember form

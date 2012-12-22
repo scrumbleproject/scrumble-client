@@ -1,6 +1,17 @@
 
 /** story methods **/
 
+
+
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    fillForm($.parseJSON(reponse));
+    bindDeleteUserStoryEvent(idProject);
+}
+
+
+
 //fill the form with data about one user story
 function fillForm(response)
 {
@@ -54,27 +65,13 @@ function bindDeleteUserStoryEvent(idProject){
 $(document).ready(function()
 {
     //get parameters idUserstory and idProject in url if exists
-    var idUserstory = $(document).getUrlParam("userstory");
-    var idProject = $(document).getUrlParam("project");
+    idUserstory = $(document).getUrlParam("userstory");
+    idProject = $(document).getUrlParam("project");
         
     //load data on form
-    if((idUserstory !=="") && (idUserstory !==null)) {
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory,
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success:function(reponse)
-            {
-                fillForm($.parseJSON(reponse));
-                bindDeleteUserStoryEvent(idProject);
-            },
-            error:function(xhr, status, error)
-            {
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        });             
+    if((idUserstory !=="") && (idUserstory !==null))
+    {
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory);
     }
 
 

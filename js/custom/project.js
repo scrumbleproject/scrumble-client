@@ -67,20 +67,6 @@ $(document).ready(function()
     //load data on form
     if((idProject !=="") && (idProject !==null))
     {
-        /*$.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject,
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                fillForm($.parseJSON(reponse));
-                bindDeleteEvent();
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        });*/
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject);
     }
 

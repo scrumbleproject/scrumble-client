@@ -3,6 +3,15 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    fillForm($.parseJSON(reponse));
+    bindDeleteUserStoryEvent(idProject);
+}
+
+
+
 //Fill the form with data about one sprint
 function fillForm(response) 
 {
@@ -10,8 +19,10 @@ function fillForm(response)
     $("#numSprint").val(response.numSprint);
     $("#title").val(response.title);
     $("#velocity").val(response.velocity);
-    $("#dateStart").val(response.dateStart.substr(0,10));
-    $("#dateEnd").val(response.dateEnd.substr(0,10));
+    if(typeof response.dateStart!= "undefined")
+        $("#dateStart").val(response.dateStart.substr(0,10));
+    if(typeof response.dateEnd!= "undefined")
+        $("#dateEnd").val(response.dateEnd.substr(0,10));
     $("#duree").val(response.duree);
 }
 
@@ -58,29 +69,13 @@ function bindDeleteUserStoryEvent(idProject)
 $(document).ready(function()
 {
     //Get parameters idProject and idSprint in url if it exists
-    var idProject = $(document).getUrlParam("project");
-    var idSprint = $(document).getUrlParam("sprint");
-
+    idProject = $(document).getUrlParam("project");
+    idSprint = $(document).getUrlParam("sprint");
 
     //Get information from the Web Service, display in the form
     if(idSprint!=="" && idSprint!==null) 
     {
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint,
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success:function(reponse)
-            {
-                fillForm($.parseJSON(reponse));
-                bindDeleteUserStoryEvent(idProject);
-            },
-            error:function(xhr, status, error)
-            {
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        });
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint);
     }
     
     //Action on #formSprint form

@@ -3,6 +3,16 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjSecondLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse), idUserstory);
+    bindDeleteTaskEvent(idUserstory);
+    submitFormTask(idUserstory);
+}
+
+
+
 //add event on delete-button
 $("a").live('click',function (e)
 {
@@ -16,7 +26,6 @@ $("a").live('click',function (e)
         var index = $(this).attr("href");
         index = parseInt(index);
         index = index + 1;
-        //console.log(index);
 
         $("#formTask"+(index-1)+"").submit();
     }
@@ -182,28 +191,12 @@ function submitFormTask(idUserstory)
 $(document).ready( function() 
 {
     //get param idUserstory in url if exists
-    var idUserstory = $(document).getUrlParam("userstory");     
+    idUserstory = $(document).getUrlParam("userstory");     
     
     if (idUserstory !== null && idUserstory !=="")
     {
         $("#taskVisible").append('<legend>Task</legend><div class="control-group" id="taskList"></div>');
 
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/all',
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success:function(reponse)
-            {
-                displayAllItems($.parseJSON(reponse), idUserstory);
-                bindDeleteTaskEvent(idUserstory);
-                submitFormTask(idUserstory);
-            },
-            error:function(xhr, status, error)
-            {
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        });
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/all', 2);
     }
 });
