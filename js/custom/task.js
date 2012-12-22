@@ -16,7 +16,7 @@ $("a").live('click',function (e)
         var index = $(this).attr("href");
         index = parseInt(index);
         index = index + 1;
-        console.log(index);
+        //console.log(index);
 
         $("#formTask"+(index-1)+"").submit();
     }
