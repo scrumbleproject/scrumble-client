@@ -117,6 +117,41 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 	return htmlContent;
 }
 
+function onTaskMove(item){
+	//build a suitable id integer for ajax request
+	var toRemove = 'task-';
+	var idTask = item.attr("id").replace(toRemove,'');
+
+	toRemove = 'column-';
+	$column = item.closest("div");
+	var status = $column.attr("id").replace(toRemove,'');
+
+	//update task status
+	$.ajax({
+		url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
+		type:"POST",
+		success: function(data) {
+			//console.log('Task status updated');
+		}
+	});	
+
+	//add member assignation
+	//get param in url if exists
+	var idSprint = $(document).getUrlParam("sprint");		
+	//load data on list or on form
+	if ( (idSprint !=="") && (idSprint !==null)) {
+		$.ajax({
+			url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie(),
+			type:"POST",
+			success: function(data) {
+				//console.log('Task status updated');
+			}
+		});
+	}
+
+
+}
+
 
 //display all items
 function displayAllItems(items){
@@ -144,22 +179,7 @@ function displayAllItems(items){
 			$( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3" ).sortable({
 				connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3",
 				update: function(event, ui) {
-					//build a suitable id integer for ajax request
-					var toRemove = 'task-';
-					var idTask = ui.item.attr("id").replace(toRemove,'');
-
-					toRemove = 'column-';
-					$column = ui.item.closest("div");
-					var status = $column.attr("id").replace(toRemove,'');
-
-					//run ajax request
-					$.ajax({
-						url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
-						type:"POST",
-						success: function(data) {
-							//console.log('Task status updated');
-						}
-					});	
+					onTaskMove(ui.item);
 				}	
 			}).disableSelection();
 		});   
@@ -182,22 +202,7 @@ function displayAllItems(items){
 		$( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
 			connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
 			update: function(event, ui) {
-				//build a suitable id integer for ajax request
-				var toRemove = 'task-';
-				var idTask = ui.item.attr("id").replace(toRemove,'');
-
-				toRemove = 'column-';
-				$column = ui.item.closest("div");
-				var status = $column.attr("id").replace(toRemove,'');
-
-				//run ajax request
-				$.ajax({
-					url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status,
-					type:"POST",
-					success: function(data) {
-						//console.log('Task status updated');
-					}
-				});	
+				onTaskMove(ui.item);
 			}	
 		}).disableSelection();
 

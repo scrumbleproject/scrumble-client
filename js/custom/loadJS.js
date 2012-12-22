@@ -1,49 +1,34 @@
 $(function()
 {
-    //synchronous calls
-    $.ajax({url:"../js/lib/jquery.cookie.js",
-        async:false,
-        dataType:"script"
-    });
-    $.ajax({
-        url:"../js/lib/jquery.getUrlParam.js",
-        async:false,
-        dataType:"script"
-    });
-    $.ajax({
-        url:"../js/custom/config.js",
-        async:false,
-        dataType:"script"
-    });
-    $.ajax({
-        url:"../js/custom/utils.js",
-        async:false,
-        dataType:"script"
-    });
-    $.ajax({
-        url:"../js/custom/auth.js",
-        async:false,
-        dataType:"script"
-    });
-    $.ajax({
-        url:"../js/custom/page.js",
-        async:false,
-        dataType:"script"
-    });
 
+    var scripts = [
+        "../js/lib/jquery.cookie.js",
+        "../js/lib/bootstrap-plugins/bootbox.min.js",
+        "../js/lib/bootstrap-core/bootstrap-transition.js",
+        "../js/lib/bootstrap-core/bootstrap-alert.js",
+        "../js/lib/bootstrap-core/bootstrap-modal.js",
+        "../js/lib/bootstrap-core/bootstrap-dropdown.js",
+        "../js/lib/bootstrap-core/bootstrap-scrollspy.js",
+        "../js/lib/bootstrap-core/bootstrap-tab.js",
+        "../js/lib/bootstrap-core/bootstrap-tooltip.js",
+        "../js/lib/bootstrap-core/bootstrap-popover.js",
+        "../js/lib/bootstrap-core/bootstrap-button.js",
+        "../js/lib/bootstrap-core/bootstrap-collapse.js",
+        "../js/lib/bootstrap-core/bootstrap-carousel.js",
+        "../js/lib/bootstrap-core/bootstrap-typeahead.js",
+        "../js/lib/jquery.getUrlParam.js",
+        "../js/custom/config.js",
+        "../js/custom/utils.js",
+        "../js/custom/auth.js",
+        "../js/custom/page.js"       
+    ];
 
-    //asynchronous calls
-    $.getScript("../js/lib/bootstrap-plugins/bootbox.min.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-transition.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-alert.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-modal.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-dropdown.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-scrollspy.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-tab.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-tooltip.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-popover.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-button.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-collapse.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-carousel.js");
-    $.getScript("../js/lib/bootstrap-core/bootstrap-typeahead.js");
+    for(var i=0; i<scripts.length; i++){
+        $.ajax({
+            url:scripts[i],
+            async:false,
+            dataType:"script"
+        });
+    }
+
 });
