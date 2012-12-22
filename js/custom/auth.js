@@ -5,15 +5,16 @@
 /**
  * Use this function to create a cookie with authorization parameters
  */
-$.createCookie = function(login, token){
+$.createCookie = function(login, token, displayName){
 
     //create json dictionary
     var authObject = {
                         "login" : login,
-                        "token" : token
+                        "token" : token,
+                        "displayName" : displayName
                     };
 
-    $.cookie(config.cookieName,         //cookie name
+    $.cookie(config.cookie.name,         //cookie name
         JSON.stringify(authObject),     //value
         { //options
            expires : 1,                 //expires in 1 days
@@ -29,17 +30,33 @@ $.createCookie = function(login, token){
 }
 
 
+
+/**
+ * Use this function to set header before sending a request
+ */
+$.logout = function(){
+    
+    if ($.cookie(config.cookie.name)!=null){ 
+      $.removeCookie(config.cookie.name);
+    }
+    window.location.replace(config.cookie.url);
+    
+}
+
+
 /**
  * Use this function to set header before sending a request
  */
 $.setHeaderAuthorization = function(xhr){
     
-    if ($.cookie(config.cookieName)!=null){ //if cookie is already created
+    if ($.cookie(config.cookie.name)!=null){ //if cookie is already created
 
         var authObject = $.getCookieAsObject();
 
         xhr.setRequestHeader("Authorization", authObject.login+":"+authObject.token);
 
+    }else {
+        window.location.replace(config.cookie.url);
     }
     
 }
@@ -49,7 +66,13 @@ $.setHeaderAuthorization = function(xhr){
  */
 $.getCookieAsObject = function(){
 
-    return $.parseJSON($.cookie(config.cookieName));
+    if ($.cookie(config.cookie.name)!=null){
+        return $.parseJSON($.cookie(config.cookie.name));   
+    }
+    else {
+        window.location.replace(config.cookie.url);
+    }
+    
 }
 
 /**
@@ -59,6 +82,15 @@ $.getLoginFromCookie = function(){
 
     var authObject = $.getCookieAsObject();
     return authObject.login;
+}
+
+/**
+ * Use this function to get display name from cookie
+ */
+$.getDisplayNameFromCookie = function(){
+
+    var authObject = $.getCookieAsObject();
+    return authObject.displayName;
 }
 
 

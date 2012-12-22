@@ -29,7 +29,10 @@ var config = {
             "done" : "don"
         },
         
-    "cookieName" : "scrumble"
+    "cookie" : {
+        "name" : "com.scrumble.client.cookie",
+        "url" : "login.html"
+        }
 };
 
 var leftMenu= {
