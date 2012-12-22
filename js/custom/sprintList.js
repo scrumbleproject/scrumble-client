@@ -3,6 +3,14 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+}
+
+
+
 //Display all sprints
 function displayAllItems(items)
 {
@@ -54,7 +62,7 @@ function displayAllItems(items)
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.dateStart.substr(8,2)+'/'+dico.dateStart.substr(5,2)+'/'+dico.dateStart.substr(0,4)+
+                            '<h3>'+dico.dateStart.substr(0,10)+
                             '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
@@ -68,7 +76,7 @@ function displayAllItems(items)
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.dateEnd.substr(8,2)+'/'+dico.dateEnd.substr(5,2)+'/'+dico.dateEnd.substr(0,4)+
+                            '<h3>'+dico.dateEnd.substr(0,10)+
                             '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
@@ -150,7 +158,7 @@ function displayAllItems(items)
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.dateStart.substr(8,2)+'/'+items.sprint.dateStart.substr(5,2)+'/'+items.sprint.dateStart.substr(0,4)+
+                        '<h3>'+items.sprint.dateStart.substr(0,10)+
                         '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
@@ -164,7 +172,7 @@ function displayAllItems(items)
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.dateEnd.substr(8,2)+'/'+items.sprint.dateEnd.substr(5,2)+'/'+items.sprint.dateEnd.substr(0,4)+
+                        '<h3>'+items.sprint.dateEnd.substr(0,10)+
                         '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
@@ -222,19 +230,6 @@ $(document).ready(function()
                                     '</div>'+
                                 '</div>');
 
-        //Get all sprints for the project and display the list
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/projects',
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success: function(reponse) {
-                displayAllItems($.parseJSON(reponse));
-            },
-            error:function (xhr, status, error){
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType: 'text',
-            converters: 'text json'
-        }); 
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/projects');
     }
 });

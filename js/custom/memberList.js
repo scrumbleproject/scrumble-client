@@ -1,6 +1,13 @@
 
 /** memberList methods **/
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+    bindDeleteEvent();
+}
+
 
 
 //display all items
@@ -82,20 +89,5 @@ function bindDeleteEvent()
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
 {
-    $.ajax({
-        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all',
-        type:'GET',
-        contentType:'application/json; charset=UTF-8',
-        success:function(reponse)
-        {
-            displayAllItems($.parseJSON(reponse));
-            bindDeleteEvent();
-        },
-        error:function (xhr, status, error)
-        {
-            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-        },
-        dataType:'text',
-        converters:'text json'
-    });
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all');
 });

@@ -613,3 +613,9 @@ ul {
 #sprintList .sprints{
   margin-top: 10px;
 }
+
+
+/*********************** SPRINT ******************************/
+#formSprint .datepicker{
+  cursor: pointer;
+}

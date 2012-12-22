@@ -3,6 +3,14 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+}
+
+
+
 //display all items
 function displayAllItems(items)
 {
@@ -59,21 +67,6 @@ $(document).ready(function()
     //load data on list
     if((idProject !=="") && (idProject !==null)) 
     {
-        $.ajax({
-            //url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/all',
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject+'/projects',            
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success:function(reponse)
-            {
-                displayAllItems($.parseJSON(reponse));
-            },
-            error:function (xhr, status, error)
-            {
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        }); 
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject+'/projects');
     }
 });

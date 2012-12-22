@@ -1,8 +1,28 @@
 
-/** Members methods **/
+/** member methods **/
+
+
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    selected_role=fillForm($.parseJSON(reponse));
+    bindDeleteEvent();
+    getRoles(selected_role);
+}
+
+
+
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjSecondLevel(reponse)
+{
+    displayRoles($.parseJSON(reponse),selected_role);
+}
+
+
 
 //fill the form with data about one member
-function fillForm(response) {
+function fillForm(response)
+{
     $("#idMember").val(response.idMember);
     $("#firstname").val(response.firstname);
     $("#lastname").val(response.lastname);
@@ -19,21 +39,7 @@ function fillForm(response) {
 //get the list of all roles
 function getRoles(selected_role)
 {
-    $.ajax({
-        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.roles+'/all',
-        type:'GET',
-        contentType:'application/json; charset=UTF-8',
-        success: function(reponse) 
-        {
-            displayRoles($.parseJSON(reponse),selected_role);
-        },
-        error:function (xhr, status, error)
-        {
-            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-        },
-        dataType:'text',
-        converters:'text json'
-    });
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.roles+'/all', 2);
 }
 
 
@@ -112,26 +118,10 @@ $(document).ready(function()
     var idMember = $(document).getUrlParam("member");
     
     //load data on a form
-    var selected_role="";
+    selected_role="";
     if( (idMember !=="") && (idMember !==null)) 
     {
-        $.ajax({
-            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idMember,
-            type:'GET',
-            contentType:'application/json; charset=UTF-8',
-            success:function(reponse)
-            {
-                selected_role=fillForm($.parseJSON(reponse));
-                bindDeleteEvent();
-                getRoles(selected_role);
-            },
-            error:function(xhr, status, error)
-            {
-                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-            },
-            dataType:'text',
-            converters:'text json'
-        });
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idMember);
     }
     else
     {
