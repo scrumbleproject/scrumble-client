@@ -14,7 +14,7 @@ $.createCookie = function(login, token, displayName){
                         "displayName" : displayName
                     };
 
-    $.cookie(config.cookieName,         //cookie name
+    $.cookie(config.cookie.name,         //cookie name
         JSON.stringify(authObject),     //value
         { //options
            expires : 1,                 //expires in 1 days
@@ -36,9 +36,10 @@ $.createCookie = function(login, token, displayName){
  */
 $.logout = function(){
     
-    if ($.cookie(config.cookieName)!=null){ 
-      $.removeCookie(config.cookieName);
+    if ($.cookie(config.cookie.name)!=null){ 
+      $.removeCookie(config.cookie.name);
     }
+    window.location.replace(config.cookie.url);
     
 }
 
@@ -48,12 +49,14 @@ $.logout = function(){
  */
 $.setHeaderAuthorization = function(xhr){
     
-    if ($.cookie(config.cookieName)!=null){ //if cookie is already created
+    if ($.cookie(config.cookie.name)!=null){ //if cookie is already created
 
         var authObject = $.getCookieAsObject();
 
         xhr.setRequestHeader("Authorization", authObject.login+":"+authObject.token);
 
+    }else {
+        window.location.replace(config.cookie.url);
     }
     
 }
@@ -63,7 +66,13 @@ $.setHeaderAuthorization = function(xhr){
  */
 $.getCookieAsObject = function(){
 
-    return $.parseJSON($.cookie(config.cookieName));
+    if ($.cookie(config.cookie.name)!=null){
+        return $.parseJSON($.cookie(config.cookie.name));   
+    }
+    else {
+        window.location.replace(config.cookie.url);
+    }
+    
 }
 
 /**
