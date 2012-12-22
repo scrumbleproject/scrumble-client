@@ -1,6 +1,13 @@
 
 /** memberList methods **/
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+    bindDeleteEvent();
+}
+
 
 
 //display all items
@@ -82,7 +89,8 @@ function bindDeleteEvent()
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
 {
-    $.ajax({
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all');
+    /*$.ajax({
         url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all',
         type:'GET',
         contentType:'application/json; charset=UTF-8',
@@ -97,5 +105,5 @@ $(document).ready(function()
         },
         dataType:'text',
         converters:'text json'
-    });
+    });*/
 });

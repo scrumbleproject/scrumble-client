@@ -3,6 +3,14 @@
 
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    displayAllItems($.parseJSON(reponse));
+}
+
+
+
 //display all items
 function displayAllItems(items)
 {
@@ -28,7 +36,7 @@ function displayAllItems(items)
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready( function() 
 {
-    $.ajax({
+    /*$.ajax({
         url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all',
         type:'GET',
         contentType:'application/json; charset=UTF-8',
@@ -42,5 +50,6 @@ $(document).ready( function()
         },
         dataType:'text',
         converters:'text json'
-    }); 
+    });*/
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all');
 });

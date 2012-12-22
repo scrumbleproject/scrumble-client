@@ -2,6 +2,15 @@
 /** project methods **/
 
 
+//function called by $.getObjFromDatabase function (utils.js)
+function successGetObjFirstLevel(reponse)
+{
+    fillForm($.parseJSON(reponse));
+    bindDeleteEvent();
+}
+
+
+
 //fill the form with data about one project
 function fillForm(response)
 {
@@ -58,7 +67,7 @@ $(document).ready(function()
     //load data on form
     if((idProject !=="") && (idProject !==null))
     {
-        $.ajax({
+        /*$.ajax({
             url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject,
             type:'GET',
             contentType:'application/json; charset=UTF-8',
@@ -71,7 +80,8 @@ $(document).ready(function()
             },
             dataType:'text',
             converters:'text json'
-        });
+        });*/
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject);
     }
 
 

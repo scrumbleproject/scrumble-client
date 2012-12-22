@@ -54,7 +54,7 @@ function displayAllItems(items)
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.dateStart.substr(8,2)+'/'+dico.dateStart.substr(5,2)+'/'+dico.dateStart.substr(0,4)+
+                            '<h3>'+dico.dateStart.substr(0,10)+
                             '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
@@ -68,7 +68,7 @@ function displayAllItems(items)
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+dico.dateEnd.substr(8,2)+'/'+dico.dateEnd.substr(5,2)+'/'+dico.dateEnd.substr(0,4)+
+                            '<h3>'+dico.dateEnd.substr(0,10)+
                             '</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
@@ -150,7 +150,7 @@ function displayAllItems(items)
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.dateStart.substr(8,2)+'/'+items.sprint.dateStart.substr(5,2)+'/'+items.sprint.dateStart.substr(0,4)+
+                        '<h3>'+items.sprint.dateStart.substr(0,10)+
                         '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
@@ -164,7 +164,7 @@ function displayAllItems(items)
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+items.sprint.dateEnd.substr(8,2)+'/'+items.sprint.dateEnd.substr(5,2)+'/'+items.sprint.dateEnd.substr(0,4)+
+                        '<h3>'+items.sprint.dateEnd.substr(0,10)+
                         '</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+

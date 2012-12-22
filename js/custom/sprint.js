@@ -10,8 +10,8 @@ function fillForm(response)
     $("#numSprint").val(response.numSprint);
     $("#title").val(response.title);
     $("#velocity").val(response.velocity);
-    $("#dateStart").val(response.dateStart);
-    $("#dateEnd").val(response.dateEnd);
+    $("#dateStart").val(response.dateStart.substr(0,10));
+    $("#dateEnd").val(response.dateEnd.substr(0,10));
     $("#duree").val(response.duree);
 }
 
@@ -82,18 +82,23 @@ $(document).ready(function()
             converters:'text json'
         });
     }
-
-
+    
     //Action on #formSprint form
     $('#formSprint').submit(function() 
     {
+        objectform = $('#formSprint').serializeObject();
+        if(objectform.dateEnd!='')
+            objectform.dateEnd += 'T00:00:00+01:00';
+        if(objectform.dateStart!='')
+            objectform.dateStart += 'T00:00:00+01:00';
+
         //Case 1 : create a new sprint (idSprint is empty)
         if (idSprint==null || idSprint.length==0)
         {
             $.ajax({
                 url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/add/'+idProject,
                 type:"POST",
-                data:JSON.stringify($('#formSprint').serializeObject()),
+                data:JSON.stringify(objectform),
                 dataType:"json",
                 contentType:"application/json; charset=utf-8",
                 success:function(data)
@@ -109,11 +114,16 @@ $(document).ready(function()
         }
         else //Case 2 : update an existing sprint (idSprint is not empty)
         {
-            console.log(JSON.stringify($('#formSprint').serializeObject()));
+            objectform = $('#formSprint').serializeObject();
+            if(objectform.dateEnd!='')
+                objectform.dateEnd += 'T00:00:00+01:00';
+            if(objectform.dateStart!='')
+                objectform.dateStart += 'T00:00:00+01:00';
+
             $.ajax({
                 url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject,
                 type:"PUT",
-                data:JSON.stringify($('#formSprint').serializeObject()),
+                data:JSON.stringify(objectform),
                 dataType:"json",
                 contentType:"application/json; charset=utf-8",
                 success:function(data)
