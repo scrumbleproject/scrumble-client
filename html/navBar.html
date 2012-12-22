@@ -22,7 +22,7 @@
 
                     <ul class="dropdown-menu">
                         <li><a href="profile.html">Profile</a></li>
-                        <li><a href="login.html">Logout</a></li>
+                        <li><a id="btn-logout" href="logout.html">Logout</a></li>
                         <li class="divider"></li>
                     </ul>
                 </li>
@@ -33,9 +33,17 @@
 
 <script type="text/javascript">
     $(function() {
-      var name = $.getDisplayNameFromCookie();
-      if (name!=''){
-        $('span#user-app-login').html(name);
-      }
+
+        //get cookie name
+        var name = $.getDisplayNameFromCookie();
+        if (name!=''){
+            $('span#user-app-login').html(name);
+        }
+
+        //logout
+        $("#btn-logout").live('click', function(e){
+            $.logout();
+        });
+
     });
 </script>

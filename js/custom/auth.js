@@ -30,6 +30,19 @@ $.createCookie = function(login, token, displayName){
 }
 
 
+
+/**
+ * Use this function to set header before sending a request
+ */
+$.logout = function(){
+    
+    if ($.cookie(config.cookieName)!=null){ 
+      $.removeCookie(config.cookieName);
+    }
+    
+}
+
+
 /**
  * Use this function to set header before sending a request
  */
