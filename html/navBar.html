@@ -30,3 +30,12 @@
         </div><!--/.nav-collapse -->
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+      var name = $.getDisplayNameFromCookie();
+      if (name!=''){
+        $('span#user-app-login').html(name);
+      }
+    });
+</script>

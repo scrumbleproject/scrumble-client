@@ -5,12 +5,13 @@
 /**
  * Use this function to create a cookie with authorization parameters
  */
-$.createCookie = function(login, token){
+$.createCookie = function(login, token, displayName){
 
     //create json dictionary
     var authObject = {
                         "login" : login,
-                        "token" : token
+                        "token" : token,
+                        "displayName" : displayName
                     };
 
     $.cookie(config.cookieName,         //cookie name
@@ -59,6 +60,15 @@ $.getLoginFromCookie = function(){
 
     var authObject = $.getCookieAsObject();
     return authObject.login;
+}
+
+/**
+ * Use this function to get display name from cookie
+ */
+$.getDisplayNameFromCookie = function(){
+
+    var authObject = $.getCookieAsObject();
+    return authObject.displayName;
 }
 
 

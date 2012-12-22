@@ -1,11 +1,11 @@
 
 /** Login methods **/
 
-function handleAuthenticationResponse(login, token){
+function handleAuthenticationResponse(login, token, displayName){
 
     if (typeof(token)!='undefined' && token.length>6){
-        alert("login="+login+"\ntoken="+token);
-        $.createCookie(login, token);
+        alert("login="+login+"\ntoken="+token+"\ntoken="+displayName);
+        $.createCookie(login, token, displayName);
     }
 }
 
@@ -35,7 +35,24 @@ $(document).ready( function() {
                 dataType:"text",
                 success: function(response) {
                     if ($.trim(response) != ''){
-                        handleAuthenticationResponse(login, $.trim(response));
+
+                        //get display name before continue
+                        var displayName = '';
+                        $.ajax({
+                            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+login+'/display-name',
+                            type:"GET",
+                            dataType:"text",
+                            async:false,
+                            success: function(response) {
+                                if ($.trim(response) != ''){
+                                    displayName = $.trim(response);
+                                }
+                            },
+                            error:function (xhr, status, error){
+                                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+                            }
+                        });
+                        handleAuthenticationResponse(login, $.trim(response), displayName);
                         window.location.replace('dashboard.html'); //redirect to memberList.html
                     }
                     else {
