@@ -113,23 +113,8 @@ function bindDeleteTaskEvent(idUserstory)
         {
             if (confirmed) 
             {            
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val(),
-                    type:"DELETE",
-                    success:function(data)
-                    {
-                        var box = bootbox.alert("Task deleted successfully.");
-                        setTimeout(function()
-                        {
-                            box.modal('hide');
-                            window.location.reload(); //redirect to storyList.html
-                        }, 3000); 
-                    },
-                    error:function (xhr, status, error)
-                    {
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/'+$btn.siblings("input[name=idTask]").val();
+                $.deleteObjFromDatabase(url, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
             }   
         });
     });
@@ -150,35 +135,15 @@ function submitFormTask(idUserstory)
             //Case 1 : create a new task (idTask is empty)
             if (idTask==null ||idTask.length==0 || idTask=="") 
             {
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add',
-                    type:"POST",
-                    data:JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
-                    dataType:"json",
-                    contentType:"application/json; charset=utf-8",
-                    success:function(data)
-                    {
-                        bootbox.alert('Task has been added successfully.');
-                    },
-                    error:function(xhr, status, error)
-                    {
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add';
+                var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
+                $.postObjToDatabase(url, formdata, 'Task', '');
             }
             else //Case 2 : update an existing task (idTask is not empty)
             {
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks',
-                    type:"PUT",
-                    data: JSON.stringify($("#"+$(this).attr("id")+"").serializeObject()),
-                    dataType:"json",
-                    contentType:"application/json; charset=utf-8",
-                    success:function(data)
-                    {
-                        bootbox.alert("Task has been updated successfully.");
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks';
+                var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
+                $.putObjToDatabase(url, formdata, 'Task', '');
             }
             return false;
         })
@@ -190,8 +155,9 @@ function submitFormTask(idUserstory)
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready( function() 
 {
-    //get param idUserstory in url if exists
-    idUserstory = $(document).getUrlParam("userstory");     
+    //get param idUserstory and idProject in url if exists
+    idUserstory = $(document).getUrlParam("userstory");
+    idProject = $(document).getUrlParam("project"); 
     
     if (idUserstory !== null && idUserstory !=="")
     {

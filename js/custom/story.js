@@ -38,20 +38,8 @@ function bindDeleteUserStoryEvent(idProject){
         bootbox.confirm("Are you sure to delete this user story ?", function(confirmed) {
 
             if (confirmed) {             
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+$("#idUserstory").val(),
-                    type:"DELETE",
-                    success: function(data) {
-                        var box = bootbox.alert("User story deleted successfully.");
-                            setTimeout(function() {
-                            box.modal('hide');
-                            window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
-                        }, 3000); 
-                    },
-                    error:function (xhr, status, error){
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+$("#idUserstory").val();
+                $.deleteObjFromDatabase(url, 'User story', 'storyList.html?project='+idProject);
             }   
 
         });
@@ -84,45 +72,15 @@ $(document).ready(function()
         //Case 1 : create a new story (idUserstory is empty)
         if (idUserstory==null || idUserstory.length==0)
         {
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add/'+idProject,
-                type:"POST",
-                data:JSON.stringify($('#formStory').serializeObject()),
-                dataType:"json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert('User story has been added successfully.');
-                    window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
-                },
-                error:function (xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/add/'+idProject;
+            var formdata=JSON.stringify($('#formStory').serializeObject());
+            $.postObjToDatabase(url, formdata, 'User story', 'storyList.html?project='+idProject);
         }
         else //Case 2 : update an existing story (idUserstory is not empty)
         {
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject,
-                type:"PUT",
-                data:JSON.stringify($('#formStory').serializeObject()),
-                dataType:"json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    var box = bootbox.alert("User story has been updated successfully.");
-                    setTimeout(function()
-                    {
-                        box.modal('hide');
-                        window.location.replace('storyList.html?project='+idProject+''); //redirect to storyList.html
-                    }, 3000);
-                },
-                error:function(xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject;
+            var formdata=JSON.stringify($('#formStory').serializeObject());
+            $.putObjToDatabase(url, formdata, 'User story', 'storyList.html?project='+idProject);
         }
 
         return false;

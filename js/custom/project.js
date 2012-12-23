@@ -34,23 +34,9 @@ function bindDeleteEvent()
         bootbox.confirm("Are you sure to delete this project ?", function(confirmed)
         {
             if(confirmed)
-            {             
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+$("#idProject").val(),
-                    type:"DELETE",
-                    success: function(data) {
-                        var box = bootbox.alert("Project deleted successfully.");
-                        setTimeout(function()
-                        {
-                            box.modal('hide');
-                            window.location.replace('projectList.html'); //redirect to projectList.html
-                        }, 3000); 
-                    },
-                    error:function (xhr, status, error)
-                    {
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+            {
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+$("#idProject").val();
+                $.deleteObjFromDatabase(url, 'Project', 'projectList.html');
             }
         });
     });
@@ -80,37 +66,15 @@ $(document).ready(function()
         if(idProject==null && idProject.length==0)
         {
             //Case 1 : create a project (idProject is empty)
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/add',
-                type:"POST",
-                data: JSON.stringify($('#formProject').serializeObject()),
-                dataType:"json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert('Project has been added successfully.');
-                    window.location.replace('projectList.html'); //redirect to memberList.html
-                },
-                error:function(xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/add';
+            var formdata=JSON.stringify($('#formProject').serializeObject());
+            $.postObjToDatabase(url, formdata, 'Project', 'projectList.html');
         }
         else //Case 2 : update an existing member (idProject is not empty)
         {
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects,
-                type:"PUT",
-                data: JSON.stringify($('#formProject').serializeObject()),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert("Project has been updated successfully.");
-                    window.location.replace('projectList.html'); //redirect to projectList.html
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects;
+            var formdata=JSON.stringify($('#formProject').serializeObject());
+            $.putObjToDatabase(url, formdata, 'Project', 'projectList.html');
         }
 
         return false;

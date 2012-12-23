@@ -96,14 +96,8 @@ function bindDeleteEvent()
                 {
                     if(confirmed)
                     {             
-                        $.ajax({
-                            url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/'+$btn.attr("href"),
-                            type:"DELETE",
-                            success: function(data) {
-                                bootbox.alert("Member removed from the project successfully.");
-                                location.reload(); //reload page
-                            }
-                        });
+                        var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/'+$btn.attr("href");
+                        $.deleteObjFromDatabase(url, 'Member', 'projectMember.html?project='+idProject);
                     }
                 });
             }
@@ -121,8 +115,8 @@ function bindTypeAheadEvent(){
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready( function() {
     
-    //get param idMember in url if exists
-    var idProject = $(document).getUrlParam("project");
+    //get param idProject in url if exists
+    idProject = $(document).getUrlParam("project");
 
     //enable autocompletion display
     idMembers = new Array();
@@ -141,7 +135,7 @@ $(document).ready( function() {
         
         //preventDefault
         e.preventDefault();
-        
+
         //Get #idProject and #idMember field value  
         var idProject = $(document).getUrlParam("project");
         var idMember = $("#idMember").val();
@@ -149,17 +143,9 @@ $(document).ready( function() {
         if (idProject!=null && idProject.length>0 &&
             idMember!=null && idMember.length>0) {
             //Add a new member to the project
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/'+idMember,
-                type:"POST",
-                success: function(data) {
-                    bootbox.alert('Member has been added successfully.');
-                    location.reload(); //reload page    
-                },
-                error:function (xhr, status, error){
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers+'/'+idMember;
+            var formdata='';
+            $.postObjToDatabase(url, formdata, 'Member', 'projectMember.html?project='+idProject);
         }
         
         return false;

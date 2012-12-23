@@ -42,22 +42,8 @@ function bindDeleteUserStoryEvent(idProject)
         {
             if (confirmed)
             {
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+$("#idSprint").val(),
-                    type:"DELETE",
-                    success:function(data)
-                    {
-                        var box = bootbox.alert("Sprint deleted successfully.");
-                            setTimeout(function() {
-                            box.modal('hide');
-                            window.location.replace('sprintList.html?project='+idProject); //redirect to storyList.html
-                        }, 3000); 
-                    },
-                    error:function(xhr, status, error)
-                    {
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+$("#idSprint").val();
+                $.deleteObjFromDatabase(url, 'Sprint', 'sprintList.html?project='+idProject);
             }
         });
     });
@@ -90,22 +76,9 @@ $(document).ready(function()
         //Case 1 : create a new sprint (idSprint is empty)
         if (idSprint==null || idSprint.length==0)
         {
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/add/'+idProject,
-                type:"POST",
-                data:JSON.stringify(objectform),
-                dataType:"json",
-                contentType:"application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert('Sprint has been added successfully.');
-                    window.location.replace('sprintList.html?project='+idProject); //redirect to sprintList.html
-                },
-                error:function (xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/add/'+idProject;
+            var formdata=JSON.stringify(objectform);
+            $.postObjToDatabase(url, formdata, 'Sprint', 'sprintList.html?project='+idProject);
         }
         else //Case 2 : update an existing sprint (idSprint is not empty)
         {
@@ -115,21 +88,9 @@ $(document).ready(function()
             if(objectform.dateStart!='')
                 objectform.dateStart += 'T00:00:00+01:00';
 
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject,
-                type:"PUT",
-                data:JSON.stringify(objectform),
-                dataType:"json",
-                contentType:"application/json; charset=utf-8",
-                success:function(data)
-                {
-                    var box = bootbox.alert("Sprint has been updated successfully.");
-                                setTimeout(function() {
-                                box.modal('hide');
-                                window.location.replace('sprintList.html?project='+idProject+''); //redirect to storyList.html
-                            }, 3000);
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject;
+            var formdata=JSON.stringify(objectform);
+            $.putObjToDatabase(url, formdata, 'Sprint', 'sprintList.html?project='+idProject);
         }
 
         return false;

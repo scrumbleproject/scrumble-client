@@ -88,23 +88,8 @@ function bindDeleteEvent()
         {
             if (confirmed)
             {
-                $.ajax({
-                    url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$("#idMember").val(),
-                    type:"DELETE",
-                    success:function(data)
-                    {
-                        var box = bootbox.alert("Member deleted successfully.");
-                        setTimeout(function()
-                        {
-                            box.modal('hide');
-                            window.location.replace('memberList.html'); //redirect to memberList.html
-                        }, 3000); 
-                    },
-                    error:function(xhr, status, error)
-                    {
-                        bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                    }
-                });
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$("#idMember").val();
+                $.deleteObjFromDatabase(url, 'Member', 'memberList.html');
             }
         });
     });
@@ -139,37 +124,15 @@ $(document).ready(function()
         if(idMember==null || idMember.length==0)
         {
             //Case 1 : create a new member (idMember is empty)
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add/'+idRole,
-                type:"POST",
-                data: JSON.stringify($('#formUser').serializeObject()),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert('Member has been added successfully.');
-                    window.location.replace('memberList.html'); //redirect to memberList.html
-                },
-                error:function(xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add/'+idRole;
+            var formdata=JSON.stringify($('#formUser').serializeObject());
+            $.postObjToDatabase(url, formdata, 'Member', 'memberList.html');
         }
         else //Case 2 : update an existing member (idMember is not empty)
         {
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idRole,
-                type:"PUT",
-                data: JSON.stringify($('#formUser').serializeObject()),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success:function(data)
-                {
-                    bootbox.alert("Member has been updated successfully.");
-                    window.location.replace('memberList.html'); //redirect to memberList.html
-                }
-            });
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idRole;
+            var formdata=JSON.stringify($('#formUser').serializeObject());
+            $.putObjToDatabase(url, formdata, 'Member', 'memberList.html');
         }
 
         return false;

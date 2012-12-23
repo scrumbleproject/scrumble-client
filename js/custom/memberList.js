@@ -69,15 +69,8 @@ function bindDeleteEvent()
             {
                 if (confirmed) 
                 {             
-                    $.ajax({
-                        url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$btn.attr("href"),
-                        type:"DELETE",
-                        success:function(data)
-                        {
-                            bootbox.alert("Member deleted successfully.");
-                            location.reload(); //reload page
-                        }
-                    });
+                    var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+$btn.attr("href");
+                    $.deleteObjFromDatabase(url, 'Member', 'memberList.html');
                 }
             });
         });

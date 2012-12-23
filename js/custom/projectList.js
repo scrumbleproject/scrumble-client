@@ -32,7 +32,7 @@ function displayAllItems(items)
 }
 
 
-        
+
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready( function() 
 {

@@ -41,14 +41,9 @@ function displayAllItems(items)
             var idStory = ui.item.attr("id").replace(toRemove,'');
  
             //run ajax request
-            $.ajax({
-                url:'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idStory+'/'+ui.item.index(),
-                type:"POST",
-                success:function(data)
-                {
-                    console.log('User story : Order saved');
-                }
-            }); 
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idStory+'/'+ui.item.index();
+            var formdata='';
+            $.postObjToDatabase(url, formdata, '', '');
         }   
     });
     $( "#userstories-list" ).disableSelection();
