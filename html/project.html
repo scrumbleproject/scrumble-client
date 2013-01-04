@@ -9,13 +9,14 @@
 
         <!-- Le styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/jasny-bootstrap.css" rel="stylesheet">
         <style>
-            body {
-            padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+            body
+            {
+                padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
             }
         </style>
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="../css/bootstrap-datepicker.css" rel="stylesheet">
         <link href="../css/scrumble.css" rel="stylesheet">
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -31,58 +32,54 @@
         <div class="navbar navbar-fixed-top" id="nav-bar"></div>
         <!-- End top navigation bar -->
 
+        <!-- Left menu -->
         <div class="container-fluid">
             <div class="row-fluid">
-                <!-- Left menu -->
-                <div id="left-menu" class="span2"></div>
+                <div id="left-menu" class="span2"></div><!--/span2-->
                 <!-- End left menu-->
 
-                <!-- Content -->
+                <!--Content -->
                 <div class="span10">
-                    <h2>Sprint</h2>
+                    <h2>Project</h2>
 
-                    <!-- Form -->       
-                    <form id="formSprint" class="form-horizontal" action="#">
-                        <input type="hidden" name="idSprint" id="idSprint">
-                        <input type="hidden" name="numSprint" id="numSprint">
+                    <!-- Form -->
+                    <form id="formProject" class="form-horizontal" action="#">
+                        <input type="hidden" name="idProject" id="idProject">
 
                         <!-- Input name -->
                         <div class="control-group">
                             <label class="control-label" for="title">Title</label>
                             <div class="controls">
-                                <input type="text" name="title" id="title">
+                                <input type="text" name="title" id="title" >
                             </div>
                         </div>
 
-                        <!-- Input velocity -->
+                        <!-- Input or delete file logo -->
                         <div class="control-group">
-                            <label class="control-label" for="velocity">Velocity</label>
+                            <label class="control-label" for="logo">Logo</label>
                             <div class="controls">
-                                <input type="text" name="velocity" id="velocity">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                        <span class="btn btn-file">
+                                            <span class="fileupload-new">Select image</span>
+                                            <span class="fileupload-exists">Change</span>
+                                            <input type="file" />
+                                        </span>
+                                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Input date start -->
+                        <!-- Description textarea -->
                         <div class="control-group">
-                            <label class="control-label" for="dateStart">Date start</label>
+                            <label class="control-label" for="description">Description</label>
                             <div class="controls">
-                                <input type="text" name="dateStart" id="dateStart" class="datepicker" readonly>
-                            </div>
-                        </div>
-
-                        <!-- Input date end -->
-                        <div class="control-group">
-                            <label class="control-label" for="dateEnd">Date end</label>
-                            <div class="controls">
-                                <input type="text" name="dateEnd" id="dateEnd" class="datepicker" readonly>
-                            </div>
-                        </div>
-
-                        <!-- Input duration -->
-                        <div class="control-group">
-                            <label class="control-label" for="duree">Duration</label>
-                            <div class="controls">
-                                <input type="text" name="duree" id="duree">
+                                <textarea rows="3" name="description" id="description" ></textarea>
                             </div>
                         </div>
 
@@ -90,31 +87,27 @@
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Save</button>
                             <button type="button" class="btn">Cancel</button>
-                            <button type="button" id="btn-delete" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
+                            <button type="button" class="btn btn-warning btn-delete" style="display:none;">Delete</button>
                         </div>
                     </form>
                     <!-- End form --> 
-                </div><!-- /span10 -->
+                </div>
                 <!-- End content -->
-            </div><!-- /row-fluid -->
+            </div><!--/row-->
+
+            <hr>
 
             <footer>
                 <p>Scrumble</p>
             </footer>
-        </div><!-- /container-fluid -->
+        </div>
 
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="../js/lib/jquery.js"></script>
         <script src="../js/custom/loadJS.js"></script>
-        <script src="../js/custom/sprint.js"></script>
+        <script src="../js/custom/project.js"></script>
 
-        <script src="../js/lib/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-        <script>
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd'
-            });
-        </script>
     </body>
 </html>

@@ -205,6 +205,10 @@ label#login.checkbox input  {
   margin-top: 10px;
 }
 
+#login-page .modal-body {
+  color:#333333;
+}
+
 /******************END LOGIN**********************/
 
 ul {
@@ -579,11 +583,39 @@ ul {
 #sprintList .row-fluid{
   margin-top: 10px;
 }
-    
+
+#sprintList div.sprint-title{
+  font-weight:bold;
+  background-color:#343537;
+  border-radius: 0.3em 0.3em 0 0;
+  display: block;
+  padding: 8px 15px;
+}
+
+#sprintList div.sprint-title a{
+  color:white;
+}
+
+#sprintList div.sprint-title a:hover{
+  text-decoration: none;
+}
+
 #sprint-infos .span2{
   text-align: center;
   background-color: #EEEEEE;
 }
 
- 
+#sprintList .span2{
+  text-align: center;
+  background-color: #EEEEEE;
+}
 
+#sprintList .sprints{
+  margin-top: 10px;
+}
+
+
+/*********************** SPRINT ******************************/
+#formSprint .datepicker{
+  cursor: pointer;
+}

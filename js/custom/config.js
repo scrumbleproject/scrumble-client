@@ -16,7 +16,8 @@ var config = {
             "userStories":"userstories",
             "tasks":"tasks",
             "sprints":"sprints",
-            "roles":"roles"
+            "roles":"roles",
+            "authentication":"auth"
         },
 
     "processStatus" : {
@@ -26,19 +27,25 @@ var config = {
             "toDo" : "tod",
             "inProgress" : "inp",
             "done" : "don"
+        },
+        
+    "cookie" : {
+        "name" : "com.scrumble.client.cookie",
+        "url" : "login.html"
         }
 };
 
 var leftMenu= {
-            "dashboardProject.html" : "left-menu-option-project",
-            "settings.html" : "left-menu-option-project",
+            "projectDashboard.html" : "left-menu-option-project",
+            "project.html" : "left-menu-option-project",
             "sprintList.html" : "left-menu-option-sprint",
+            "sprint.html" : "left-menu-option-sprint",
             "sprintBoard.html" : "left-menu-option-sprint",
             "storyList.html" : "left-menu-option-story",
             "story.html" : "left-menu-option-story",
             "projectMember.html" : "left-menu-option-member",
             "dashboard.html" : "left-menu-option-dashboard",
-            "projectsList.html" : "left-menu-option-project",
+            "projectList.html" : "left-menu-option-project",
             "modules.html" : "left-menu-option-module",
             "memberList.html" : "left-menu-option-member",
             "member.html" : "left-menu-option-member"

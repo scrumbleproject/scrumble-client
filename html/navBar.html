@@ -1,31 +1,49 @@
 <div class="navbar-inner">
-	<div class="container-fluid">
-	  <a class="brand" href="dashboard.html">&nbsp;</a>
-	  <div class="nav-collapse">
-		<ul class="nav pull-right">
-		<li id="fat-menu" class="dropdown action-menu">
-		  <!--
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-		    <li><h2>Your Projects</h2></li>
-		    <li><a href="#">Project 1</a></li>
-		    <li><a href="#">Project 2</a></li>
-		    <li class="divider"></li>
-		    <li><a class="action-button" href="#">New project</a></li>
-		    <li><a class="action-button" href="#">Action 2 </a></li>
-		    <li><a class="action-button" href="#">Action 3</a></li>
-		  </ul> -->
-		</li>
-		<li>
-		  
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">John <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-		    <li><a href="profile.html">Profile</a></li>
-		    <li><a href="login.html">Logout</a></li>
-		    <li class="divider"></li>
-		  </ul>
-		</li>
-	  </ul>
-	  </div><!--/.nav-collapse -->
-	</div>
+    <div class="container-fluid">
+        <a class="brand" href="dashboard.html">&nbsp;</a>
+        <div class="nav-collapse">
+            <ul class="nav pull-right">
+                <li id="fat-menu" class="dropdown action-menu">
+                    <!--
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    <li><h2>Your Projects</h2></li>
+                    <li><a href="#">Project 1</a></li>
+                    <li><a href="#">Project 2</a></li>
+                    <li class="divider"></li>
+                    <li><a class="action-button" href="#">New project</a></li>
+                    <li><a class="action-button" href="#">Action 2 </a></li>
+                    <li><a class="action-button" href="#">Action 3</a></li>
+                    </ul> -->
+                </li>
+                
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user-app-login">John</span>&nbsp;&nbsp;<b class="caret"></b></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a id="btn-logout" href="#">Logout</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+
+        //get cookie name
+        var name = $.getDisplayNameFromCookie();
+        if (name!=''){
+            $('span#user-app-login').html(name);
+        }
+
+        //logout
+        $("#btn-logout").live('click', function(e){
+            $.logout();
+        });
+
+    });
+</script>

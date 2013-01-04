@@ -75,7 +75,7 @@ $.showLeftMenu = function(idProject, active, type){
         $('#left-menu').append('<div class="well sidebar-nav">'+
                                 '<ul class="nav nav-list">'+
                                   '<li class="nav-header">Sidebar</li>'+
-                                  '<li id="left-menu-option-project"><a href="dashboardProject.html?project='+idProject+'">Project</a></li>'+
+                                  '<li id="left-menu-option-project"><a href="projectDashboard.html?project='+idProject+'">Project</a></li>'+
                                   '<li id="left-menu-option-sprint"><a href="sprintList.html?project='+idProject+'">Sprint</a></li>'+
                                   '<li id="left-menu-option-story"><a href="storyList.html?project='+idProject+'">Story</a></li>'+
                                   '<li id="left-menu-option-member"><a href="projectMember.html?project='+idProject+'">Members</a></li>'+
@@ -88,23 +88,199 @@ $.showLeftMenu = function(idProject, active, type){
                                     '<ul class="nav nav-list">'+
                                       '<li class="nav-header">Sidebar</li>'+
                                       '<li id="left-menu-option-dashboard"><a href="dashboard.html">Dashboard</a></li>'+
-                                      '<li id="left-menu-option-project"><a href="projectsList.html">Projects</a></li>'+
+                                      '<li id="left-menu-option-project"><a href="projectList.html">Projects</a></li>'+
                                       '<li id="left-menu-option-module"><a href="modules.html">Modules</a></li>'+
                                       '<li id="left-menu-option-member"><a href="memberList.html">Members</a></li>'+
                                     '</ul>'+
                                 '</div>');
     }
 
-    $("li#"+active).addClass("active");    
-    //load left-menu    
-    /*$('#left-menu').load('leftMenu.html', function(response, status, xhr) {
-        if (status == "error") {
-            var msg = "Sorry leaf-menu cannot be loaded: ";
-            bootbox.alert(msg + xhr.status + " " + xhr.statusText);
+    $("li#"+active).addClass("active");
+}
+
+/**
+ * Ajax function to get data from the database
+ */
+$.getObjFromDatabase = function(url_ws, level)
+{
+    if(!level) 
+        level = 1;
+
+    $.ajax({
+        url: url_ws,
+        type:'GET',
+        contentType:'application/json; charset=UTF-8',
+        success: function(reponse) 
+        {
+            if(level==1)
+                successGetObjFirstLevel(reponse);
+            else
+                successGetObjSecondLevel(reponse);
+        },
+        error:function (xhr, status, error)
+        {
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+        },
+        dataType:'text',
+        converters:'text json'
+    });
+}
+
+/**
+ * Ajax function to send new data to the database
+ */
+$.postObjToDatabase = function(url_ws, form, message, redirect)
+{
+    if(form!='') 
+    {
+         $.ajax({
+            url:url_ws,
+            type:"POST",
+            data:form,
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                    bootbox.alert(message+' has been added successfully.');
+                if(redirect!='')
+                    window.location.replace(redirect);
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+    else if(form=='')
+    {
+        $.ajax({
+            url:url_ws,
+            type:"POST",
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                    bootbox.alert(message+' has been added successfully.');
+                if(redirect!='')
+                    window.location.replace(redirect);
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+}
+
+/**
+ * Ajax function to update data in the database
+ */
+$.putObjToDatabase = function(url_ws, form, message, redirect)
+{
+    if(form!='') 
+    {
+         $.ajax({
+            url:url_ws,
+            type:"PUT",
+            data:form,
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                {
+                    var box = bootbox.alert(message+" has been updated successfully.");
+                    if(redirect!='')
+                    {
+                        setTimeout(function()
+                        {
+                            box.modal('hide');
+                            window.location.replace(redirect);
+                        }, 3000);
+                    }
+                }
+                else
+                {
+                    if(redirect!='')
+                        window.location.replace(redirect);
+                }
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+    else if(form=='')
+    {
+        $.ajax({
+            url:url_ws,
+            type:"PUT",
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                {
+                    var box = bootbox.alert(message+" has been updated successfully.");
+                    if(redirect!='')
+                    {
+                        setTimeout(function()
+                        {
+                            box.modal('hide');
+                            window.location.replace(redirect);
+                        }, 3000);
+                    }
+                }
+                else
+                {
+                    if(redirect!='')
+                        window.location.replace(redirect);
+                }
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+}
+
+/**
+ * Ajax function to update data in the database
+ */
+$.deleteObjFromDatabase = function(url_ws, message, redirect)
+{
+    $.ajax({
+        url:url_ws,
+        type:"DELETE",
+        dataType:"json",
+        contentType: "application/json; charset=utf-8",
+        success:function(data)
+        {
+            if(message!='')
+            {
+                var box = bootbox.alert(message+" deleted successfully.");
+                if(redirect!='')
+                {
+                    setTimeout(function()
+                    {
+                        box.modal('hide');
+                        window.location.replace(redirect);
+                    }, 3000);
+                }
+            }
+            else
+            {
+                if(redirect!='')
+                    window.location.replace(redirect);
+            }
+        },
+        error:function(xhr, status, error)
+        {
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
         }
-        else { //if successful
-            //select the related option in left-menu
-            $("li#left-menu-option-member").addClass("active");
-        }       
-    });*/
+    });
 }

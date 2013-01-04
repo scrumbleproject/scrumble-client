@@ -1,260 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Scrumble project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/scrumble.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <title>Scrumble project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Le styles -->
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <style>
+            body {
+            padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+        <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="../css/scrumble.css" rel="stylesheet">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-    <!-- Le fav and touch icons -->
+        <!-- Le fav and touch icons -->
+    </head>
 
-  </head>
+    <body>
+        <!-- Top navigation bar -->
+        <div class="navbar navbar-fixed-top" id="nav-bar"></div>
+        <!-- End top navigation bar -->
 
-  <body>
-<!-- Top navigation bar -->
-<div class="navbar navbar-fixed-top" id="nav-bar">  
-</div>
-<!-- End top navigation bar -->
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <!-- Left menu -->
+                <div id="left-menu" class="span2"></div>
+                <!-- End left menu-->
 
-<!-- Left menu -->
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div id="left-menu" class="span2">
-    </div>
-    <!--<div id="left-menu" class="span2">
-    </div>-->
-    <!-- End left menu-->
+                <!-- Content -->
+                <div class="span10">
+                    <div id="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li><a href="dashboardProject.html?project=1">Project 1</a> <span class="divider">/</span></li>
+                            <li class="active">Sprint</li>
+                        </ul>
+                    </div>
+                    <div id="sprintList"></div>
+                </div><!-- /span10 -->
+            </div><!-- /row-fluid -->
 
-    <!--Content -->
-    <div class="span10">
-      <div id="sprintList">
-          <ul class="breadcrumb">
-            <li><a href="dashboardProject.html?project=1">Project 1</a> <span class="divider">/</span></li>
-            <li class="active">Sprint</li>
-         </ul>
-      </div>
-      <div id="sprintList">
-        <div class="row-fluid">
-          <h2>Sprints</h2>
-          <a href="sprint.html" class="btn btn-primary new">New sprint</a>
-	        <div class="accordion" id="accordion2">
-		        <div class="accordion-group">
-		          <div class="accordion-heading">
-		            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-		              Sprint 1
-		            </a>
-		          </div>
-		          <div id="collapseOne" class="accordion-body collapse in">
-		            <div class="accordion-inner">
-		              <a href="sprintBoard.html?sprint=1&project=1">Lien vers le sprintboard du sprint numéro 1</a>
-		              
-		              <div id="sprint-infos" class="row-fluid">
-		              
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>12</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Stories</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>60</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Velocity</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>01/12/2012</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Sprint start</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>31/12/2012</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Sprint end</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>20</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Duration</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>20</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Progression</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		        <div class="accordion-group">
-		          <div class="accordion-heading">
-		            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-		              Sprint 2
-		            </a>
-		          </div>
-		          <div id="collapseTwo" class="accordion-body collapse">
-		            <div class="accordion-inner">
-		              <div id="sprint-infos" class="row-fluid">
-		              
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>12</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Stories</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>60</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Velocity</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>01/12/2012</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Sprint start</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>31/12/2012</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Sprint end</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>20</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Duration</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		                		                
-		                <!-- Start block infos -->
-		                <div class="span2">
-		                  <div class="head-sprint-info">
-		                    <h3>20</h3>
-		                  </div>
-		                  <div class="legend-sprint-info">
-		                    <p>Progression</p>
-		                  </div>
-		                </div>
-		                <!-- End block infos-->
-		                
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-	      </div><!--/row-->
-       </div><!-- /sprintList-->
-    </div><!--/span-->
-  </div><!-- row-fluid -->
+            <hr>
 
-  <footer>
-    <p>Scrumble</p>
-  </footer>
+            <footer>
+                <p>Scrumble</p>
+            </footer>
+        </div><!-- /container-fluid -->
 
-</div>
-
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../js/lib/jquery.js"></script>
-
-  <!-- Custom import -->
-  <script src="../js/custom/config.js"></script>
-  <script src="../js/custom/utils.js"></script>
-  <script src="../js/custom/page.js"></script>
-  <script src="../js/lib/jquery.getUrlParam.js"></script>
-
-  <!-- Bootstrap related import -->
-  <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-transition.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-alert.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-modal.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-dropdown.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-scrollspy.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-tab.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-tooltip.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-popover.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-button.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
-  <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
-
-  </body>
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="../js/lib/jquery.js"></script>
+        <script src="../js/custom/loadJS.js"></script>
+        <script src="../js/custom/sprintList.js"></script>
+    </body>
 </html>

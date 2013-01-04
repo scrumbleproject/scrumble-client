@@ -22,7 +22,29 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <script src="../js/lib/jquery.js"></script>
+
     <!-- Le fav and touch icons -->
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+        $.ajax({
+          type:'POST',
+          url : "http://localhost:8080/scrumble-server-web/scrumble/auth/check",
+          beforeSend: function (xhr, settings){
+            xhr.setRequestHeader("Authorization", "cyril:afe16524634");
+          },
+          success : function(data) {
+              $("#test").html(data);
+          },
+          error : function(jqXHR, textStatus, errorThrown) {
+              alert("error");
+          }
+        });
+      });
+
+    </script>
+
   </head>
 
   <body>
@@ -37,32 +59,26 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div id="left-menu" class="span2">
-  </div><!--/span-->
+	</div><!--/span-->
 <!-- End left menu-->
 
 <!--Content -->
-<div class=span10>
-    <h2>Projects</h2>
-    <a href="settings.html" class="btn btn-primary new">New project</a>
-    <div class="row-fluid">
-      <ul class="thumbnails" id="projects-list">
-        
-      </ul>
-    </div>
+  <div class="span10">
+    <div id="test"></div>
+  
+
   </div>
 <!-- End content -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../js/lib/jquery.js"></script>
 
-  <!-- Custom import -->
-    <script src="../js/custom/utils.js"></script>
+	<!-- Custom import -->
+	<script src="../js/custom/utils.js"></script>
     <script src="../js/custom/config.js"></script>
-    <script src="../js/custom/page.js"></script>
+	<script src="../js/custom/page.js"></script>
     <script src="../js/lib/jquery.getUrlParam.js"></script>
-    <script src="../js/custom/project.js"></script>
 
   <!-- Bootstrap related import -->
     <script src="../js/lib/bootstrap-plugins/bootbox.min.js"></script>    
@@ -78,6 +94,6 @@
     <script src="../js/lib/bootstrap-core/bootstrap-collapse.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-carousel.js"></script>
     <script src="../js/lib/bootstrap-core/bootstrap-typeahead.js"></script>
-    <script src="../js/lib/bootstrap-core/bootstrap-fileupload.js"></script>
+
   </body>
 </html>

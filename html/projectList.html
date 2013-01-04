@@ -6,12 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+
         <!-- Le styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <style>
-        body {
-        padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
-        }
+            body 
+            {
+                padding-top: 60px; * 60px to make the container go all the way to the bottom of the topbar */
+            }
         </style>
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/scrumble.css" rel="stylesheet">
@@ -32,49 +34,34 @@
         <!-- Left menu -->
         <div class="container-fluid">
             <div class="row-fluid">
-                <div id="left-menu" class="span2"></div><!--/span2-->
+                <div id="left-menu" class="span2"></div><!--/span-->
+                <!-- End left menu-->
 
                 <!--Content -->
-                <div class="span10">
-                    <h2>Members list</h2>
-                    <a class="btn btn-primary" href="member.html">New user</a>
+                <div class=span10>
+                    <h2>Projects</h2>
+                    <a href="project.html" class="btn btn-primary new">New project</a>
+                    <div class="row-fluid">
+                        <ul class="thumbnails" id="projects-list">
 
-                    <!-- List -->
-                    <table class="table table-striped" id="memberList">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Function</th>
-                                <th>Email</th>
-                                <th>Internal phone</th>
-                                <th>External phone</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <!-- End List --> 
-                </div>
+                        </ul>
+                    </div>
+                </div><!-- /span10 -->
                 <!-- End content -->
-            </div><!--/row-->
+            </div><!-- /row-fluid -->
 
             <hr>
 
             <footer>
                 <p>Scrumble</p>
             </footer>
-        </div>
+        </div><!-- /container-fluid -->
 
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="../js/lib/jquery.js"></script>
         <script src="../js/custom/loadJS.js"></script>
-        <script src="../js/custom/memberList.js"></script>
-
+        <script src="../js/custom/projectList.js"></script>
     </body>
 </html>
