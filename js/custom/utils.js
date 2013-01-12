@@ -67,6 +67,13 @@ $.truncateText = function(text, length){
 }
 
 /**
+ * Get trigramm of a firstname and lastname
+ */
+$.trigramm = function(firstname, lastname){
+    return firstname.substr(0,1)+lastname.substr(0,1)+lastname.substr(lastname.length-1,1);
+}
+
+/**
  * Use this fonction to show left menu dynamically
  */
 $.showLeftMenu = function(idProject, active, type){

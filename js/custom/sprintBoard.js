@@ -10,6 +10,40 @@ function successGetObjFirstLevel(reponse)
 }
 
 
+function displayMembersAssignation(idSprint, idTask, idHtmlElement){
+    
+    $.ajax({
+        url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/members',
+        type:'GET',
+        contentType:'application/json; charset=UTF-8',
+        success: function(response) {
+
+            var items = $.parseJSON(response);
+            if (items!=null){
+                if (items.member1.length>1) {
+                    $("#"+idHtmlElement).html("");
+                    $.each(items.member1, function(i, taskDico){
+                        if (i>0){
+                            $("#"+idHtmlElement).append("-");
+                        }
+                        $("#"+idHtmlElement).append($.trigramm(taskDico.firstname, taskDico.lastname));
+                    });
+                }
+                else {
+                    $("#"+idHtmlElement).html($.trigramm(items.member1.firstname, items.member1.lastname));
+                }
+            }
+
+        },
+        error:function (xhr, status, error)
+        {
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+        },
+        dataType:'text',
+        converters:'text json'
+    });
+    
+}
 
 //function utils for get htmlContent about tasks
 function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, backgroundClass){
@@ -78,7 +112,9 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
                 }
             }
 
-            htmlContent += "<li class='task img-polaroid' id='task-"+taskDico.idTask+"'>"+$.truncateText(taskDico.title, 40)+"</li>";
+            var idHtmlElement = "task-assignation-"+taskDico.idTask;
+            htmlContent += "<li class='task img-polaroid' id='task-"+taskDico.idTask+"'>"+$.truncateText(taskDico.title, 40)+"<div class='task-assignation' id='"+idHtmlElement+"'></div></li>";
+            displayMembersAssignation($(document).getUrlParam("sprint"), taskDico.idTask, idHtmlElement);
 
         });
 
@@ -109,7 +145,10 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
             if (j==1 && taskCollection.idProcessStatus.codeStatus == config.processStatus.toDo ||
                 j==2 && taskCollection.idProcessStatus.codeStatus == config.processStatus.inProgress || 
                 j==3 && taskCollection.idProcessStatus.codeStatus == config.processStatus.done) {
-                htmlContent += "<li class='task img-polaroid' id='task-"+taskCollection.idTask+"'>"+$.truncateText(taskCollection.title, 40)+"</li>";   
+                
+                var idHtmlElement = "task-assignation-"+taskCollection.idTask;
+                htmlContent += "<li class='task img-polaroid' id='task-"+taskCollection.idTask+"'>"+$.truncateText(taskCollection.title, 40)+"<div class='task-assignation' id='"+idHtmlElement+"'></div></li>";   
+                displayMembersAssignation($(document).getUrlParam("sprint"), taskCollection.idTask, idHtmlElement);
             }
             
             //close column
