@@ -3,6 +3,20 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab[''] = 'User Story Backlog'; 
+
+    $.showBreadCrumb(myTab);
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -56,6 +70,9 @@ $(document).ready(function()
 {
     //get parameters idProject in url if exists
     var idProject = $(document).getUrlParam("project");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
 
     $('#newstorybtn').append('<a class="btn btn-primary" href="story.html?project='+idProject+'">New story</a>');
 

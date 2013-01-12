@@ -3,6 +3,20 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab[''] = 'Sprint List'; 
+
+    $.showBreadCrumb(myTab);
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -218,13 +232,16 @@ $(document).ready(function()
 {
     //Get parameter idProject in url if it exists
     var idProject = $(document).getUrlParam("project");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
     
     //Get the list of sprints for the project
     if (idProject !=="" && idProject !==null) 
     {
         //Display the button New sprint
         $('#sprintList').append('<div class="row-fluid">'+
-                                    '<h2>Sprints</h2>'+
+                                    '<h2>Sprint List</h2>'+
                                     '<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
                                     '<div class="sprints" id="sprints">'+
                                     '</div>'+

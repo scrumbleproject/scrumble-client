@@ -8,24 +8,22 @@ function displayBreadCrumb(idProject)
 {
     if(idProject=="" || idProject==null)
     {
-        $("#breadcrumb").append('<ul class="breadcrumb">'+
-            '<li>'+
-                '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
-            '</li>'+
-            '<li class="active">New Project</li>'+
-        '</ul>');
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab[''] = 'New Project'; 
+
+        $.showBreadCrumb(myTab);
     }
     else
     {
-        $("#breadcrumb").append('<ul class="breadcrumb">'+
-            '<li>'+
-                '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
-            '</li>'+
-            '<li>'+
-                '<a href="projectDashboard.html?project='+idProject+'">Project '+idProject+'</a> <span class="divider">/</span>'+
-            '</li>'+
-            '<li class="active">Modify Project</li>'+
-        '</ul>');
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab[''] = 'Update Project'; 
+
+        $.showBreadCrumb(myTab);
     }
 }
 

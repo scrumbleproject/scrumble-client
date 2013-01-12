@@ -2,6 +2,34 @@
 /** member methods **/
 
 
+
+//Display the breadCrumb trail
+function displayBreadCrumb(idMember)
+{
+    if(idMember=="" || idMember==null)
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['memberList.html'] = 'Member List';
+        myTab[''] = 'New Member';
+
+        $.showBreadCrumb(myTab);
+    }
+    else
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['memberList.html'] = 'Member List';
+        myTab[''] = 'Update Member';
+
+        $.showBreadCrumb(myTab);
+    }
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -101,6 +129,9 @@ $(document).ready(function()
 {
     //get param idMember in url if exists
     var idMember = $(document).getUrlParam("member");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idMember);
     
     //load data on a form
     selected_role="";

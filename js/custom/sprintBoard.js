@@ -3,6 +3,21 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
+    myTab[''] = 'Sprintboard'; 
+
+    $.showBreadCrumb(myTab);
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -207,7 +222,11 @@ function displayAllItems(items){
 $(document).ready(function() {
     
     //get param in url if exists
-    var idSprint = $(document).getUrlParam("sprint");       
+    var idSprint = $(document).getUrlParam("sprint");
+    var idProject = $(document).getUrlParam("project");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
 
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {

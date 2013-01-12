@@ -1,6 +1,21 @@
 
 /** memberList methods **/
 
+
+
+//Display the breadCrumb trail
+function displayBreadCrumb()
+{
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab[''] = 'Member List';
+
+    $.showBreadCrumb(myTab);
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -82,5 +97,8 @@ function bindDeleteEvent()
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
 {
+    //display the breadcrumb trail
+    displayBreadCrumb();
+
     $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/all');
 });
