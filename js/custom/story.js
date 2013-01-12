@@ -76,7 +76,11 @@ function bindDeleteUserStoryEvent(idProject){
     });
 }
 
-  
+function cancelButton(){
+    $("button.btn-cancel-userStory").live('click',function(e){
+        $.goBack();
+    });
+}
 
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()

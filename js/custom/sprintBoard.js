@@ -150,7 +150,7 @@ function onTaskMove(item){
 
     //add member assignation
     //get param in url if exists
-    var idSprint = $(document).getUrlParam("sprint");       
+    var idSprint = $(document).getUrlParam("sprint");      
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {
         var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie();
@@ -162,6 +162,9 @@ function onTaskMove(item){
 
 //display all items
 function displayAllItems(items){
+
+    //get param in url if exists
+    var idProject = $(document).getUrlParam("project");    
 
     if (items.userstory.length>1){ //if more than one user story
 
@@ -175,7 +178,7 @@ function displayAllItems(items){
             var backgroundClass = "odd";
             if (i % 2 == 1) backgroundClass = "even";
 
-            var htmlContent = "<div class='userstory-title'>"+storyDico.title+"</div>";
+            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+" <i class='icon-eye-open icon-white'></i></a></div>";
 
             htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
 
@@ -198,7 +201,7 @@ function displayAllItems(items){
             "<div class='done'><h3>DONE</h3></div>");
 
         //append content
-        var htmlContent = "<div class='userstory-title'>"+items.userstory.title+"</div>";
+        var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+" <i class='icon-eye-open icon-white'></i></a></div>";
 
         htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
         

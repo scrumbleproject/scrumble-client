@@ -285,8 +285,6 @@ $.deleteObjFromDatabase = function(url_ws, message, redirect)
     });
 }
 
-
-
 /**
  * Ajax function to display the breadcrumb trail
  */
@@ -308,4 +306,23 @@ $.showBreadCrumb = function(myTab)
     }
     chaine += '</ul>';
     $("#breadcrumb").append(chaine);
+}
+
+$.goBack = function()
+{
+    //Fetch the back url
+    var url=document.referrer;
+    //Show a confirm box
+    e.preventDefault();
+    bootbox.confirm("Are you sure to cancel ?",function(confirmed){
+        if (url == 'http://scrumble-project.com/*')
+        {
+            window.location.href=window.history.back();
+        }
+        else
+        {
+            window.location.href='http://scrumble-project.com/scrumble-client/html/login.html'
+        }
+        });
+    });
 }
