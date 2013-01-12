@@ -112,10 +112,10 @@ $(document).ready(function()
     {
         getRoles(selected_role);
     }
-
+    
     //action on #formUser form
     $('#formUser').submit(function() 
-    {
+    {     
         //Get #idMember field value 
         var idMember = $("#idMember").val();
         //Get #idRole field value 
