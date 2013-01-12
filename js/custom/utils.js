@@ -285,6 +285,29 @@ $.deleteObjFromDatabase = function(url_ws, message, redirect)
     });
 }
 
+/**
+ * Ajax function to display the breadcrumb trail
+ */
+$.showBreadCrumb = function(myTab)
+{
+    var chaine = '<ul class="breadcrumb">';
+    for(var valeur in myTab)
+    {
+        if(valeur!=="")
+        {
+            chaine += '<li>'+
+                            '<a href="'+valeur+'">'+myTab[valeur]+'</a> <span class="divider">/</span>'+
+                        '</li>';
+        }
+        else
+        {
+            chaine += '<li class="active">'+myTab[valeur]+'</li>';
+        }
+    }
+    chaine += '</ul>';
+    $("#breadcrumb").append(chaine);
+}
+
 $.goBack = function()
 {
     //Fetch the back url

@@ -3,6 +3,35 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject,idUserstory)
+{
+    if(idUserstory=="" || idUserstory==null)
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab['storyList.html?project='+idProject+''] = 'User Story Backlog';
+        myTab[''] = 'New User Story';
+
+        $.showBreadCrumb(myTab);
+    }
+    else
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab['storyList.html?project='+idProject+''] = 'User Story Backlog';
+        myTab[''] = 'Update User Story';
+
+        $.showBreadCrumb(myTab);
+    }
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -65,6 +94,9 @@ $(document).ready(function()
     {
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory);
     }
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject,idUserstory);
 
 
     //action on #formStory form
