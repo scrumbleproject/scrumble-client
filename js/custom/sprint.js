@@ -3,6 +3,35 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject,idSprint)
+{
+    if(idSprint=="" || idSprint==null)
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
+        myTab[''] = 'New Sprint'; 
+
+        $.showBreadCrumb(myTab);
+    }
+    else
+    {
+        var myTab = new Array();
+
+        myTab['dashboard.html'] = 'Home';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
+        myTab[''] = 'Update Sprint'; 
+
+        $.showBreadCrumb(myTab);
+    }
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -57,6 +86,9 @@ $(document).ready(function()
     //Get parameters idProject and idSprint in url if it exists
     idProject = $(document).getUrlParam("project");
     idSprint = $(document).getUrlParam("sprint");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject,idSprint);
 
     //Get information from the Web Service, display in the form
     if(idSprint!=="" && idSprint!==null) 

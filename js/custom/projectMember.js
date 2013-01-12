@@ -6,15 +6,13 @@
 //Display the breadCrumb trail
 function displayBreadCrumb(idProject)
 {
-    $("#breadcrumb").append('<ul class="breadcrumb">'+
-        '<li>'+
-            '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
-        '</li>'+
-        '<li>'+
-            '<a href="projectDashboard.html?project='+idProject+'">Project '+idProject+'</a> <span class="divider">/</span>'+
-        '</li>'+
-        '<li class="active">Project Members</li>'+
-    '</ul>');
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab[''] = 'Project Members'; 
+
+    $.showBreadCrumb(myTab);
 }
 
 
