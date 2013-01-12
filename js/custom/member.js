@@ -120,19 +120,39 @@ $(document).ready(function()
         var idMember = $("#idMember").val();
         //Get #idRole field value 
         var idRole = $("#idRole").val();
+        //Get #Login field value
+        var login = $("#login").val();
+        //Get #FirstName field value
+        var firstname = $("#firstname").val();
+        //Get #LastName field value
+        var lastname = $("#lastname").val();
+        //Get #Password fiel value
+        var password = $("#password").val();
 
         if(idMember==null || idMember.length==0)
         {
-            //Case 1 : create a new member (idMember is empty)
-            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add/'+idRole;
-            var formdata=JSON.stringify($('#formUser').serializeObject());
-            $.postObjToDatabase(url, formdata, 'Member', 'memberList.html');
+            if (login==null || fisrtname == null || lastname == null || password == null)
+            {
+            }
+            else
+            {
+                //Case 1 : create a new member (idMember is empty)
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/add/'+idRole;
+                var formdata=JSON.stringify($('#formUser').serializeObject());
+                $.postObjToDatabase(url, formdata, 'Member', 'memberList.html');
+            }
         }
         else //Case 2 : update an existing member (idMember is not empty)
         {
-            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idRole;
-            var formdata=JSON.stringify($('#formUser').serializeObject());
-            $.putObjToDatabase(url, formdata, 'Member', 'memberList.html');
+            if (login==null || fisrtname == null || lastname == null || password == null)
+            {
+            }
+            else
+            {
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/'+idRole;
+                var formdata=JSON.stringify($('#formUser').serializeObject());
+                $.putObjToDatabase(url, formdata, 'Member', 'memberList.html');
+            }
         }
 
         return false;
