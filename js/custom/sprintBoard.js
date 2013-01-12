@@ -148,6 +148,9 @@ function onTaskMove(item){
 //display all items
 function displayAllItems(items){
 
+    //get param in url if exists
+    var idProject = $(document).getUrlParam("project");    
+
     if (items.userstory.length>1){ //if more than one user story
 
         //reinit div content
@@ -160,7 +163,7 @@ function displayAllItems(items){
             var backgroundClass = "odd";
             if (i % 2 == 1) backgroundClass = "even";
 
-            var htmlContent = "<div class='userstory-title'>"+storyDico.title+"</div>";
+            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+"</a></div>";
 
             htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
 
@@ -183,7 +186,7 @@ function displayAllItems(items){
             "<div class='done'><h3>DONE</h3></div>");
 
         //append content
-        var htmlContent = "<div class='userstory-title'>"+items.userstory.title+"</div>";
+        var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+"</a></div>";
 
         htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
         
