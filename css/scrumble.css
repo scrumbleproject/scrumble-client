@@ -537,6 +537,12 @@ ul {
   background-color:#343537;
   border-radius: 0.3em 0.3em 0 0;
 }
+#sprintboard div.userstory-title a{
+  color:white;
+}
+#sprintboard div.userstory-title a:hover{
+  text-decoration:none;
+}
 #sprintboard ul {
 	display:block;
 	top:10px;

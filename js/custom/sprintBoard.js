@@ -163,7 +163,7 @@ function displayAllItems(items){
             var backgroundClass = "odd";
             if (i % 2 == 1) backgroundClass = "even";
 
-            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+"</a></div>";
+            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+" <i class='icon-eye-open icon-white'></i></a></div>";
 
             htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
 
@@ -186,7 +186,7 @@ function displayAllItems(items){
             "<div class='done'><h3>DONE</h3></div>");
 
         //append content
-        var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+"</a></div>";
+        var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+" <i class='icon-eye-open icon-white'></i></a></div>";
 
         htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
         
