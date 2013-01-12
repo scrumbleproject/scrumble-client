@@ -2,6 +2,35 @@
 /** project methods **/
 
 
+
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    if(idProject=="" || idProject==null)
+    {
+        $("#breadcrumb").append('<ul class="breadcrumb">'+
+            '<li>'+
+                '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
+            '</li>'+
+            '<li class="active">New Project</li>'+
+        '</ul>');
+    }
+    else
+    {
+        $("#breadcrumb").append('<ul class="breadcrumb">'+
+            '<li>'+
+                '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
+            '</li>'+
+            '<li>'+
+                '<a href="projectDashboard.html?project='+idProject+'">Project '+idProject+'</a> <span class="divider">/</span>'+
+            '</li>'+
+            '<li class="active">Modify Project</li>'+
+        '</ul>');
+    }
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -43,21 +72,11 @@ function bindDeleteEvent()
 }
 
 
-<<<<<<< HEAD
-		
-/** Put here all calls that you want to launch at the page startup **/		
-$(document).ready( function() {
 
-  
-	
-	//get param idProject in url if exists
-=======
-        
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function() 
 {
     //get param idProject in url if exists
->>>>>>> d3e9f5b520cf70704a192e4eed21fa46a7706e4d
     var idProject = $(document).getUrlParam("project");
 
     //load data on form
@@ -66,6 +85,8 @@ $(document).ready(function()
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject);
     }
 
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
 
     //action on #formProject form
     $('#formProject').submit(function()

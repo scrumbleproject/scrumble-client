@@ -3,6 +3,22 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    $("#breadcrumb").append('<ul class="breadcrumb">'+
+        '<li>'+
+            '<a href="projectList.html">Project List</a> <span class="divider">/</span>'+
+        '</li>'+
+        '<li>'+
+            '<a href="projectDashboard.html?project='+idProject+'">Project '+idProject+'</a> <span class="divider">/</span>'+
+        '</li>'+
+        '<li class="active">Project Members</li>'+
+    '</ul>');
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
@@ -36,38 +52,6 @@ function successGetObjSecondLevel(reponse)
 
 
 //display all items
-<<<<<<< HEAD
-function displayAllItems(items){
-	if (items.member1.length>1){ //if more than one members
-		$("#memberList > tbody").html("");
-		$.each(items.member1, function(i, dico){
-			$("#memberList > tbody").append("<tr>");
-			$("#memberList > tbody").append("<td>"+(i+1)+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.firstname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.lastname+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.login+"</td>");
-			$("#memberList > tbody").append("<td></td>");
-			$("#memberList > tbody").append("<td>"+dico.email+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.internalPhone+"</td>");
-			$("#memberList > tbody").append("<td>"+dico.mobilePhone+"</td>");
-			$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>");
-			$("#usersList > tbody").append("</tr>");
-		});   
-	}
-	else { //if only one member
-		$("#memberList > tbody").append("<tr>");
-		$("#memberList > tbody").append("<td>1</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.firstname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.lastname+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.login+"</td>");
-		$("#memberList > tbody").append("<td></td>");
-		$("#memberList > tbody").append("<td>"+items.member1.email+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.internalPhone+"</td>");
-		$("#memberList > tbody").append("<td>"+items.member1.mobilePhone+"</td>");
-		$("#memberList > tbody").append("<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>");
-		$("#memberList > tbody").append("</tr>");
-	}
-=======
 function displayAllItems(items)
 {
     //if more than one members
@@ -86,7 +70,7 @@ function displayAllItems(items)
                                             "<td>"+dico.mobilePhone+"</td>"+
                                             "<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>"+
                                             "</tr>");
-        });   
+        });
     }
     else //if only one member
     {
@@ -102,7 +86,6 @@ function displayAllItems(items)
                                         "<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>"+
                                         "</tr>");
     }
->>>>>>> d3e9f5b520cf70704a192e4eed21fa46a7706e4d
 }
 
 
@@ -162,6 +145,9 @@ $(document).ready( function() {
     {
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers, 2);
     }
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
 
     //action on #formProjectMember form
     $('#formProjectMember').submit(function(e) {
