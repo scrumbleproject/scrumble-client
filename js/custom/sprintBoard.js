@@ -169,7 +169,7 @@ function displayAllItems(items){
             //init current sortable list
             $( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3" ).sortable({
                 connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3",
-                update: function(event, ui) {
+                receive: function(event, ui) {
                     onTaskMove(ui.item);
                 }
             }).disableSelection();
@@ -192,7 +192,7 @@ function displayAllItems(items){
         //init current sortable list
         $( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
             connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
-            update: function(event, ui) {
+            receive: function(event, ui) {
                 onTaskMove(ui.item);
             }   
         }).disableSelection();
