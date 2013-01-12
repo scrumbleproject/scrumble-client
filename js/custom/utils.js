@@ -323,6 +323,5 @@ $.goBack = function()
         {
             window.location.href='http://scrumble-project.com/scrumble-client/html/login.html'
         }
-        });
     });
 }
