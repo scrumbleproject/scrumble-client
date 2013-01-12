@@ -135,7 +135,7 @@ function onTaskMove(item){
 
     //add member assignation
     //get param in url if exists
-    var idSprint = $(document).getUrlParam("sprint");       
+    var idSprint = $(document).getUrlParam("sprint");      
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {
         var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie();
