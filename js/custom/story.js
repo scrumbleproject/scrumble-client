@@ -47,15 +47,9 @@ function bindDeleteUserStoryEvent(idProject){
     });
 }
 
-function cancelUserStoryEvent(){
+function cancelButton(){
     $("button.btn-cancel-userStory").live('click',function(e){
-        //Fetch the back url
-        var url=document.referrer;
-        //Show a confirm box
-        e.preventDefault();
-        bootbox.confirm("Are you sure to cancel ?",function(confirmed){
-            window.location.href=window.history.back();
-        });
+        $.goBack();
     });
 }
 
