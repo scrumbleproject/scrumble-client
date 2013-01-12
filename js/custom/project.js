@@ -69,6 +69,12 @@ function bindDeleteEvent()
     });
 }
 
+function cancelButton()
+{
+    $("button.btn-cancel").live('click',function(e){
+        $.goBack();
+    });
+}
 
 
 /** Put here all calls that you want to launch at the page startup **/      

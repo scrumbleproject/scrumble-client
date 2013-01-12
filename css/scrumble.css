@@ -568,9 +568,16 @@ ul {
 	height: 75px;  
 	text-align: left;
   font-size: 11px;
-  line-height:18px;
+  line-height:15px;
 	background-color:#F3F781;
   overflow:hidden;
+}
+#sprintboard li.task div.task-assignation{
+  position:absolute;
+  bottom:0;
+  left:5px;
+  font-size:0.8em;
+  font-weight:bold;
 }
 
 
