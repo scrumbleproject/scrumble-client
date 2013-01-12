@@ -47,7 +47,17 @@ function bindDeleteUserStoryEvent(idProject){
     });
 }
 
-  
+function cancelUserStoryEvent(){
+    $("button.btn-cancel-userStory").live('click',function(e){
+        //Fetch the back url
+        var url=document.referrer;
+        //Show a confirm box
+        e.preventDefault();
+        bootbox.confirm("Are you sure to cancel ?",function(confirmed){
+            window.location.href=window.history.back();
+        });
+    });
+}
 
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
