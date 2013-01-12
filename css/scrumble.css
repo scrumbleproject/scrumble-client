@@ -539,9 +539,15 @@ ul {
 }
 #sprintboard div.userstory-title a{
   color:white;
+  width:95%;
 }
 #sprintboard div.userstory-title a:hover{
   text-decoration:none;
+}
+#sprintboard div.userstory-title a i {
+  float:right;
+  margin-top:4px;
+  margin-right:5px;
 }
 #sprintboard ul {
 	display:block;
