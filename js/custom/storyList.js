@@ -37,7 +37,7 @@ function displayAllItems(items)
             $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
                     "<a class='edit' href='story.html?userstory="+dico.idUserstory+"&project="+dico.idProject.idProject+"'><img class='icon-pencil'/></a>"+
                     "<div class='title'>"+ dico.title + "</div>" +
-                    "<div class='estimation-label'>Days/Person</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
+                    "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
                 "</li>");
         });   
     }
