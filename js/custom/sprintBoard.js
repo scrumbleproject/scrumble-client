@@ -32,11 +32,10 @@ function displayMembersAssignation(idSprint, idTask, idHtmlElement){
         type:'GET',
         contentType:'application/json; charset=UTF-8',
         success: function(response) {
-
+            $("#"+idHtmlElement).html("");
             var items = $.parseJSON(response);
             if (items!=null){
                 if (items.member1.length>1) {
-                    $("#"+idHtmlElement).html("");
                     $.each(items.member1, function(i, taskDico){
                         if (i>0){
                             $("#"+idHtmlElement).append("-");
@@ -192,9 +191,20 @@ function onTaskMove(item){
     var idSprint = $(document).getUrlParam("sprint");      
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {
-        var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie();
-        var formdata='';
+        if (status==config.processStatus.toDo) {
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie()+'/remove';
+            var formdata='';
+        }
+        else {
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idSprint+'/'+idTask+'/'+$.getLoginFromCookie()+'/add';
+            var formdata='';
+        }
         $.postObjToDatabase(url, formdata, '', '');
+
+        //refresh assignation on screen - TO FIX !!!
+        setTimeout(function() {
+            displayMembersAssignation(idSprint, idTask, "task-assignation-"+idTask);
+        }, 500);
     }
 }
 
