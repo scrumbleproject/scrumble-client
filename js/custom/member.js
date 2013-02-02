@@ -162,7 +162,7 @@ $(document).ready(function()
 
         if(idMember==null || idMember.length==0)
         {
-            if (login==null || fisrtname == null || lastname == null || password == null)
+            if (login==null || login=="" || firstname == null || firstname == "" || lastname == null || lastname == "" || password == null || password == "")
             {
             }
             else
@@ -175,7 +175,7 @@ $(document).ready(function()
         }
         else //Case 2 : update an existing member (idMember is not empty)
         {
-            if (login==null || fisrtname == null || lastname == null || password == null)
+            if (login==null || login=="" || firstname == null || firstname == "" || lastname == null || lastname == "" || password == null || password == "")
             {
             }
             else
