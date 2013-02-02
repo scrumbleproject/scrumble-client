@@ -159,7 +159,7 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
             }
         });
     }
-    else if(form=='')
+    else
     {
         $.ajax({
             url:url_ws,
@@ -220,7 +220,7 @@ $.putObjToDatabase = function(url_ws, form, message, redirect)
             }
         });
     }
-    else if(form=='')
+    else
     {
         $.ajax({
             url:url_ws,
