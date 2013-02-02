@@ -638,3 +638,19 @@ ul {
 #formSprint .datepicker{
   cursor: pointer;
 }
+
+
+/****************** SprintStory *****************************/
+.notAdd {
+  background-color: red;
+
+}
+
+#userstories-list > li.notAdd{
+  background-color: white;
+}
+
+#userstories-list > li.add{
+  background-color: #3A87AD;
+}
+
