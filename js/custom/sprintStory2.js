@@ -19,11 +19,16 @@ function successGetObjFirstLevel(reponse)
 function storySprint()
 {
    $('.img-polaroid').click(function () {
-        if($(this).css("element.style","white")){
-            $(this).css("background-color","#3A87AD");
+        if($(this).hasClass('notAdd')){
+            $(this).removeClass("notAdd");
+            $(this).addClass("add");
+            
         }
         else {
-            $(this).css("background-color","white");
+           if($(this).hasClass('add')){
+             $(this).removeClass("add");
+             $(this).addClass("notAdd");
+           }
         }        
    });    
 }
@@ -39,7 +44,7 @@ function displayAllItems(items)
         $("#userstories-list").html("");
         $.each(items.userstory, function(i, dico)
         {
-            $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
+            $("#userstories-list").append("<li class='img-polaroid notAdd' id='user-story-"+dico.idUserstory+"'>"+
                     
                     "<div class='title'><p>"+ dico.title + "<p></div>" +
                     "<div class='estimation-label'>Days/Person</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
