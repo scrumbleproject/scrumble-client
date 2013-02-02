@@ -59,16 +59,13 @@ function displayAllItems(items)
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
 {
-    
-    //get parameters idProject in url if exists
+    //get parameters idProject and idSprint in url if exists
     var idProject = $(document).getUrlParam("project");
+    var idSprint = $(document).getUrlParam("sprint");
 
     //load data on list
-    if((idProject !=="") && (idProject !==null)) 
+    if((idProject !=="") && (idProject !==null))
     {
-        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idProject+'/projects');
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/userstories/no');
     }
-    
 });
-
-
