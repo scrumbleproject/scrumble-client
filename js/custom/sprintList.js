@@ -42,7 +42,10 @@ function displayAllItems(items)
                         '</div>'+
                         '<div id="collapseOne" class="accordion-body collapse in">'+
                         '<div class="accordion-inner">'+
-                        '<a href="sprintBoard.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Lien vers le sprintboard du sprint numéro '+dico.idSprint+'</a>'+
+                        '<ul>'+
+                        '<li><a href="sprintStory.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Gérer les user stories du sprint n°'+dico.idSprint+'</a></li>'+
+                        '<li><a href="sprintBoard.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Sprintboard du sprint n°'+dico.idSprint+'</a></li>'+
+                        '</ul>'+
                         '<div id="sprint-infos" class="row-fluid">';
 
             //Number of stories
@@ -138,7 +141,10 @@ function displayAllItems(items)
                     '</div>'+
                     '<div id="collapseOne" class="accordion-body collapse in">'+
                     '<div class="accordion-inner">'+
-                    '<a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Lien vers le sprintboard du sprint numéro '+items.sprint.idSprint+'</a>'+
+                    '<ul>'+
+                    '<li><a href="sprintStory.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Gérer les user stories du sprint n°'+items.sprint.idSprint+'</a></li>'+
+                    '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Sprintboard du sprint n°'+items.sprint.idSprint+'</a></li>'+
+                    '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 
         //Number of stories
