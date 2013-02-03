@@ -67,11 +67,11 @@ function displayAllNotSelectedUserstories(items)
 function displayAllSelectedUserstories(items)
 {
     $("#sortableSelected").html("");
-    //if more than one user story
-    if (!items.userstory.length){
+
+    if (!items){
         $("#sortableSelected").append('<p class="muted">Feed me to add user stories to the sprint</p>');
     }
-    else if (items.userstory.length>1)
+    else if (items.userstory.length>1) //if more than one user story
     { 
         $.each(items.userstory, function(i, dico)
         {
