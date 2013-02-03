@@ -49,23 +49,12 @@
                         <div class="column1">
                             <h3>Available user stories</h3>
                             <ul id="sortableNotSelected">
-                                <li class="ui-state-default">Item 1</li>
-                                <li class="ui-state-default">Item 2</li>
-                                <li class="ui-state-default">Item 3</li>
-                                <li class="ui-state-default">Item 4</li>
-                                <li class="ui-state-default">Item 5</li>
-                                <li class="ui-state-default">Item 6</li>
-                                <li class="ui-state-default">Item 7</li>
-                                <li class="ui-state-default">Item 8</li>
-                                <li class="ui-state-default">Item 9</li>
-                                <li class="ui-state-default">Item 10</li>
                             </ul>
                         </div>
 
                         <div class="column2">
                             <h3>Selected user stories</h3>
                             <ul id="sortableSelected">
-                                <p class="muted">Feed me to add user stories to the sprint</p>
                             </ul>
                         </div>
 
@@ -88,31 +77,7 @@
         <script src="../js/lib/jquery.js"></script>
         <script src="../js/lib/jquery-ui.js"></script>
         <script src="../js/custom/loadJS.js"></script>
-        <script src="../js/custom/sprintStoryManagement.js"></script>  
-
-
-        <script type="text/javascript">
-            $(function() {
-                $( "#sortableNotSelected" ).sortable({
-                    connectWith: "#sortableSelected"
-                });
-                $( "#sortableSelected" ).sortable({
-                    connectWith: "#sortableNotSelected",
-                    receive: function(event, ui) {
-                        if ( $("ul#sortableSelected").children("li").length > 0 ) {
-                            $("ul#sortableSelected").find('p').remove();
-                        }
-                    },
-                    remove: function(event, ui) {
-                        if ( $("ul#sortableSelected").children("li").length == 0 ) {
-                            $("ul#sortableSelected").append('<p class="muted">Feed me to add user stories to the sprint</p>');
-                        }
-                    }
-                });
-                $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
-            });
-        </script>
-        
+        <script src="../js/custom/sprintStoryManagement.js"></script>        
              
     </body>
 </html>

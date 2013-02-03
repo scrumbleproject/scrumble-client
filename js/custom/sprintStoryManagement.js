@@ -46,10 +46,10 @@ function storySprintManagerInit()
 //display all not selected userstories
 function displayAllNotSelectedUserstories(items)
 {
+    $("#sortableNotSelected").html("");
     //if more than one user story
     if (items.userstory.length>1)
     { 
-        $("#sortableNotSelected").html("");
         $.each(items.userstory, function(i, dico)
         {
             $("#sortableNotSelected").append('<li class="ui-state-default">'+dico.title+'</li>');
@@ -66,13 +66,13 @@ function displayAllNotSelectedUserstories(items)
 //display all selected userstories
 function displayAllSelectedUserstories(items)
 {
+    $("#sortableSelected").html("");
     //if more than one user story
     if (!items.userstory.length){
         $("#sortableSelected").append('<p class="muted">Feed me to add user stories to the sprint</p>');
     }
     else if (items.userstory.length>1)
     { 
-        $("#sortableSelected").html("");
         $.each(items.userstory, function(i, dico)
         {
             $("#sortableSelected").append('<li class="ui-state-default">'+dico.title+'</li>');
