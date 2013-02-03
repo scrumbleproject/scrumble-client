@@ -52,13 +52,13 @@ function displayAllNotSelectedUserstories(items)
     { 
         $.each(items.userstory, function(i, dico)
         {
-            $("#sortableNotSelected").append('<li class="ui-state-default">'+dico.title+'</li>');
+            $("#sortableNotSelected").append('<li class="ui-state-default" id="userstory-'+dico.idUserstory+'">'+dico.title+'</li>');
         });
         
     }
     else //if only one user story
     {
-        $("#sortableNotSelected").append('<li class="ui-state-default">'+items.userstory.title+'</li>');
+        $("#sortableNotSelected").append('<li class="ui-state-default" id="userstory-'+items.userstory.idUserstory+'">'+items.userstory.title+'</li>');
     }
 
 }
@@ -75,13 +75,13 @@ function displayAllSelectedUserstories(items)
     { 
         $.each(items.userstory, function(i, dico)
         {
-            $("#sortableSelected").append('<li class="ui-state-default">'+dico.title+'</li>');
+            $("#sortableSelected").append('<li class="ui-state-default" id="userstory-'+dico.idUserstory+'">'+dico.title+'</li>');
         });
         
     }
     else //if only one user story
     {
-        $("#sortableSelected").append('<li class="ui-state-default">'+items.userstory.title+"</li>");
+        $("#sortableSelected").append('<li class="ui-state-default" id="userstory-'+items.userstory.idUserstory+'">'+items.userstory.title+"</li>");
     }
 
 }
@@ -92,9 +92,21 @@ function displayAllSelectedUserstories(items)
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
 {
+
     //get parameters idProject and idSprint in url if exists
     var idProject = $(document).getUrlParam("project");
     var idSprint = $(document).getUrlParam("sprint");
+
+    $("#submitButton").click( function() {
+        var url = 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/save/'+idSprint;
+        var arraySelectedId = new Array();
+        $("#sortableSelected li").each(function() {
+            var idStory = $(this).attr("id").replace('userstory-','');
+            arraySelectedId.push(idStory);
+        }); 
+        var formData = { 'userstories[]' : arraySelectedId };
+        $.postObjToDatabase(url, formData, 'The Sprint', 'sprintList.html');
+    });
 
     //load data on list
     if((idProject !=="") && (idProject !==null))
