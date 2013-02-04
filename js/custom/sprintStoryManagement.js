@@ -103,8 +103,10 @@ $(document).ready(function()
         $("#sortableSelected li").each(function() {
             var idStory = $(this).attr("id").replace('userstory-','');
             arraySelectedId.push(idStory);
-        }); 
+        });
+        
         var formData = { 'userstories[]' : arraySelectedId };
+        
         $.postObjToDatabase(url, formData, 'The Sprint', 'sprintList.html');
     });
 
