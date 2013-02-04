@@ -99,15 +99,16 @@ $(document).ready(function()
 
     $("#submitButton").click( function() {
         var url = 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/save/'+idSprint;
-        var arraySelectedId = new Array();
-        $("#sortableSelected li").each(function() {
+        var formData = "[";
+        $("#sortableSelected li").each(function(i) {
             var idStory = $(this).attr("id").replace('userstory-','');
-            arraySelectedId.push(idStory);
+            if (i>0) {
+                formData += ",";
+            }
+            formData += idStory;
         });
-        
-        var formData = { 'userstories[]' : arraySelectedId };
-        
-        $.postObjToDatabase(url, formData, 'The Sprint', 'sprintList.html');
+        formData += "]";
+        $.postObjToDatabase(url, formData, 'The Sprint', 'sprintList.html?project='+idProject);
     });
 
     //load data on list
