@@ -99,7 +99,7 @@ $(document).ready(function()
 
     $("#submitButton").click( function() {
         var url = 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/save/'+idSprint;
-        var formData = "[";
+        var formData = "";
         $("#sortableSelected li").each(function(i) {
             var idStory = $(this).attr("id").replace('userstory-','');
             if (i>0) {
@@ -107,7 +107,9 @@ $(document).ready(function()
             }
             formData += idStory;
         });
-        formData += "]";
+        if (formData=="") {
+            formData = "empty"; 
+        } 
         $.postObjToDatabase(url, formData, 'The Sprint', 'sprintList.html?project='+idProject);
     });
 
