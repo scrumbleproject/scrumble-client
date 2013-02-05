@@ -3,17 +3,36 @@
 
 
 
+//Display the breadCrumb trail
+function displayBreadCrumb(idProject)
+{
+    var myTab = new Array();
+
+    myTab['dashboard.html'] = 'Home';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
+    myTab[''] = 'Userstory Assignment'; 
+
+    $.showBreadCrumb(myTab);
+}
+
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjFirstLevel(reponse)
 {
     displayAllNotSelectedUserstories($.parseJSON(reponse));
 }
 
+
+
 //function called by $.getObjFromDatabase function (utils.js)
 function successGetObjSecondLevel(reponse)
 {
     displayAllSelectedUserstories($.parseJSON(reponse));
 }
+
+
 
 /*Add story in sprint
 
@@ -96,6 +115,9 @@ $(document).ready(function()
     //get parameters idProject and idSprint in url if exists
     var idProject = $(document).getUrlParam("project");
     var idSprint = $(document).getUrlParam("sprint");
+
+    //display the breadcrumb trail
+    displayBreadCrumb(idProject);
 
     $("#submitButton").click( function() {
         var url = 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/save/'+idSprint;
