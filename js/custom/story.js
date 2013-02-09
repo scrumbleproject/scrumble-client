@@ -97,7 +97,9 @@ $(document).ready(function()
 
     //display the breadcrumb trail
     displayBreadCrumb(idProject,idUserstory);
-
+    
+    //keep in memory last tab visited
+    $.showLastVisitedTab();
 
     //action on #formStory form
     $('#formStory').submit(function()
