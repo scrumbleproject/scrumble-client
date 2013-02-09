@@ -247,7 +247,9 @@ $(document).ready(function()
     {
         //Display the button New sprint
         $('#sprintList').append('<div class="row-fluid">'+
+                                   
                                     '<h2>Sprint List</h2>'+
+                                    '<a class="btn btn-primary burndownchartBtn" href="burndownchart.html">Burn down chart</a>'+
                                     '<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
                                     '<div class="sprints" id="sprints">'+
                                     '</div>'+

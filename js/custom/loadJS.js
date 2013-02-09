@@ -3,6 +3,7 @@ $(function()
 
     var scripts = [
         "../js/lib/jquery.cookie.js",
+
         "../js/lib/bootstrap-plugins/bootbox.min.js",
         "../js/lib/bootstrap-core/bootstrap-transition.js",
         "../js/lib/bootstrap-core/bootstrap-alert.js",
@@ -20,7 +21,9 @@ $(function()
         "../js/custom/config.js",
         "../js/custom/utils.js",
         "../js/custom/auth.js",
-        "../js/custom/page.js"       
+        "../js/custom/page.js",   
+        "../js/lib/highchart/highcharts.js",
+        "../js/lib/highchart/exporting.js"    
     ];
 
     for(var i=0; i<scripts.length; i++){

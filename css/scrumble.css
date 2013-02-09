@@ -705,3 +705,9 @@ ul {
     font-weight: normal;
 }
 
+/*************************** Burn down chart ********************************/
+
+.burndownchartBtn {
+  float: right;
+}
+
