@@ -390,6 +390,13 @@ ul {
     max-width: 185px;
 }
 
+h3.project-list {
+  margin-top:0px;
+}
+
+div.id-project {
+  text-align:right;
+}
 
 
 #createbacklog .span3{

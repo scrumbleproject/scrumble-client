@@ -11,7 +11,7 @@ function displayBreadCrumb(idProject,idUserstory)
         var myTab = new Array();
 
         myTab['dashboard.html'] = 'Home';
-        myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+        myTab['projectDashboard.html?project='+idProject+''] = 'Project (ID: '+idProject+')';
         myTab['storyList.html?project='+idProject+''] = 'User Story Backlog';
         myTab[''] = 'New User Story';
 
