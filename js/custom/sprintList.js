@@ -36,12 +36,15 @@ function displayAllItems(items)
     {
         $.each(items.sprint, function(i, dico)
         {
-            console.log("startButtonLbl="+dico.started);
-            var startStopButtonLbl = "Start";
+            console.log("startButtonLbl="+dico.idProcessStatus.codeStatus);
+            var startStopButtonLbl = "Launch Sprint";
             var startStopButtonColorClass = "btn-success";
-            if(dico.started=="true"){
+            if(dico.idProcessStatus.codeStatus==config.processStatus.inProgress){
                 startStopButtonLbl = "End";
                 startStopButtonColorClass = "btn-warning";
+            }else if(dico.idProcessStatus.codeStatus==config.processStatus.done){
+                startStopButtonLbl = "Completed";
+                startStopButtonColorClass="disabled";
             }
 
             chaine += '<div class="accordion-group">'+
