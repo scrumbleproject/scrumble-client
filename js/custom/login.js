@@ -4,7 +4,7 @@
 function handleAuthenticationResponse(login, token, displayName){
 
     if (typeof(token)!='undefined' && token.length>6){
-        alert("login="+login+"\ntoken="+token+"\ntoken="+displayName);
+        //alert("login="+login+"\ntoken="+token+"\ntoken="+displayName);
         $.createCookie(login, token, displayName);
     }
 }
