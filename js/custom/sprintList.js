@@ -36,12 +36,23 @@ function displayAllItems(items)
     {
         $.each(items.sprint, function(i, dico)
         {
+            console.log("startButtonLbl="+dico.started);
+            var startStopButtonLbl = "Start";
+            var startStopButtonColorClass = "btn-success";
+            if(dico.started=="true"){
+                startStopButtonLbl = "End";
+                startStopButtonColorClass = "btn-warning";
+            }
+
             chaine += '<div class="accordion-group">'+
                         '<div class="accordion-heading">'+
                         '<div class="sprint-title"><a href="sprint.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">'+dico.title+'</a></div>'+
                         '</div>'+
                         '<div id="collapseOne" class="accordion-body collapse in">'+
                         '<div class="accordion-inner">'+
+                        '<div class="sprint-buttons">'+
+                        '<button class="btn btn-large '+startStopButtonColorClass+'">'+startStopButtonLbl+'</button>'+
+                        '</div>'+
                         '<ul>'+
                         '<li><a href="sprintStoryManagement.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Gérer les user stories du sprint n°'+dico.idSprint+'</a></li>'+
                         '<li><a href="sprintBoard.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Sprintboard du sprint n°'+dico.idSprint+'</a></li>'+

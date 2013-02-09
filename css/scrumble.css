@@ -650,6 +650,11 @@ div.id-project {
   margin-top: 10px;
 }
 
+#sprintList .sprint-buttons{
+  float:left;
+  margin-right:20px;
+}
+
 
 /*********************** SPRINT ******************************/
 #formSprint .datepicker{
