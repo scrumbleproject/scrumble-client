@@ -168,6 +168,16 @@ a.brand{
 
 
 
+/********************LEFT MENU********************/
+
+#left-menu{
+    /*position:fixed;*/
+}
+
+/*************************************/
+
+
+
 
 /*****************START LOGIN********************/
 
@@ -390,6 +400,13 @@ ul {
     max-width: 185px;
 }
 
+h3.project-list {
+  margin-top:0px;
+}
+
+div.id-project {
+  text-align:right;
+}
 
 
 #createbacklog .span3{
@@ -631,6 +648,11 @@ ul {
 
 #sprintList .sprints{
   margin-top: 10px;
+}
+
+#sprintList .sprint-buttons{
+  float:left;
+  margin-right:20px;
 }
 
 

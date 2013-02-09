@@ -33,14 +33,14 @@ function displayAllItems(items)
         $("#projects-list").html("");
         $.each(items.project, function(i, dico)
         {
-            $("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='projectDashboard.html?project=" + dico.idProject +"'><h3>"+ dico.title + "</h3></a>"+
+            $("#projects-list").append("<li class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><div class='id-project'>ID: " + dico.idProject +"</div><a href='projectDashboard.html?project=" + dico.idProject +"'><h3 class='project-list'>"+ dico.title + "</h3></a>"+
                     "<p>" + dico.description + "</p> </div> </div> </li>" 
                     );
         });   
     }
     else //if only one project
     {
-        $("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><a href='projectDashboard.html?project=" + items.project.idProject +"'><h3>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
+        $("#projects-list").append("<li c class='span3'><div class='thumbnail'><img alt='' src='http://placehold.it/300x200'><div class='caption'><div class='id-project'>ID: " + items.project.idProject +"</div><a href='projectDashboard.html?project=" + items.project.idProject +"'><h3 class='project-list'>"+items.project.title+"</h3></a><p>" + items.project.description +"</p></div> </div></li>");
     }
 }
 

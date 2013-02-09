@@ -41,6 +41,7 @@ var leftMenu= {
             "sprintList.html" : "left-menu-option-sprint",
             "sprint.html" : "left-menu-option-sprint",
             "sprintBoard.html" : "left-menu-option-sprint",
+            "sprintStoryManagement.html" : "left-menu-option-sprint",
             "storyList.html" : "left-menu-option-story",
             "story.html" : "left-menu-option-story",
             "projectMember.html" : "left-menu-option-member",

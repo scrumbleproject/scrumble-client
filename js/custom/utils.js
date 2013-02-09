@@ -83,8 +83,8 @@ $.showLeftMenu = function(idProject, active, type){
                                 '<ul class="nav nav-list">'+
                                   '<li class="nav-header">Sidebar</li>'+
                                   '<li id="left-menu-option-project"><a href="projectDashboard.html?project='+idProject+'">Project</a></li>'+
-                                  '<li id="left-menu-option-sprint"><a href="sprintList.html?project='+idProject+'">Sprint</a></li>'+
-                                  '<li id="left-menu-option-story"><a href="storyList.html?project='+idProject+'">Story</a></li>'+
+                                  '<li id="left-menu-option-story"><a href="storyList.html?project='+idProject+'">Stories</a></li>'+
+                                  '<li id="left-menu-option-sprint"><a href="sprintList.html?project='+idProject+'">Sprints</a></li>'+
                                   '<li id="left-menu-option-member"><a href="projectMember.html?project='+idProject+'">Members</a></li>'+
                                 '</ul>'+
                             '</div>');

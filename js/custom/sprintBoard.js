@@ -9,7 +9,7 @@ function displayBreadCrumb(idProject)
     var myTab = new Array();
 
     myTab['dashboard.html'] = 'Home';
-    myTab['projectDashboard.html?project='+idProject+''] = 'Project '+idProject+'';
+    myTab['projectDashboard.html?project='+idProject+''] = 'Project (ID: '+idProject+')';
     myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
     myTab[''] = 'Sprintboard'; 
 
