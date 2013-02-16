@@ -130,6 +130,7 @@ function submitFormTask(idUserstory)
     {
         $(this).submit(function()
         {
+            var idProject = $(document).getUrlParam("project"); 
             var idTask = $("#"+$(this).attr("id")+" input[name=idTask]").val();
             
             //Case 1 : create a new task (idTask is empty)
@@ -137,14 +138,17 @@ function submitFormTask(idUserstory)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.postObjToDatabase(url, formdata, 'Task', '');
+                $.postObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
+
             }
             else //Case 2 : update an existing task (idTask is not empty)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.putObjToDatabase(url, formdata, 'Task', '');
+                $.putObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
+
             }
+            
             return false;
         })
     });
@@ -165,4 +169,5 @@ $(document).ready( function()
 
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/all', 2);
     }
+
 });
