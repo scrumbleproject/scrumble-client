@@ -344,3 +344,12 @@ $.showLastVisitedTab = function() {
       $('#'+lastTab).tab('show');
   }
 }
+
+
+/**
+ * Function to convert dates
+ */
+function parseDate(input) {
+  var parts = input.match(/(\d+)/g);
+  return Date.UTC(parts[0], parts[1]-1, parts[2]);
+}
