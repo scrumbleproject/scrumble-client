@@ -36,7 +36,6 @@ function displayAllItems(items)
     {
         $.each(items.sprint, function(i, dico)
         {
-            console.log("startButtonLbl="+dico.idProcessStatus.codeStatus);
             var startStopButtonLbl = "Launch Sprint";
             var startStopButtonColorClass = "btn-success";
             if(dico.idProcessStatus.codeStatus==config.processStatus.inProgress){
