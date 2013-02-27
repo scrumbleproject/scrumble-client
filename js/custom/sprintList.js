@@ -53,11 +53,12 @@ function displayAllItems(items)
                         '<div id="collapseOne" class="accordion-body collapse in">'+
                         '<div class="accordion-inner">'+
                         '<div class="sprint-buttons">'+
-                        '<button class="btn btn-large '+startStopButtonColorClass+'">'+startStopButtonLbl+'</button>'+
+                        '<button id="btn-sprint-'+dico.idSprint+'-'+dico.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
                         '</div>'+
                         '<ul>'+
                         '<li><a href="sprintStoryManagement.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Gérer les user stories du sprint n°'+dico.idSprint+'</a></li>'+
                         '<li><a href="sprintBoard.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Sprintboard du sprint n°'+dico.idSprint+'</a></li>'+
+                        '<li><a href="sprintBurndownChart.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Burndownchart du sprint n°'+dico.idSprint+'</a></li>'+
                         '</ul>'+
                         '<div id="sprint-infos" class="row-fluid">';
 
@@ -148,15 +149,30 @@ function displayAllItems(items)
     }
     else //If there is only one sprint
     {
+
+        var startStopButtonLbl = "Launch Sprint";
+        var startStopButtonColorClass = "btn-success";
+        if(items.sprint.idProcessStatus.codeStatus==config.processStatus.inProgress){
+            startStopButtonLbl = "End";
+            startStopButtonColorClass = "btn-warning";
+        }else if(items.sprint.idProcessStatus.codeStatus==config.processStatus.done){
+            startStopButtonLbl = "Completed";
+            startStopButtonColorClass="disabled";
+        }
+
         chaine += '<div class="accordion-group">'+
                     '<div class="accordion-heading">'+
-                        '<div class="sprint-title"><a href="sprint.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">'+items.sprint.title+'</a></div>'+
+                    '<div class="sprint-title"><a href="sprint.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">'+items.sprint.title+'</a></div>'+
                     '</div>'+
                     '<div id="collapseOne" class="accordion-body collapse in">'+
                     '<div class="accordion-inner">'+
+                    '<div class="sprint-buttons">'+
+                    '<button id="sprint-'+items.sprint.idSprint+'-'+items.sprint.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
+                    '</div>'+
                     '<ul>'+
                     '<li><a href="sprintStoryManagement.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Gérer les user stories du sprint n°'+items.sprint.idSprint+'</a></li>'+
                     '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Sprintboard du sprint n°'+items.sprint.idSprint+'</a></li>'+
+                    '<li><a href="sprintBurndownChart.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Burndownchart du sprint n°'+items.sprint.idSprint+'</a></li>'+
                     '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 
@@ -242,8 +258,33 @@ function displayAllItems(items)
     }
 
     $("#sprints").append(chaine);
+
+    //enable start-stop-btn action
+    $(".start-stop-btn").each(function() {
+
+        $(this).live('click', function(e){
+            var params = $(this).attr("id").split('-');
+            changeSprintStatus(params[2], params[3]);
+        });
+    });
 }
 
+
+function changeSprintStatus(idSprint, status){
+
+    console.log("idSprint="+idSprint);
+    console.log("status="+status);
+    if (status == config.processStatus.toDo || status == config.processStatus.inProgress) {   
+        if (status == config.processStatus.toDo) {
+            status = config.processStatus.inProgress;
+        } else if (status == config.processStatus.inProgress) {
+            status = config.processStatus.done;
+        }
+        var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/'+status;
+        var idProject = $(document).getUrlParam("project");
+        $.postObjToDatabase(url, '', '', 'sprintList.html?project='+idProject);
+    }
+}
 
 
 /** Put here all calls that you want to launch at the page startup **/      

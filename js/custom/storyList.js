@@ -43,7 +43,11 @@ function displayAllItems(items)
     }
     else //if only one user story
     {
-        $("#userstories-list").append("<li class='img-polaroid'>"+items.userstory.title+"</li>");
+        $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+items.userstory.idUserstory+"'>"+
+                "<a class='edit' href='story.html?userstory="+items.userstory.idUserstory+"&project="+items.userstory.idProject.idProject+"'><img class='icon-pencil'/></a>"+
+                "<div class='title'>"+ items.userstory.title + "</div>" +
+                "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(items.userstory.estimation, "N/A") + "</div>" +
+            "</li>");
     }
 
     //init sortable list
