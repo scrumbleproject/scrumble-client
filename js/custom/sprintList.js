@@ -58,6 +58,7 @@ function displayAllItems(items)
                         '<ul>'+
                         '<li><a href="sprintStoryManagement.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Gérer les user stories du sprint n°'+dico.idSprint+'</a></li>'+
                         '<li><a href="sprintBoard.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Sprintboard du sprint n°'+dico.idSprint+'</a></li>'+
+                        '<li><a href="sprintBurndownChart.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">Burndownchart du sprint n°'+dico.idSprint+'</a></li>'+
                         '</ul>'+
                         '<div id="sprint-infos" class="row-fluid">';
 
@@ -171,6 +172,7 @@ function displayAllItems(items)
                     '<ul>'+
                     '<li><a href="sprintStoryManagement.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Gérer les user stories du sprint n°'+items.sprint.idSprint+'</a></li>'+
                     '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Sprintboard du sprint n°'+items.sprint.idSprint+'</a></li>'+
+                    '<li><a href="sprintBurndownChart.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Burndownchart du sprint n°'+items.sprint.idSprint+'</a></li>'+
                     '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 

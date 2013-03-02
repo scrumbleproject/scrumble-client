@@ -2,6 +2,9 @@
 /** Sprintboard methods **/
 
 
+//Global var
+var processStatus;
+
 
 //Display the breadCrumb trail
 function displayBreadCrumb(idProject)
@@ -209,6 +212,51 @@ function onTaskMove(item){
 }
 
 
+function askForProcessStatusFromSprint(idSprint){
+
+    $.ajax({
+        url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/status",
+        type:'GET',
+        contentType:'application/json; charset=UTF-8',
+        success: function(reponse) 
+        {
+            processStatus = $.parseJSON(reponse);  
+        },
+        error:function (xhr, status, error)
+        {
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+        },
+        dataType:'text',
+        converters:'text json'
+    });
+
+}
+
+function handleEditMode(i){
+
+    var idSprint = $(document).getUrlParam("sprint");
+
+    if ( (idSprint !=="") && (idSprint !==null)) {
+
+        if(processStatus.codeStatus==config.processStatus.inProgress){ //edit mode
+                    
+            //init current sortable list
+            $( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3" ).sortable({
+                connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3",
+                receive: function(event, ui) {
+                    onTaskMove(ui.item);
+                }
+            }).disableSelection();
+        } else {//read mode
+            $( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3").disableSelection();
+            $( "#sortable"+(i+1)+"-1 li, #sortable"+(i+1)+"-2 li, #sortable"+(i+1)+"-3 li").addClass("task-inactive");
+        }      
+    }
+
+
+}
+
+
 //display all items
 function displayAllItems(items){
 
@@ -234,12 +282,8 @@ function displayAllItems(items){
             $("#sprintboard").append(htmlContent);
             
             //init current sortable list
-            $( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3" ).sortable({
-                connectWith: "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3",
-                receive: function(event, ui) {
-                    onTaskMove(ui.item);
-                }
-            }).disableSelection();
+            handleEditMode(i);
+
         });
     }
     else { //if only one user story
@@ -257,12 +301,8 @@ function displayAllItems(items){
         $("#sprintboard").append(htmlContent);
 
         //init current sortable list
-        $( "#sortable1-1, #sortable1-2, #sortable1-3" ).sortable({
-            connectWith: "#sortable1-1, #sortable1-2, #sortable1-3",
-            receive: function(event, ui) {
-                onTaskMove(ui.item);
-            }   
-        }).disableSelection();
+        handleEditMode(0);
+
     }
 }
 
@@ -282,6 +322,7 @@ $(document).ready(function() {
 
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {
+        askForProcessStatusFromSprint(idSprint);
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/"+config.resources.userStories);
     }
 });
