@@ -37,6 +37,7 @@ function successGetObjFirstLevel(reponse)
 {
     fillForm($.parseJSON(reponse));
     bindDeleteUserStoryEvent(idProject);
+    handleEditMode();
 }
 
 
@@ -81,6 +82,30 @@ function cancelButton(){
         $.goBack();
     });
 }
+
+function handleEditMode(){
+
+    var idUserstory = $(document).getUrlParam("userstory");
+
+    if((idUserstory !=="") && (idUserstory !==null)){
+
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+"/iseditable",
+            type:'GET',
+            success: function(reponse) 
+            {
+                console.log(reponse);  
+            },
+            error:function (xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+
+
+}
+
 
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
