@@ -63,17 +63,31 @@ function displayAllItems(items)
                         '<div id="sprint-infos" class="row-fluid">';
 
             //Number of stories
-            //if (typeof myVar != "undefined")
-            //{
-                chaine += '<div class="span2">'+
-                            '<div class="head-sprint-info">'+
-                            '<h3>A FAIRE</h3>'+
-                            '</div>'+
-                            '<div class="legend-sprint-info">'+
-                            '<p>Stories</p>'+
-                            '</div>'+
-                            '</div>';
-            //}
+            $.ajax({
+                url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+dico.idSprint+'/userstorynumber',
+                async:false,
+                type:'GET',
+                contentType:'application/json; charset=UTF-8',
+                success: function(reponse) 
+                {
+                    data = $.parseJSON(reponse);
+
+                    chaine += '<div class="span2">'+
+                        '<div class="head-sprint-info">'+
+                        '<h3>'+data['UserstoryNumber']+'</h3>'+
+                        '</div>'+
+                        '<div class="legend-sprint-info">'+
+                        '<p>Stories</p>'+
+                        '</div>'+
+                        '</div>';
+                },
+                error:function (xhr, status, error)
+                {
+                    //bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+                },
+                dataType:'text',
+                converters:'text json'
+            });
 
             //Velocity
             if (typeof dico.velocity != "undefined")
@@ -117,7 +131,7 @@ function displayAllItems(items)
             }
 
             //Duration
-            if (typeof dico.duree != "undefined")
+            /*if (typeof dico.duree != "undefined")
             {
                 chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
@@ -127,20 +141,36 @@ function displayAllItems(items)
                             '<p>Duration</p>'+
                             '</div>'+
                             '</div>';
-            }
+            }*/
 
             //Progression
-            //if (typeof myVar != "undefined")
-            //{
-                chaine += '<div class="span2">'+
+            $.ajax({
+                url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+dico.idSprint+'/progression',
+                async:false,
+                type:'GET',
+                contentType:'application/json; charset=UTF-8',
+                success: function(reponse) 
+                {
+                    data = $.parseJSON(reponse);
+
+                    chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>A FAIRE</h3>'+
+                            '<h3>'+data['Progression']+' %</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
                             '<p>Progression</p>'+
                             '</div>'+
                             '</div>';
-            //}
+                },
+                error:function (xhr, status, error)
+                {
+                    //bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+                },
+                dataType:'text',
+                converters:'text json'
+            });
+
+
             chaine += '</div>'+
                     '</div>'+
                   '</div>'+
@@ -176,18 +206,34 @@ function displayAllItems(items)
                     '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 
+
         //Number of stories
-        //if (typeof myVar != "undefined")
-        //{
-            chaine += '<div class="span2">'+
-                        '<div class="head-sprint-info">'+
-                        '<h3>A FAIRE</h3>'+
-                        '</div>'+
-                        '<div class="legend-sprint-info">'+
-                        '<p>Stories</p>'+
-                        '</div>'+
-                        '</div>';
-        //}
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+items.sprint.idSprint+'/userstorynumber',
+            async:false,
+            type:'GET',
+            contentType:'application/json; charset=UTF-8',
+            success: function(reponse) 
+            {
+                data = $.parseJSON(reponse);
+
+                chaine += '<div class="span2">'+
+                    '<div class="head-sprint-info">'+
+                    '<h3>'+data['UserstoryNumber']+'</h3>'+
+                    '</div>'+
+                    '<div class="legend-sprint-info">'+
+                    '<p>Stories</p>'+
+                    '</div>'+
+                    '</div>';
+            },
+            error:function (xhr, status, error)
+            {
+                //bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            },
+            dataType:'text',
+            converters:'text json'
+        });
+
 
         //Velocity
         if (typeof items.sprint.velocity != "undefined")
@@ -231,7 +277,7 @@ function displayAllItems(items)
         }
 
         //Duration
-        if (typeof items.sprint.duree != "undefined")
+        /*if (typeof items.sprint.duree != "undefined")
         {
             chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
@@ -241,20 +287,39 @@ function displayAllItems(items)
                         '<p>Duration</p>'+
                         '</div>'+
                         '</div>';
-        }
+        }*/
 
         //Progression
-        //if (typeof myVar != "undefined")
-        //{
-            chaine += '<div class="span2">'+
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+items.sprint.idSprint+'/progression',
+            async:false,
+            type:'GET',
+            contentType:'application/json; charset=UTF-8',
+            success: function(reponse) 
+            {
+                data = $.parseJSON(reponse);
+
+                chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>A FAIRE</h3>'+
+                        '<h3>'+data['Progression']+' %</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
                         '<p>Progression</p>'+
                         '</div>'+
                         '</div>';
-        //}
+            },
+            error:function (xhr, status, error)
+            {
+                //bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            },
+            dataType:'text',
+            converters:'text json'
+        });
+
+        chaine += '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>';
     }
 
     $("#sprints").append(chaine);
