@@ -62,7 +62,8 @@ function bindDeleteEvent()
         {
             if(confirmed)
             {
-                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+$("#idProject").val();
+                var login = $.getLoginFromCookie();
+                var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+$("#idProject").val()+"/"+login;
                 $.deleteObjFromDatabase(url, 'Project', 'projectList.html');
             }
         });
@@ -98,14 +99,17 @@ $(document).ready(function()
         //Get #idProject field value    
         var idProject = $("#idProject").val();
 
-        if(idProject==null && idProject.length==0)
+        if(idProject==null || idProject.length==0)
         {
             //Case 1 : create a project (idProject is empty)
-            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/add';
+            //get user that is adding the project 
+            var login = $.getLoginFromCookie();
+            //launching web service
+            var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/add/'+login;
             var formdata=JSON.stringify($('#formProject').serializeObject());
             $.postObjToDatabase(url, formdata, 'Project', 'projectList.html');
         }
-        else //Case 2 : update an existing member (idProject is not empty)
+        else //Case 2 : update an existing project (idProject is not empty)
         {
             var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects;
             var formdata=JSON.stringify($('#formProject').serializeObject());
