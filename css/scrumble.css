@@ -440,6 +440,10 @@ div.id-project {
 
 
 /** USER STORIES **/
+div.user_story .btn{
+  display:none;
+}
+
 #userstories-list {
 	list-style-type: none; 
 	margin: 20px 0; 

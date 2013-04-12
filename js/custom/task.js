@@ -7,8 +7,8 @@
 function successGetObjSecondLevel(reponse)
 {
     displayAllItems($.parseJSON(reponse), idUserstory);
-    bindDeleteTaskEvent(idUserstory);
     submitFormTask(idUserstory);
+    handleEditMode();
 }
 
 
@@ -153,7 +153,6 @@ function submitFormTask(idUserstory)
         })
     });
 }
-
 
         
 /** Put here all calls that you want to launch at the page startup **/      
