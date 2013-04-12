@@ -687,6 +687,13 @@ div.user_story .btn{
 #story-sprint-manager{
 
 }
+#story-sprint-manager .buttons-bar .btn{
+    display:none;
+}
+#story-sprint-manager li.inactive{
+  background-color:#aaa !important;
+  color:white !important;
+}
 
 #story-sprint-manager div.column1, #story-sprint-manager div.column2{
   display:inline-block;
