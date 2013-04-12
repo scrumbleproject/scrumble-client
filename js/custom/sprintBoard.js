@@ -178,20 +178,24 @@ function getTasksHtmlContentFromTasksCollection(taskCollection, userStoryIndex, 
 function onTaskMove(item){
     //build a suitable id integer for ajax request
     var toRemove = 'task-';
-    var idTask = item.attr("id").replace(toRemove,'');
+    idTask = item.attr("id").replace(toRemove,'');
 
     toRemove = 'column-';
     $column = item.closest("div");
-    var status = $column.attr("id").replace(toRemove,'');
+    status = $column.attr("id").replace(toRemove,'');
 
     //update task status
     var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+idTask+'/'+status;
     var formdata='';
-    $.postObjToDatabase(url, formdata, '', '');
+    $.postObjToDatabaseAndCallback(url, formdata, '', handleMemberAssignation);
 
+    
+}
+
+function handleMemberAssignation() {
     //add member assignation
     //get param in url if exists
-    var idSprint = $(document).getUrlParam("sprint");      
+    idSprint = $(document).getUrlParam("sprint");      
     //load data on list or on form
     if ( (idSprint !=="") && (idSprint !==null)) {
         if (status==config.processStatus.toDo) {
