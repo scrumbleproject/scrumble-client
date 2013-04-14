@@ -97,7 +97,7 @@ function displayAllItems(items)
                             '<h3>'+dico.velocity+'</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
-                            '<p>Velocity</p>'+
+                            '<p>Velocity Points</p>'+
                             '</div>'+
                             '</div>';
             }
@@ -155,7 +155,7 @@ function displayAllItems(items)
 
                     chaine += '<div class="span2">'+
                             '<div class="head-sprint-info">'+
-                            '<h3>'+data['Progression']+' %</h3>'+
+                            '<h3>'+Math.round((data['Progression']) * 10) / 10+' %</h3>'+
                             '</div>'+
                             '<div class="legend-sprint-info">'+
                             '<p>Progression</p>'+
@@ -243,7 +243,7 @@ function displayAllItems(items)
                         '<h3>'+items.sprint.velocity+'</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
-                        '<p>Velocity</p>'+
+                        '<p>Velocity Points</p>'+
                         '</div>'+
                         '</div>';
         }
@@ -301,7 +301,7 @@ function displayAllItems(items)
 
                 chaine += '<div class="span2">'+
                         '<div class="head-sprint-info">'+
-                        '<h3>'+data['Progression']+' %</h3>'+
+                        '<h3>'+Math.round((data['Progression']) * 10) / 10+' %</h3>'+
                         '</div>'+
                         '<div class="legend-sprint-info">'+
                         '<p>Progression</p>'+
@@ -368,7 +368,6 @@ $(document).ready(function()
         $('#sprintList').append('<div class="row-fluid">'+
                                    
                                     '<h2>Sprint List</h2>'+
-                                    '<a class="btn btn-primary burndownchartBtn" href="burndownchart.html">Burn down chart</a>'+
                                     '<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
                                     '<div class="sprints" id="sprints">'+
                                     '</div>'+
