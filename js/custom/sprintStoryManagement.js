@@ -30,6 +30,7 @@ function successGetObjFirstLevel(reponse)
 function successGetObjSecondLevel(reponse)
 {
     displayAllSelectedUserstories($.parseJSON(reponse));
+    handleEditMode();
 }
 
 
@@ -105,6 +106,60 @@ function displayAllSelectedUserstories(items)
 
 }
 
+function enableEdition(){
+    console.log("enableEdition");
+
+    //show buttons bar
+    $("#story-sprint-manager .buttons-bar .btn").each(function() {
+        $(this).show();
+    });
+    
+}
+
+function disableEdition(){
+    console.log("disableEdition");  
+
+    //warning msg to inform user that user story cannot be edited
+    $("#msg").addClass("alert fade in");
+    //$("#msg").html("<button class='close' data-dismiss='alert' type='button'>×</button>This user story cannot be edited as it is used in a running sprint.");
+    $("#msg").html("This sprint is currently running and cannot be edited.");
+
+    //Disable sortable
+    $("#sortableNotSelected").sortable('disable');
+    $("#sortableSelected").sortable('disable');
+
+    //grey all li
+    $("#sortableNotSelected li, #sortableSelected li").each(function() {
+        $(this).addClass("inactive");
+    });
+
+}
+
+function handleEditMode(){
+
+    var idSprint = $(document).getUrlParam("sprint");
+
+    if((idSprint !=="") && (idSprint !==null)){
+
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+"/iseditable",
+            type:'GET',
+            success: function(reponse) 
+            {
+                console.log(reponse);  
+                if (reponse=="true"){
+                    enableEdition();
+                } else {
+                    disableEdition();
+                }
+            },
+            error:function (xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+}
 
 
         

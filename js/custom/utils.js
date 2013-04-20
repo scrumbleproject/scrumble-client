@@ -182,6 +182,54 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
 }
 
 /**
+ * Ajax function to send new data to the database
+ */
+$.postObjToDatabaseAndCallback = function(url_ws, form, message, callback)
+{
+    if(form!='') 
+    {
+         $.ajax({
+            url:url_ws,
+            type:"POST",
+            data:form,
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                    bootbox.alert(message+' has been added successfully.');
+                if(callback!=null)
+                    callback();
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+    else
+    {
+        $.ajax({
+            url:url_ws,
+            type:"POST",
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function(data)
+            {
+                if(message!='')
+                    bootbox.alert(message+' has been added successfully.');
+                if(callback!=null)
+                    callback();
+            },
+            error:function(xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+}
+
+/**
  * Ajax function to update data in the database
  */
 $.putObjToDatabase = function(url_ws, form, message, redirect)

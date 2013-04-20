@@ -440,6 +440,10 @@ div.id-project {
 
 
 /** USER STORIES **/
+div.user_story .btn{
+  display:none;
+}
+
 #userstories-list {
 	list-style-type: none; 
 	margin: 20px 0; 
@@ -589,6 +593,10 @@ div.id-project {
 	background-color:#F3F781;
   overflow:hidden;
 }
+#sprintboard li.task-inactive{
+  background-color:#aaa;
+  color:white;
+}
 #sprintboard li.task div.task-assignation{
   position:absolute;
   bottom:0;
@@ -678,6 +686,13 @@ div.id-project {
 
 #story-sprint-manager{
 
+}
+#story-sprint-manager .buttons-bar .btn{
+    display:none;
+}
+#story-sprint-manager li.inactive{
+  background-color:#aaa !important;
+  color:white !important;
 }
 
 #story-sprint-manager div.column1, #story-sprint-manager div.column2{

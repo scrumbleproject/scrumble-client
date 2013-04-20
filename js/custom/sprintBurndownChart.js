@@ -74,7 +74,7 @@ $(function () {
                 
                 //Burn down chart title
                 title: {
-                    text: 'Burndown Chart'
+                    text: 'Remaining points per day'
                 },
                 //Burn down chart subtitle
                 subtitle: {

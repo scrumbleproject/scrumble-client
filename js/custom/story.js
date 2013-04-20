@@ -36,7 +36,6 @@ function displayBreadCrumb(idProject,idUserstory)
 function successGetObjFirstLevel(reponse)
 {
     fillForm($.parseJSON(reponse));
-    bindDeleteUserStoryEvent(idProject);
 }
 
 
@@ -81,6 +80,67 @@ function cancelButton(){
         $.goBack();
     });
 }
+
+function enableEdition(){
+    console.log("enableEdition");
+    //actions button for userstories  
+    $("div.user_story .btn").each(function(){
+        console.log($(this));
+        //$(this).css("display","inline-block");
+        $(this).show();
+    });
+
+    bindDeleteUserStoryEvent(idProject);
+    bindDeleteTaskEvent(idUserstory);
+}
+
+function disableEdition(){
+    
+    console.log("disableEdition");  
+
+    //form for adding task
+    $("#taskList form:last-child").hide();
+    
+    //warning msg to inform user that user story cannot be edited
+    $("#msg").addClass("alert fade in");
+    //$("#msg").html("<button class='close' data-dismiss='alert' type='button'>×</button>This user story cannot be edited as it is used in a running sprint.");
+    $("#msg").html("This user story cannot be edited as it is used in a running sprint.");
+
+    //readonly for all input
+    $("div.user_story form input, div.user_story form select, div.user_story form textarea").each(function(){
+        $(this).attr('disabled', 'disabled');
+    });
+}
+
+
+function handleEditMode(){
+
+    var idUserstory = $(document).getUrlParam("userstory");
+
+    if((idUserstory !=="") && (idUserstory !==null)){
+
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+"/iseditable",
+            type:'GET',
+            success: function(reponse) 
+            {
+                console.log(reponse);  
+                if (reponse=="true"){
+                    enableEdition();
+                } else {
+                    disableEdition();
+                }
+            },
+            error:function (xhr, status, error)
+            {
+                bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            }
+        });
+    }
+
+
+}
+
 
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()

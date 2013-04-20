@@ -44,6 +44,11 @@ function displayAllItems(items)
     }
 }
 
+//function call $.getLoginFromCookie (auth.js)
+function getLogin()
+{
+    return $.getLoginFromCookie();
+}
 
 
 /** Put here all calls that you want to launch at the page startup **/      
@@ -51,6 +56,8 @@ $(document).ready( function()
 {
     //display the breadcrumb trail
     displayBreadCrumb();
+    
+    var login=getLogin();
 
-    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/all');
+    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+login+'/project');
 });
