@@ -133,6 +133,29 @@ $.getObjFromDatabase = function(url_ws, level)
 }
 
 /**
+ * Ajax function to get data from the database
+ */
+$.getObjFromDatabaseAndCallback = function(url_ws, callback)
+{
+
+    $.ajax({
+        url: url_ws,
+        type:'GET',
+        contentType:'application/json; charset=UTF-8',
+        success: function(reponse) 
+        {
+            callback(reponse);
+        },
+        error:function (xhr, status, error)
+        {
+            bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+        },
+        dataType:'text',
+        converters:'text json'
+    });
+}
+
+/**
  * Ajax function to send new data to the database
  */
 $.postObjToDatabase = function(url_ws, form, message, redirect)

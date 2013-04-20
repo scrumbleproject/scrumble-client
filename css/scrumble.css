@@ -663,6 +663,16 @@ div.user_story .btn{
   margin-right:20px;
 }
 
+#sprintList ul.sprint-actions{
+  margin-top:10px;
+  height:35px;
+}
+#sprintList ul.sprint-actions li{
+  display:inline;
+  margin: 10px 15px 10px 15px;
+}
+
+
 
 /*********************** SPRINT ******************************/
 #formSprint .datepicker{
@@ -707,6 +717,15 @@ div.user_story .btn{
 
 }
 
+#velocity{
+  font-size: 2.3em;
+  font-weight:bold;
+}
+
+#velocity input{
+  width:50px;
+}
+
 #story-sprint-manager div.column1 h3, #story-sprint-manager div.column2 h3{
   font-size:1.2em;
   font-weight:bold;
@@ -746,5 +765,19 @@ div.user_story .btn{
 
 .burndownchartBtn {
   float: right;
+}
+
+
+#activity {
+  background-color: #F5F5F5;
+  height: 800px;;
+}
+
+#activity h2 {
+  text-align: center;
+}
+
+#oneActivity {
+  border-bottom: 1px solid #DDDDE2;
 }
 
