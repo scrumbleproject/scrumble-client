@@ -707,6 +707,15 @@ div.user_story .btn{
 
 }
 
+#velocity{
+  font-size: 2.3em;
+  font-weight:bold;
+}
+
+#velocity input{
+  width:50px;
+}
+
 #story-sprint-manager div.column1 h3, #story-sprint-manager div.column2 h3{
   font-size:1.2em;
   font-weight:bold;

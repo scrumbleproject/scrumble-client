@@ -162,6 +162,20 @@ function handleEditMode(){
 }
 
 
+function displayVelocity(current, total){
+    $("#velocity input").val(current+"/"+total);
+
+}
+
+function handleVelocity(response){
+    displayVelocity(response, response);
+}
+
+function calculateVelocity(total, delta){
+    
+
+}
+
         
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function()
@@ -195,6 +209,7 @@ $(document).ready(function()
     {
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/userstories/no');
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/userstories', 2);
+        $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/velocity', handleVelocity);
         storySprintManagerInit();
     }
 });
