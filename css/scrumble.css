@@ -733,3 +733,17 @@ div.id-project {
   float: right;
 }
 
+
+#activity {
+  background-color: #F5F5F5;
+  height: 800px;;
+}
+
+#activity h2 {
+  text-align: center;
+}
+
+#oneActivity {
+  border-bottom: 1px solid #DDDDE2;
+}
+
