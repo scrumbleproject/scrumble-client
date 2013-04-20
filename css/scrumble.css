@@ -663,6 +663,16 @@ div.user_story .btn{
   margin-right:20px;
 }
 
+#sprintList ul.sprint-actions{
+  margin-top:10px;
+  height:35px;
+}
+#sprintList ul.sprint-actions li{
+  display:inline;
+  margin: 10px 15px 10px 15px;
+}
+
+
 
 /*********************** SPRINT ******************************/
 #formSprint .datepicker{
