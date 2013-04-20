@@ -96,7 +96,6 @@ $.showLeftMenu = function(idProject, active, type){
                                       '<li class="nav-header">Sidebar</li>'+
                                       '<li id="left-menu-option-dashboard"><a href="dashboard.html">Dashboard</a></li>'+
                                       '<li id="left-menu-option-project"><a href="projectList.html">Projects</a></li>'+
-                                      '<li id="left-menu-option-module"><a href="modules.html">Modules</a></li>'+
                                       '<li id="left-menu-option-member"><a href="memberList.html">Members</a></li>'+
                                     '</ul>'+
                                 '</div>');
