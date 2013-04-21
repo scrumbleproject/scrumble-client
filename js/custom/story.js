@@ -154,6 +154,8 @@ $(document).ready(function()
     if((idUserstory !=="") && (idUserstory !==null))
     {
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory);
+    } else {
+        handleEditMode();
     }
 
     //display the breadcrumb trail
