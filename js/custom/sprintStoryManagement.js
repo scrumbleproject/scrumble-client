@@ -163,7 +163,7 @@ function handleEditMode(){
 
 
 function displayVelocity(current, total){
-    $("#velocity input").val(current+"/"+total);
+    $("#velocity-ratio input").val(current+"/"+total);
 
 }
 

@@ -156,7 +156,7 @@ function submitFormTask(idUserstory)
 
         
 /** Put here all calls that you want to launch at the page startup **/      
-$(document).ready( function() 
+$(document).ready(function() 
 {
     //get param idUserstory and idProject in url if exists
     idUserstory = $(document).getUrlParam("userstory");

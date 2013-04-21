@@ -80,6 +80,21 @@ function bindDeleteUserStoryEvent(idProject)
 
 
 
+//Count duration
+function countDuration()
+{
+    if($('#dateStart').val()!="" && $('#dateEnd').val()!="")
+    {
+        $('#duree').val( Math.ceil(((new Date($('#dateEnd').val())).getTime() - (new Date($('#dateStart').val())).getTime()) / (1000*60*60*24)) );
+    }
+    else
+    {
+        $('#duree').val(0);
+    }
+}
+
+
+
 //Put here all calls that you want to launch at the page startup      
 $(document).ready(function()
 {

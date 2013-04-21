@@ -717,12 +717,12 @@ div.user_story .btn{
 
 }
 
-#velocity{
+#velocity-ratio{
   font-size: 2.3em;
   font-weight:bold;
 }
 
-#velocity input{
+#velocity-ratio input{
   width:50px;
 }
 

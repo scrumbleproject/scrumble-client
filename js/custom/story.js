@@ -54,38 +54,41 @@ function fillForm(response)
 
 
 //add an event on delete <button> 
-function bindDeleteUserStoryEvent(idProject){
-
+function bindDeleteUserStoryEvent(idProject)
+{
     $("button.btn-delete-userStory").show();
     
     //fetch each <a> delete button
-    $("button.btn-delete-userStory").live('click', function(e){
-        
+    $("button.btn-delete-userStory").live('click', function(e)
+    {
         //show a confirm box
         e.preventDefault();
-        bootbox.confirm("Are you sure to delete this user story ?", function(confirmed) {
-
-            if (confirmed) {             
+        bootbox.confirm("Are you sure to delete this user story ?", function(confirmed)
+        {
+            if(confirmed)
+            {             
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+$("#idUserstory").val();
                 $.deleteObjFromDatabase(url, 'User story', 'storyList.html?project='+idProject);
-            }   
-
+            }
         });
-
     });
 }
 
-function cancelButton(){
-    $("button.btn-cancel-userStory").live('click',function(e){
+function cancelButton()
+{
+    $("button.btn-cancel-userStory").live('click',function(e)
+    {
         $.goBack();
     });
 }
 
-function enableEdition(){
-    console.log("enableEdition");
+function enableEdition()
+{
+    //console.log("enableEdition");
     //actions button for userstories  
-    $("div.user_story .btn").each(function(){
-        console.log($(this));
+    $("div.user_story .btn").each(function()
+    {
+        //console.log($(this));
         //$(this).css("display","inline-block");
         $(this).show();
     });
@@ -94,9 +97,9 @@ function enableEdition(){
     bindDeleteTaskEvent(idUserstory);
 }
 
-function disableEdition(){
-    
-    console.log("disableEdition");  
+function disableEdition()
+{
+    //console.log("disableEdition");  
 
     //form for adding task
     $("#taskList form:last-child").hide();
@@ -113,8 +116,8 @@ function disableEdition(){
 }
 
 
-function handleEditMode(){
-
+function handleEditMode()
+{
     var idUserstory = $(document).getUrlParam("userstory");
 
     if((idUserstory !=="") && (idUserstory !==null)){
@@ -124,7 +127,7 @@ function handleEditMode(){
             type:'GET',
             success: function(reponse) 
             {
-                console.log(reponse);  
+                //console.log(reponse);  
                 if (reponse=="true"){
                     enableEdition();
                 } else {
@@ -137,8 +140,6 @@ function handleEditMode(){
             }
         });
     }
-
-
 }
 
 

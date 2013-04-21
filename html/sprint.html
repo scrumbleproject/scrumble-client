@@ -47,6 +47,9 @@
                         <input type="hidden" name="idSprint" id="idSprint">
                         <input type="hidden" name="numSprint" id="numSprint">
 
+                        <div id="alert">
+                        </div>
+
                         <!-- Input name -->
                         <div class="control-group">
                             <label class="control-label" for="title">Title</label>
@@ -67,7 +70,7 @@
                         <div class="control-group">
                             <label class="control-label" for="dateStart">Date start</label>
                             <div class="controls">
-                                <input type="text" name="dateStart" id="dateStart" class="datepicker" readonly>
+                                <input type="text" name="dateStart" id="dateStart" class="datepicker" readonly onClick=" $('#dateStart').datepicker('show');">
                             </div>
                         </div>
 
@@ -75,7 +78,7 @@
                         <div class="control-group">
                             <label class="control-label" for="dateEnd">Date end</label>
                             <div class="controls">
-                                <input type="text" name="dateEnd" id="dateEnd" class="datepicker" readonly>
+                                <input type="text" name="dateEnd" id="dateEnd" class="datepicker" readonly onClick=" $('#dateEnd').datepicker('show');">
                             </div>
                         </div>
 
@@ -83,7 +86,7 @@
                         <div class="control-group">
                             <label class="control-label" for="duree">Duration</label>
                             <div class="controls">
-                                <input type="text" name="duree" id="duree">
+                                <input type="text" name="duree" id="duree" disabled="disabled" value="0">
                             </div>
                         </div>
 
@@ -112,10 +115,50 @@
         <script src="../js/custom/sprint.js"></script>
 
         <script src="../js/lib/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-        <script>
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd'
-            });
+        <script type="text/javascript">
+
+            $('#dateStart').datepicker({format: 'yyyy-mm-dd'})
+                .on('changeDate', function(ev)
+                {
+                    $('#dateStart').datepicker('hide');
+                    if( ( new Date($('#dateStart').val()).getTime() ) > ( new Date($('#dateEnd').val()).getTime() ) )
+                    {
+                        $("#alert").addClass("alert alert-error");
+                        $('#alert').html('The start date can not be greater than the end date.');
+                        $('#dateStart').blur();
+                        $('#dateStart').val('');
+                        ev.date='';
+                    }
+                    else
+                    {
+                        $("#alert").removeClass("alert alert-error");
+                        $('#alert').html('');
+                    }
+                    countDuration();
+                });
+
+
+            $('#dateEnd').datepicker({format: 'yyyy-mm-dd'})
+                .on('changeDate', function(ev)
+                {
+                    $('#dateEnd').datepicker('hide');
+                    if( ( new Date($('#dateEnd').val()).getTime() ) < ( new Date($('#dateStart').val()).getTime() ) )
+                    {
+                        $("#alert").addClass("alert alert-error");
+                        $('#alert').html('The end date can not be smaller than the start date.');
+                        $('#dateEnd').blur();
+                        $('#dateEnd').val('');
+                        ev.date='';
+                    }
+                    else
+                    {
+                        $("#alert").removeClass("alert alert-error");
+                        $('#alert').html('');
+                    }
+                    countDuration();
+
+                });
+
         </script>
     </body>
 </html>

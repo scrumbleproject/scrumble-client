@@ -49,7 +49,6 @@
                 success: function(reponse) 
                 {
                     response = $.parseJSON(reponse);
-                    console.log("reponse"+response);
                     $('#profile').html('<a href="member.html?member='+response+'">Profile</a>');
                 },
                 error:function (xhr, status, error)
