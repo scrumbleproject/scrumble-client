@@ -200,9 +200,9 @@ function displayAllItems(items)
                     '<button id="sprint-'+items.sprint.idSprint+'-'+items.sprint.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
                     '</div>'+
                     '<ul>'+
-                    '<li><a href="sprintStoryManagement.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Gérer les user stories du sprint n°'+items.sprint.idSprint+'</a></li>'+
-                    '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Sprintboard du sprint n°'+items.sprint.idSprint+'</a></li>'+
-                    '<li><a href="sprintBurndownChart.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">Burndownchart du sprint n°'+items.sprint.idSprint+'</a></li>'+
+                    '<li><a href="sprintStoryManagement.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Add/Remove User Stories"><img src="../img/glyphicons_114_list.png" border=0 /></a></li>'+
+                    '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Sprint Backlog"><img src="../img/glyphicons_119_table.png" border=0 /></a></li>'+
+                    '<li><a href="sprintBurndownChart.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Burndown Chart"><img src="../img/glyphicons_040_stats.png" border=0 /></a></li>'+
                     '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 
