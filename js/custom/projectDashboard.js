@@ -193,10 +193,77 @@ function displaySprint(items)
                 changeSprintStatus(params[2], params[3]);
             });
         });
+
+
+        //Get running tasks
+        $.ajax({
+            url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.tasks+'/'+items.idSprint+'/runningtasks',
+            async:false,
+            type:'GET',
+            contentType:'application/json; charset=UTF-8',
+            success: function(reponse) 
+            {
+                data = $.parseJSON(reponse);
+                console.log(data);
+                if(data!= null && typeof data != "undefined")
+                {
+                    //if more than one task
+                    if (data.sprinttaskassignation.length>1)
+                    {
+                        $("#runningtasks-tab > tbody").html("");
+
+                        $.each(data.sprinttaskassignation, function(i, dico){
+                            $("#runningtasks-tab > tbody").append("<tr>"+
+                                                            //"<td>"+(i+1)+"</td>"+
+                                                            "<td>"+dico.task.title+"</td>"+
+                                                            "<td>"+dico.member1.firstname+" "+dico.member1.lastname+"</td>"+
+                                                            //"<td>"+dico.lastname+"</td>"+
+                                                            //"<td>"+dico.idRole.title+"</td>"+
+                                                            //"<td>"+dico.email+"</td>"+
+                                                            //"<td>"+dico.internalPhone+"</td>"+
+                                                            //"<td>"+dico.mobilePhone+"</td>"+
+                                                            //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>"+
+                                                            "</tr>");
+                            i++;
+                        });
+                    }
+                    else //if only one member
+                    {
+                        $("#runningtasks-tab > tbody").append("<tr>"+
+                                                        //"<td>1</td>"+
+                                                        "<td>"+data.sprinttaskassignation.task.title+"</td>"+
+                                                        "<td>"+data.sprinttaskassignation.member1.firstname+" "+data.sprinttaskassignation.member1.lastname+"</td>"+
+                                                        //"<td>"+items.member1.lastname+"</td>"+
+                                                        //"<td>"+items.member1.idRole.title+"</td>"+
+                                                        //"<td>"+items.member1.email+"</td>"+
+                                                        //"<td>"+items.member1.internalPhone+"</td>"+
+                                                        //"<td>"+items.member1.mobilePhone+"</td>"+
+                                                        //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>"+
+                                                        "</tr>");
+                    }
+                    //sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'
+                    $("#runningtasks").append('<a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" class="btn">More »</a>');
+                }
+                else
+                {
+                    $("#runningtasks").html("");
+                    $("#runningtasks").append('<span id="msg" class="alert fade in" style="padding-right:14px;">Currently, there is no task in progress.</span>');
+                }
+            },
+            error:function (xhr, status, error)
+            {
+                //bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
+            },
+            dataType:'text',
+            converters:'text json'
+        });
+
     }
     else
     {
         $("#sprints").append('<span id="msg" class="alert fade in" style="padding-right:14px;">Currently, there is no running sprint.</span>');
+        $("#runningtasks").html("");
+        $("#runningtasks").append('<span id="msg" class="alert fade in" style="padding-right:14px;">Currently, there is no task in progress.</span>');
     }
 }
 
@@ -255,26 +322,24 @@ $(document).ready(function()
     //display the breadcrumb trail
     displayBreadCrumb(idProject);
 
-    
-    //Get the running sprint for the project
+
     if (idProject !=="" && idProject !==null) 
     {
-        //Display the button New sprint
-        $('#runningsprint').append(//'<div class="row-fluid">'+
-                                    //'<h>Sprint List</h2>'+
-                                    //'<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
-                                    '<div class="sprints" id="sprints">'+
+        //Get the running sprint for the project
+        $('#runningsprint').append('<div class="sprints" id="sprints">'+
                                     '</div>'+
                                 '</div>');
-
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/runningsprint', 2);
+
+
+        //Display the member list
+        $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers);
+        $('#memberdetails').html("");
+        $('#memberdetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
     }
 
 
-    //Display the member list
-    $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers);
-    $('#memberdetails').html("");
-    $('#memberdetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
+    
 
 
     //load data on form
