@@ -204,7 +204,7 @@ function displaySprint(items)
             success: function(reponse) 
             {
                 data = $.parseJSON(reponse);
-                console.log(data);
+
                 if(data!= null && typeof data != "undefined")
                 {
                     //if more than one task
@@ -214,15 +214,8 @@ function displaySprint(items)
 
                         $.each(data.sprinttaskassignation, function(i, dico){
                             $("#runningtasks-tab > tbody").append("<tr>"+
-                                                            //"<td>"+(i+1)+"</td>"+
                                                             "<td>"+dico.task.title+"</td>"+
                                                             "<td>"+dico.member1.firstname+" "+dico.member1.lastname+"</td>"+
-                                                            //"<td>"+dico.lastname+"</td>"+
-                                                            //"<td>"+dico.idRole.title+"</td>"+
-                                                            //"<td>"+dico.email+"</td>"+
-                                                            //"<td>"+dico.internalPhone+"</td>"+
-                                                            //"<td>"+dico.mobilePhone+"</td>"+
-                                                            //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>"+
                                                             "</tr>");
                             i++;
                         });
@@ -230,18 +223,10 @@ function displaySprint(items)
                     else //if only one member
                     {
                         $("#runningtasks-tab > tbody").append("<tr>"+
-                                                        //"<td>1</td>"+
                                                         "<td>"+data.sprinttaskassignation.task.title+"</td>"+
                                                         "<td>"+data.sprinttaskassignation.member1.firstname+" "+data.sprinttaskassignation.member1.lastname+"</td>"+
-                                                        //"<td>"+items.member1.lastname+"</td>"+
-                                                        //"<td>"+items.member1.idRole.title+"</td>"+
-                                                        //"<td>"+items.member1.email+"</td>"+
-                                                        //"<td>"+items.member1.internalPhone+"</td>"+
-                                                        //"<td>"+items.member1.mobilePhone+"</td>"+
-                                                        //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>"+
                                                         "</tr>");
                     }
-                    //sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'
                     $("#runningtasks").append('<a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" class="btn">More »</a>');
                 }
                 else
@@ -272,42 +257,39 @@ function displaySprint(items)
 //display Members
 function displayMembers(items)
 {
-    //if more than one members
-    if (items.member1.length>1)
+    if(items!= null && typeof items != "undefined")
     {
-        var i = 0 ;
-        $("#memberList > tbody").html("");
-        $.each(items.member1, function(i, dico){
-            if(i>=4)
-                return false;
+        //if more than one members
+        if (items.member1.length>1)
+        {
+            var i = 0 ;
+            $("#memberList > tbody").html("");
+            $.each(items.member1, function(i, dico){
+                if(i>=5)
+                    return false;
 
+                $("#memberList > tbody").append("<tr>"+
+                                                "<td>"+dico.login+"</td>"+
+                                                "<td>"+dico.firstname+"</td>"+
+                                                "<td>"+dico.lastname+"</td>"+
+                                                "</tr>");
+                i++;
+            });
+        }
+        else //if only one member
+        {
             $("#memberList > tbody").append("<tr>"+
-                                            //"<td>"+(i+1)+"</td>"+
-                                            "<td>"+dico.login+"</td>"+
-                                            "<td>"+dico.firstname+"</td>"+
-                                            "<td>"+dico.lastname+"</td>"+
-                                            //"<td>"+dico.idRole.title+"</td>"+
-                                            //"<td>"+dico.email+"</td>"+
-                                            //"<td>"+dico.internalPhone+"</td>"+
-                                            //"<td>"+dico.mobilePhone+"</td>"+
-                                            //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+dico.idMember+"'><i class='icon-remove'></i></a></td>"+
+                                            "<td>"+items.member1.login+"</td>"+
+                                            "<td>"+items.member1.firstname+"</td>"+
+                                            "<td>"+items.member1.lastname+"</td>"+
                                             "</tr>");
-            i++;
-        });
+        }
+        $('#memberDetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
     }
-    else //if only one member
+    else
     {
-        $("#memberList > tbody").append("<tr>"+
-                                        //"<td>1</td>"+
-                                        "<td>"+items.member1.login+"</td>"+
-                                        "<td>"+items.member1.firstname+"</td>"+
-                                        "<td>"+items.member1.lastname+"</td>"+
-                                        //"<td>"+items.member1.idRole.title+"</td>"+
-                                        //"<td>"+items.member1.email+"</td>"+
-                                        //"<td>"+items.member1.internalPhone+"</td>"+
-                                        //"<td>"+items.member1.mobilePhone+"</td>"+
-                                        //"<td><a class='btn btn-danger btn-danger btn-delete' href='"+items.member1.idMember+"'><i class='icon-remove'></i></a></td>"+
-                                        "</tr>");
+        $('#memberDetails').html("");
+        $("#memberDetails").append('<span id="msg" class="alert fade in" style="padding-right:14px;">Currently, there is no assignated member.</span>');
     }
 }
 
@@ -322,7 +304,6 @@ $(document).ready(function()
     //display the breadcrumb trail
     displayBreadCrumb(idProject);
 
-
     if (idProject !=="" && idProject !==null) 
     {
         //Get the running sprint for the project
@@ -334,13 +315,8 @@ $(document).ready(function()
 
         //Display the member list
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers);
-        $('#memberdetails').html("");
-        $('#memberdetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
+        
     }
-
-
-    
-
 
     //load data on form
     if((idProject !=="") && (idProject !==null))
