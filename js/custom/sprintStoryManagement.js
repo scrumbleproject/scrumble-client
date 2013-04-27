@@ -186,13 +186,7 @@ function calculateRemainingVelocityForAddAction(response){
         if (item!=null && item.estimation!=null){
             velocity = parseInt(velocity) - parseInt(item.estimation);
             displayRemainingVelocity(velocity);
-            if (velocity<0){
-                $("#msg").addClass("alert fade in");
-                $("#velocity-ratio").addClass("red");
-                $("#msg").html("This velocity is exceeded.<br />Please remove some user stories in order to be able to save changes !");
-                //show buttons bar
-                $("#submitButton").hide();
-            }
+            validateVelocityValue();
         }
     }
 }
@@ -202,8 +196,24 @@ function calculateRemainingVelocityForDelAction(response){
         if (item!=null && item.estimation!=null){
             velocity = parseInt(velocity) + parseInt(item.estimation);
             displayRemainingVelocity(velocity);
+            validateVelocityValue();
         }
 
+    }
+}
+function validateVelocityValue(){
+    if (velocity<0 && !$("#velocity-ratio").hasClass("red")){
+        $("#msg").addClass("alert fade in");
+        $("#velocity-ratio").addClass("red");
+        $("#msg").html("This velocity is exceeded.<br />Please remove some user stories in order to be able to save changes !");
+        //show buttons bar
+        $("#submitButton").hide();
+    } else if (velocity>=0 && $("#velocity-ratio").hasClass("red")) {
+        $("#msg").removeClass("alert fade in");
+        $("#velocity-ratio").removeClass("red");
+        $("#msg").html("");
+        //show buttons bar
+        $("#submitButton").show();
     }
 }
 
