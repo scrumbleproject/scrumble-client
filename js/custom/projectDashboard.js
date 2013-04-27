@@ -259,6 +259,7 @@ function displayMembers(items)
 {
     if(items!= null && typeof items != "undefined")
     {
+        console.log(items);
         //if more than one members
         if (items.member1.length>1)
         {
@@ -284,7 +285,6 @@ function displayMembers(items)
                                             "<td>"+items.member1.lastname+"</td>"+
                                             "</tr>");
         }
-        $('#memberDetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
     }
     else
     {
@@ -294,12 +294,12 @@ function displayMembers(items)
 }
 
 
-
 /** Put here all calls that you want to launch at the page startup **/      
 $(document).ready(function() 
 {
     //get param idProject in url if exists
     var idProject = $(document).getUrlParam("project");
+
 
     //display the breadcrumb trail
     displayBreadCrumb(idProject);
@@ -315,7 +315,8 @@ $(document).ready(function()
 
         //Display the member list
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers);
-        
+        if($('#memberList').val()!='undefined' && $('#memberList').val()!= null)
+            $('#memberDetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
     }
 
     //load data on form
