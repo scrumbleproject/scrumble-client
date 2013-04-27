@@ -259,7 +259,6 @@ function displayMembers(items)
 {
     if(items!= null && typeof items != "undefined")
     {
-        console.log(items);
         //if more than one members
         if (items.member1.length>1)
         {
