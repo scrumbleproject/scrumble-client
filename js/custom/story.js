@@ -139,7 +139,10 @@ function handleEditMode()
                 bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
             }
         });
-    }
+    } else {
+        enableEdition();
+    }  
+    
 }
 
 
