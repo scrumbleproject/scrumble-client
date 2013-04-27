@@ -123,7 +123,7 @@ function disableEdition(){
 
     //warning msg to inform user that user story cannot be edited
     $("#msg").addClass("alert fade in");
-    $("#msg").html("This sprint is currently running and cannot be edited.");
+    $("#msg").html("This sprint is either currently running or already done and cannot be edited anymore.");
 
     //Disable sortable
     $("#sortableNotSelected").sortable('disable');
