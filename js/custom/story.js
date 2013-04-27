@@ -141,8 +141,9 @@ function handleEditMode()
         });
     } else {
         enableEdition();
+        $("#estimation").attr('disabled', null);
     }  
-    
+
 }
 
 

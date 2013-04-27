@@ -82,6 +82,8 @@ function displayAllItems(items, idUserstory)
             "</div><br/>"+
             "</form>");
             nbr=2;
+        } else {
+            $("#estimation").attr('disabled', null);
         }
         $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
         "<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
