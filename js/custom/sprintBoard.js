@@ -14,7 +14,7 @@ function displayBreadCrumb(idProject)
     myTab['dashboard.html'] = 'Home';
     myTab['projectDashboard.html?project='+idProject+''] = 'Project (ID: '+idProject+')';
     myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
-    myTab[''] = 'Sprintboard'; 
+    myTab[''] = 'Sprint backlog'; 
 
     $.showBreadCrumb(myTab);
 }
