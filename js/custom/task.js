@@ -41,7 +41,7 @@ function displayAllItems(items, idUserstory)
         $("#taskList").html("");
         var nb = 0;
         $.each(items.task, function(i, dico){
-            $("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-horizontal formTask\">"+
+            $("#taskList").append("<form id=\"formTask"+(i+1)+"\" class=\"form-inline formTask\">"+
             "<label class=\"control-label\" for=\""+(i+1)+"\">"+(i+1)+"</label>"+
             "<div class=\"controls\">"+
             "<input type=\"hidden\" name=\"idTask\" value=\""+dico.idTask+"\">"+
@@ -54,7 +54,7 @@ function displayAllItems(items, idUserstory)
             "</form>");
             nb=i;
         });
-        $("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-horizontal formTask\">"+
+        $("#taskList").append("<form id=\"formTask"+(nb+2)+"\" class=\"form-inline formTask\">"+
         "<label class=\"control-label\" for=\""+(nb+2)+"\">"+(nb+2)+"</label>"+
         "<div class=\"controls\">"+
         "<input type=\"hidden\" name=\"idTask\" value=\"\">"+
@@ -70,7 +70,7 @@ function displayAllItems(items, idUserstory)
         var nbr = 1;
         if (items !== null && items !=="")
         {
-            $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
+            $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-inline formTask\">"+
             "<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
             "<div class=\"controls\">"+
             "<input type=\"hidden\" name=\"idTask\" value=\""+items.task.idTask+"\">"+
@@ -83,7 +83,7 @@ function displayAllItems(items, idUserstory)
             "</form>");
             nbr=2;
         }
-        $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-horizontal formTask\">"+
+        $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-inline formTask\">"+
         "<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
         "<div class=\"controls\">"+
         "<input type=\"hidden\" name=\"idTask\" value=\"\">"+

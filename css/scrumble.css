@@ -508,13 +508,24 @@ div.user_story .btn{
 }
 
 #taskList .btn-primary{
-  margin-left:10px;
-  width: 120px;
+  margin: 0;
 }
 
 .btn-delete-task{
   margin-left:10px;
 
+}
+
+
+#taskList input {
+  margin-right: 10px;
+}
+
+#taskList label {
+  float: left;
+  padding-right: 10px;
+  padding-top: 5px;
+  font-size: 16px;
 }
 
 /**  **/
@@ -780,4 +791,51 @@ div.user_story .btn{
 #oneActivity {
   border-bottom: 1px solid #DDDDE2;
 }
+
+
+
+/********** Dashboard project *****************************/
+#dashboard {
+  background-color: white;
+}
+
+#dashboard .breadcrumb {
+  margin-left: 10px;
+
+}
+
+#dashboard h3 {
+  padding-left: 10px;
+}
+
+#dashboard .row-fluid {
+  margin-bottom: 10px;
+}
+
+#dashboard .span7 {
+  background-color: #F5F5F5;
+}
+
+#dashboard .span6 {
+  background-color: #F5F5F5;
+  margin-left : 10px;
+  
+}
+
+#dashboard .span5 {
+  background-color: #F5F5F5;
+  
+}
+
+
+#dashboard .span4 {
+  background-color: #F5F5F5;
+}
+
+#dashboard .span3 {
+  background-color: #F5F5F5;
+  margin: 0;
+  margin-left: 10px;
+}
+
 
