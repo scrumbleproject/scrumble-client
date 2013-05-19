@@ -708,6 +708,9 @@ div.user_story .btn{
 #story-sprint-manager{
 
 }
+#story-sprint-manager .buttons-bar{
+  height:40px;
+}
 #story-sprint-manager .buttons-bar .btn{
     display:none;
 }
@@ -718,26 +721,10 @@ div.user_story .btn{
 
 #story-sprint-manager div.column1, #story-sprint-manager div.column2{
   display:inline-block;
-  min-height:500px;
-  width:400px;
+  /*min-height:500px;*/
+  width:48%;
 }
-#story-sprint-manager div.column1{
-
-}
-#story-sprint-manager div.column2{
-
-}
-
-#velocity-ratio{
-  font-size: 2.3em;
-  font-weight:bold;
-}
-
-#velocity-ratio input{
-  width:50px;
-}
-
-#story-sprint-manager div.column1 h3, #story-sprint-manager div.column2 h3{
+#story-sprint-manager div.column1 div.col-header, #story-sprint-manager div.column2 div.col-header {
   font-size:1.2em;
   font-weight:bold;
   display:block;
@@ -747,6 +734,26 @@ div.user_story .btn{
   color:white;
   background-color:#343537;
   border-radius: 0.3em 0.3em 0 0;
+  height:30px;
+}
+#story-sprint-manager div.column1 div.col-title, #story-sprint-manager div.column2 div.col-title {
+  vertical-align:middle;
+}
+#story-sprint-manager div.column1{
+
+}
+#story-sprint-manager div.column2{
+
+}
+
+#velocity-ratio{
+  float:right;
+  color:white;
+  font-weight:bold;
+}
+
+#velocity-ratio.red{
+  color:red;
 }
 
 #sortableNotSelected, #sortableSelected { 

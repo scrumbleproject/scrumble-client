@@ -61,7 +61,7 @@ function displayAllItems(items, idUserstory)
         "<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+(nb+2)+"\" name=\"title\">"+
         "<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+(nb+2)+"\" name=\"estimation\">"+
         "<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
-        "<a class=\"btn btn-primary addTask\" href=\""+(nb+2)+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
+        "<button class=\"btn btn-primary addTask\" href=\""+(nb+2)+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
         "</div>"+
         "</form>");
     }
@@ -82,6 +82,8 @@ function displayAllItems(items, idUserstory)
             "</div><br/>"+
             "</form>");
             nbr=2;
+        } else {
+            $("#estimation").attr('disabled', null);
         }
         $("#taskList").append("<form id=\"formTask"+nbr+"\" class=\"form-inline formTask\">"+
         "<label class=\"control-label\" for=\""+nbr+"\">"+nbr+"</label>"+
@@ -90,7 +92,7 @@ function displayAllItems(items, idUserstory)
         "<input class=\"span3\" type=\"text\" placeholder=\"Title\" id=\"title_"+nbr+"\" name=\"title\">"+
         "<input class=\"span1\" type=\"text\" placeholder=\"Est\" id=\"estimation_"+nbr+"\" name=\"estimation\">"+
         "<input type=\"hidden\" name=\"idUserstory\" value=\""+idUserstory+"\">"+
-        "<a class=\"btn btn-primary addTask\"  href=\""+nbr+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</a>"+
+        "<button class=\"btn btn-primary addTask\"  href=\""+nbr+"\"><i class=\"icon-plus-sign icon-white\"></i> Add task</button>"+
         "</div>"+
         "</form>"); 
     }

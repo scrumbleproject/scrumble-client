@@ -1,7 +1,10 @@
 
 /** sprintList functions **/
 
-
+var showStatusValidation = false;
+var statusValidationMsg = "<ul>";
+var isValid=true;
+var validationSprintId = -1;
 
 //Display the breadCrumb trail
 function displayBreadCrumb(idProject)
@@ -337,19 +340,87 @@ function displayAllItems(items)
 
 function changeSprintStatus(idSprint, status){
 
-    console.log("idSprint="+idSprint);
-    console.log("status="+status);
+    validationSprintId = idSprint;
     if (status == config.processStatus.toDo || status == config.processStatus.inProgress) {   
         if (status == config.processStatus.toDo) {
-            status = config.processStatus.inProgress;
+            validateSprintStatusChange();
+            validateVelocityValue();
         } else if (status == config.processStatus.inProgress) {
             status = config.processStatus.done;
+            callUpdateStatusWS(idSprint, status);
         }
-        var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/'+status;
-        var idProject = $(document).getUrlParam("project");
-        $.postObjToDatabase(url, '', '', 'sprintList.html?project='+idProject);
     }
 }
+function callUpdateStatusWS(idSprint, status){
+    var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/'+status;
+    var idProject = $(document).getUrlParam("project");
+    $.postObjToDatabase(url, '', '', 'sprintList.html?project='+idProject);
+}
+function validateSprintStatusChange(){
+    var idProject = $(document).getUrlParam("project");
+    var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idProject+'/runningsprint';
+    $.getObjFromDatabaseAndCallback(url, checkRunningSprintValidationResponse);
+}
+function validateVelocityValue(){
+    var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+validationSprintId+'/velocity/remaining';
+    $.getObjFromDatabaseAndCallback(url, checkVelocityValidationResponse);
+}
+function checkRunningSprintValidationResponse(response){
+    console.log('check Running Sprint Validation Response');
+    if (response!=null) {
+        sprint = $.parseJSON(response);
+        if (sprint!=null) {
+            console.log('sprint='+sprint.title);
+            isValid=false;
+            statusValidationMsg += '<li>The sprint "'+sprint.title+'" is already running. Please finish it first before launching another sprint !</li>';
+            if (showStatusValidation){
+                showAlertValidationMsg();
+            } else {
+                showStatusValidation = true;
+            }
+        } else if (!showStatusValidation) {
+            console.log('set showStatusValidation to true');
+            showStatusValidation = true;
+        } else if (!isValid) {
+            showAlertValidationMsg();
+        } else if (showStatusValidation && isValid) {
+            console.log('can call webservice in running sprint validation');
+            callUpdateStatusWS(validationSprintId, config.processStatus.inProgress);
+            showStatusValidation = false;
+        } 
+    }
+}
+function checkVelocityValidationResponse(response){
+    console.log('check Velocity Validation Response');
+    if (response!=null) {
+        var velocity = parseInt(response);
+        console.log('velocity='+velocity);
+        if (velocity<0) {
+            isValid=false;
+            statusValidationMsg += '<li>This sprint contains too much user stories. The velocity is exceeded. Please remove some user stories !</li>';
+            if (showStatusValidation){
+                showAlertValidationMsg();
+            } else {
+                showStatusValidation = true;
+            }
+        } else if (!showStatusValidation) {
+            console.log('valid OK and set showStatusValidation to true');
+            showStatusValidation = true;
+        } else if (!isValid) {
+            showAlertValidationMsg();
+        } else if (showStatusValidation && isValid) {
+            console.log('can call webservice in velocity validation');
+            callUpdateStatusWS(validationSprintId, config.processStatus.inProgress);
+            showStatusValidation = false;
+        } 
+    } 
+}
+function showAlertValidationMsg() {
+    bootbox.alert(statusValidationMsg + '</ul>');
+    showStatusValidation = false;
+    statusValidationMsg = '<ul>';
+}
+
 
 
 /** Put here all calls that you want to launch at the page startup **/      
@@ -365,8 +436,7 @@ $(document).ready(function()
     if (idProject !=="" && idProject !==null) 
     {
         //Display the button New sprint
-        $('#sprintList').append('<div class="row-fluid">'+
-                                   
+        $('#sprintList').append('<div class="row-fluid">'+ 
                                     '<h2>Sprint List</h2>'+
                                     '<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
                                     '<div class="sprints" id="sprints">'+

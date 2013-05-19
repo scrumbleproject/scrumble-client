@@ -1,7 +1,7 @@
 
 /** sprintStoryManagement methods **/
 
-
+var velocity;
 
 //Display the breadCrumb trail
 function displayBreadCrumb(idProject)
@@ -52,11 +52,13 @@ function storySprintManagerInit()
             if ( $("ul#sortableSelected").children("li").length > 0 ) {
                 $("ul#sortableSelected").find('p').remove();
             }
+            handleUserstoryAdd(ui.item.attr("id").replace('userstory-',''));
         },
         remove: function(event, ui) {
             if ( $("ul#sortableSelected").children("li").length == 0 ) {
                 $("ul#sortableSelected").append('<p class="muted">Feed me to add user stories to the sprint</p>');
             }
+            handleUserstoryDelete(ui.item.attr("id").replace('userstory-',''));
         }
     }).disableSelection();
 }
@@ -121,8 +123,7 @@ function disableEdition(){
 
     //warning msg to inform user that user story cannot be edited
     $("#msg").addClass("alert fade in");
-    //$("#msg").html("<button class='close' data-dismiss='alert' type='button'>×</button>This user story cannot be edited as it is used in a running sprint.");
-    $("#msg").html("This sprint is currently running and cannot be edited.");
+    $("#msg").html("This sprint is either currently running or already done and cannot be edited anymore.");
 
     //Disable sortable
     $("#sortableNotSelected").sortable('disable');
@@ -162,18 +163,58 @@ function handleEditMode(){
 }
 
 
-function displayVelocity(current, total){
-    $("#velocity-ratio input").val(current+"/"+total);
-
+function displayTotalVelocity(total){
+    $("#velocity-ratio span.total").html(total);
+}
+function displayRemainingVelocity(current){
+    velocity = current;
+    $("#velocity-ratio span.current").html(current);
 }
 
 function handleVelocity(response){
     displayVelocity(response, response);
 }
+function handleUserstoryAdd(idUserstory){
+    $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory, calculateRemainingVelocityForAddAction);
+}
+function handleUserstoryDelete(idUserstory){
+    $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory, calculateRemainingVelocityForDelAction);
+}
+function calculateRemainingVelocityForAddAction(response){
+    if (response!=null){
+        item = $.parseJSON(response);
+        if (item!=null && item.estimation!=null){
+            velocity = parseInt(velocity) - parseInt(item.estimation);
+            displayRemainingVelocity(velocity);
+            validateVelocityValue();
+        }
+    }
+}
+function calculateRemainingVelocityForDelAction(response){
+    if (response!=null){
+        item = $.parseJSON(response);
+        if (item!=null && item.estimation!=null){
+            velocity = parseInt(velocity) + parseInt(item.estimation);
+            displayRemainingVelocity(velocity);
+            validateVelocityValue();
+        }
 
-function calculateVelocity(total, delta){
-    
-
+    }
+}
+function validateVelocityValue(){
+    if (velocity<0 && !$("#velocity-ratio").hasClass("red")){
+        $("#msg").addClass("alert fade in");
+        $("#velocity-ratio").addClass("red");
+        $("#msg").html("This velocity is exceeded.<br />Please remove some user stories in order to be able to save changes !");
+        //show buttons bar
+        $("#submitButton").hide();
+    } else if (velocity>=0 && $("#velocity-ratio").hasClass("red")) {
+        $("#msg").removeClass("alert fade in");
+        $("#velocity-ratio").removeClass("red");
+        $("#msg").html("");
+        //show buttons bar
+        $("#submitButton").show();
+    }
 }
 
         
@@ -209,7 +250,11 @@ $(document).ready(function()
     {
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/userstories/no');
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/userstories', 2);
-        $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/velocity', handleVelocity);
+        
+        //velocity
+        $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/velocity', displayTotalVelocity);
+        $.getObjFromDatabaseAndCallback('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.sprints+'/'+idSprint+'/velocity/remaining', displayRemainingVelocity);
+        
         storySprintManagerInit();
     }
 });

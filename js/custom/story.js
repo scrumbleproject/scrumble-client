@@ -106,8 +106,7 @@ function disableEdition()
     
     //warning msg to inform user that user story cannot be edited
     $("#msg").addClass("alert fade in");
-    //$("#msg").html("<button class='close' data-dismiss='alert' type='button'>×</button>This user story cannot be edited as it is used in a running sprint.");
-    $("#msg").html("This user story cannot be edited as it is used in a running sprint.");
+    $("#msg").html("This user story cannot be edited as a running or done sprint is using it.");
 
     //readonly for all input
     $("div.user_story form input, div.user_story form select, div.user_story form textarea").each(function(){
@@ -141,8 +140,9 @@ function handleEditMode()
         });
     } else {
         enableEdition();
+        $("#estimation").attr('disabled', null);
     }  
-    
+
 }
 
 

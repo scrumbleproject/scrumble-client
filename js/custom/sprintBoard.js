@@ -14,7 +14,7 @@ function displayBreadCrumb(idProject)
     myTab['dashboard.html'] = 'Home';
     myTab['projectDashboard.html?project='+idProject+''] = 'Project (ID: '+idProject+')';
     myTab['sprintList.html?project='+idProject+''] = 'Sprint List';
-    myTab[''] = 'Sprintboard'; 
+    myTab[''] = 'Sprint backlog'; 
 
     $.showBreadCrumb(myTab);
 }
@@ -252,6 +252,9 @@ function handleEditMode(i){
                 }
             }).disableSelection();
         } else {//read mode
+            //inform that no user stories has been added to this sprint
+            $("#msg").addClass("alert fade in");
+            $("#msg").html("This backlog cannot be changed because the related sprint has not been launched yet or is already done.");
             $( "#sortable"+(i+1)+"-1, #sortable"+(i+1)+"-2, #sortable"+(i+1)+"-3").disableSelection();
             $( "#sortable"+(i+1)+"-1 li, #sortable"+(i+1)+"-2 li, #sortable"+(i+1)+"-3 li").addClass("task-inactive");
         }      
@@ -267,47 +270,54 @@ function displayAllItems(items){
     //get param in url if exists
     var idProject = $(document).getUrlParam("project");    
 
-    if (items.userstory.length>1){ //if more than one user story
+    if (items!=null) {
+        if (items.userstory.length>1){ //if more than one user story
 
-        //reinit div content
-        $("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
-            "<div class='assigned'><h3>PROCESSING</h3></div>"+
-            "<div class='done'><h3>DONE</h3></div>");
-        //append content
-        $.each(items.userstory, function(i, storyDico){
+            //reinit div content
+            $("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
+                "<div class='assigned'><h3>PROCESSING</h3></div>"+
+                "<div class='done'><h3>DONE</h3></div>");
+            //append content
+            $.each(items.userstory, function(i, storyDico){
 
-            var backgroundClass = "odd";
-            if (i % 2 == 1) backgroundClass = "even";
+                var backgroundClass = "odd";
+                if (i % 2 == 1) backgroundClass = "even";
 
-            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+" <i class='icon-eye-open icon-white'></i></a></div>";
+                var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+storyDico.idUserstory+"&project="+idProject+"'>"+storyDico.title+" <i class='icon-eye-open icon-white'></i></a></div>";
 
-            htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
+                htmlContent += getTasksHtmlContentFromTasksCollection(storyDico.taskCollection, i, backgroundClass);
 
-            $("#sprintboard").append(htmlContent);
+                $("#sprintboard").append(htmlContent);
+                
+                //init current sortable list
+                handleEditMode(i);
+
+            });
+        } else { //if only one user story
+
+            //reinit div content
+            $("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
+                "<div class='assigned'><h3>PROCESSING</h3></div>"+
+                "<div class='done'><h3>DONE</h3></div>");
+
+            //append content
+            var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+" <i class='icon-eye-open icon-white'></i></a></div>";
+
+            htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
             
+            $("#sprintboard").append(htmlContent);
+
             //init current sortable list
-            handleEditMode(i);
+            handleEditMode(0);
 
-        });
-    }
-    else { //if only one user story
-
-        //reinit div content
-        $("#sprintboard").html("<div class='todo'><h3>TODO</h3></div> "+
-            "<div class='assigned'><h3>PROCESSING</h3></div>"+
-            "<div class='done'><h3>DONE</h3></div>");
-
-        //append content
-        var htmlContent = "<div class='userstory-title'><a href='"+"story.html?userstory="+items.userstory.idUserstory+"&project="+idProject+"'>"+items.userstory.title+" <i class='icon-eye-open icon-white'></i></a></div>";
-
-        htmlContent += getTasksHtmlContentFromTasksCollection(items.userstory.taskCollection, 0 , "odd");
-        
-        $("#sprintboard").append(htmlContent);
-
-        //init current sortable list
-        handleEditMode(0);
+        }
+    } else {
+        //inform that no user stories has been added to this sprint
+        $("#msg").addClass("alert fade in");
+        $("#msg").html("No user story found for this sprint. Please add user stories first.");
 
     }
+
 }
 
 

@@ -1,6 +1,6 @@
 <div class="navbar-inner">
     <div class="container-fluid">
-        <a class="brand" href="dashboard.html">&nbsp;</a>
+        <a class="brand" href="dashboard.html" style="padding-right: 21px;">&nbsp;</a>
         <div class="nav-collapse">
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown action-menu">
@@ -18,7 +18,7 @@
                 </li>
                 
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user-app-login">John</span>&nbsp;&nbsp;<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user-app-login"></span>&nbsp;&nbsp;<b class="caret"></b></a>
 
                     <ul class="dropdown-menu">
                         <li id="profile"></li>
@@ -29,44 +29,4 @@
         </div><!--/.nav-collapse -->
     </div>
 </div>
-
-<script type="text/javascript">
-    $(function() {
-
-        //get cookie name
-        var name = $.getDisplayNameFromCookie();
-        if (name!=''){
-            $('span#user-app-login').html(name);
-        }
-
-        var login = $.getLoginFromCookie();
-        if (login!=''){
-            $.ajax({
-                url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.members+'/login/'+login,
-                type:'GET',
-                contentType:'application/json; charset=UTF-8',
-                success: function(reponse) 
-                {
-                    response = $.parseJSON(reponse);
-                    $('#profile').html('<a href="member.html?member='+response+'">Profile</a>');
-                },
-                error:function (xhr, status, error)
-                {
-                    bootbox.alert('Erreur : '+xhr.responseText+' ('+status+' - '+error+')');
-                },
-                dataType:'text',
-                converters:'text json'
-            });
-        }
-
-        //function called by $.getObjFromDatabase function (utils.js)
-    
-       
-
-        //logout
-        $("#btn-logout").live('click', function(e){
-            $.logout();
-        });
-
-    });
-</script>
+<script src="../js/custom/navBar.js"></script>
