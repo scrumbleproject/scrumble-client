@@ -32,6 +32,7 @@ function displayAllItems(items)
     if (items.userstory.length>1)
     { 
         $("#userstories-list").html("");
+        $("#userstories-list").prepend("<li class='pin'><img src='../img/more-important-black.png' border=0 /></li>");
         $.each(items.userstory, function(i, dico)
         {
             $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
@@ -40,18 +41,22 @@ function displayAllItems(items)
                     "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
                 "</li>");
         });   
+        $("#userstories-list").append("<li class='pin'><img src='../img/less-important-black.png' border=0 /></li>");
     }
     else //if only one user story
     {
+        $("#userstories-list").prepend("<li class='pin'><img src='../img/more-important-black.png' border=0 /></li>");
         $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+items.userstory.idUserstory+"'>"+
                 "<a class='edit' href='story.html?userstory="+items.userstory.idUserstory+"&project="+items.userstory.idProject.idProject+"'><img class='icon-pencil'/></a>"+
                 "<div class='title'>"+ items.userstory.title + "</div>" +
                 "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(items.userstory.estimation, "N/A") + "</div>" +
             "</li>");
+        $("#userstories-list").append("<li class='pin'><img src='../img/less-important-black.png' border=0 /></li>");
     }
 
     //init sortable list
     $( "#userstories-list" ).sortable({
+        items: '> li:not(.pin)',
         update:function(event, ui) {
             
             //build a suitable id integer for ajax request
