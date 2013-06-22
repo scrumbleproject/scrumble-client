@@ -43,6 +43,10 @@ function successGetObjFirstLevel(reponse)
 //fill the form with data about one user story
 function fillForm(response)
 {
+    //header title
+    $("#header-title").html("User story - "+response.title);
+
+    //form values
     $("#idUserstory").val(response.idUserstory);
     $("#title").val(response.title);
     $("#demonstration").val(response.demonstration);
@@ -120,7 +124,7 @@ function handleEditMode()
     var idUserstory = $(document).getUrlParam("userstory");
 
     if((idUserstory !=="") && (idUserstory !==null)){
-
+        $("#tab-2").show();
         $.ajax({
             url: 'http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+"/iseditable",
             type:'GET',
@@ -139,6 +143,7 @@ function handleEditMode()
             }
         });
     } else {
+        $("#header-title").html("New user story");
         enableEdition();
         $("#estimation").attr('disabled', null);
     }  

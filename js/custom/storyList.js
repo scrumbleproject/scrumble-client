@@ -35,7 +35,7 @@ function displayAllItems(items)
         $.each(items.userstory, function(i, dico)
         {
             $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+dico.idUserstory+"'>"+
-                    "<a class='edit' href='story.html?userstory="+dico.idUserstory+"&project="+dico.idProject.idProject+"'><img class='icon-pencil'/></a>"+
+                    "<a class='edit' href='story.html?userstory="+dico.idUserstory+"&project="+dico.idProject.idProject+"'><img class='icon-eye-open'/></a>"+
                     "<div class='title'>"+ dico.title + "</div>" +
                     "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(dico.estimation, "N/A") + "</div>" +
                 "</li>");
