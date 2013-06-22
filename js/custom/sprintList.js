@@ -200,9 +200,9 @@ function displayAllItems(items)
                     '<div id="collapseOne" class="accordion-body collapse in">'+
                     '<div class="accordion-inner">'+
                     '<div class="sprint-buttons">'+
-                    '<button id="sprint-'+items.sprint.idSprint+'-'+items.sprint.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
+                    '<button id="btn-sprint-'+items.sprint.idSprint+'-'+items.sprint.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
                     '</div>'+
-                    '<ul>'+
+                    '<ul class="sprint-actions">'+
                     '<li><a href="sprintStoryManagement.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Add/Remove User Stories"><img src="../img/glyphicons_114_list.png" border=0 /></a></li>'+
                     '<li><a href="sprintBoard.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Sprint Backlog"><img src="../img/glyphicons_119_table.png" border=0 /></a></li>'+
                     '<li><a href="sprintBurndownChart.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'" title="Burndown Chart"><img src="../img/glyphicons_040_stats.png" border=0 /></a></li>'+
@@ -329,9 +329,10 @@ function displayAllItems(items)
 
     //enable start-stop-btn action
     $(".start-stop-btn").each(function() {
-
+        console.log("CLICK");
         $(this).live('click', function(e){
             var params = $(this).attr("id").split('-');
+            console.log("params="+params);
             changeSprintStatus(params[2], params[3]);
         });
     });
@@ -339,13 +340,15 @@ function displayAllItems(items)
 
 
 function changeSprintStatus(idSprint, status){
-
+    console.log("change status = "+status+ " id="+idSprint);
     validationSprintId = idSprint;
     if (status == config.processStatus.toDo || status == config.processStatus.inProgress) {   
         if (status == config.processStatus.toDo) {
+            console.log("change toDo");
             validateSprintStatusChange();
             validateVelocityValue();
         } else if (status == config.processStatus.inProgress) {
+            console.log("change InProgress");
             status = config.processStatus.done;
             callUpdateStatusWS(idSprint, status);
         }
