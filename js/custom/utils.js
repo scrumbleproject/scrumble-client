@@ -173,7 +173,9 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
                 if(message!='')
                     bootbox.alert(message+' has been added successfully.');
                 if(redirect!='')
-                    window.location.href = redirect;
+                    window.location.replace(redirect);
+                    //window.location.href = redirect;
+
             },
             error:function(xhr, status, error)
             {
@@ -193,8 +195,9 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
                 if(message!='')
                     bootbox.alert(message+' has been added successfully.');
                 if(redirect!='')
-                    window.location.href = redirect;
-                    //window.location.replace(redirect);
+                    window.location.replace(redirect);
+                    //window.location.href = redirect;
+                    
             },
             error:function(xhr, status, error)
             {
@@ -219,8 +222,8 @@ $.postObjToDatabaseAndCallback = function(url_ws, form, message, callback)
             contentType: "application/json; charset=utf-8",
             success:function(data)
             {
-                if(message!='')
-                    bootbox.alert(message+' has been added successfully.');
+                //if(message!='')
+                    //bootbox.alert(message+' has been added successfully.');
                 if(callback!=null)
                     callback();
             },
@@ -239,8 +242,8 @@ $.postObjToDatabaseAndCallback = function(url_ws, form, message, callback)
             contentType: "application/json; charset=utf-8",
             success:function(data)
             {
-                if(message!='')
-                    bootbox.alert(message+' has been added successfully.');
+                //if(message!='')
+                    //bootbox.alert(message+' has been added successfully.');
                 if(callback!=null)
                     callback();
             },

@@ -657,7 +657,7 @@ div.user_story .btn{
   text-decoration: none;
 }
 
-#sprint-infos .span2{
+#sprint-infos .span2, #sprint-infos .span3{
   text-align: center;
   background-color: #EEEEEE;
 }
@@ -852,6 +852,15 @@ div.user_story .btn{
   /*background-color: #F5F5F5;*/
   margin: 0;
   margin-left: 10px;
+}
+
+
+/** dash project **/ 
+#runningsprint .head-sprint-info h3 {
+  font-size:1.1em;
+}
+#runningsprint .accordion-group {
+  border:none;
 }
 
 

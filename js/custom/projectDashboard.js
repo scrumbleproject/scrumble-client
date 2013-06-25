@@ -51,20 +51,21 @@ function displaySprint(items)
             startStopButtonColorClass="disabled";
         }
 
+        
         chaine += '<div class="accordion-group">'+
-                    '<div class="accordion-heading">'+
-                    '<div class="sprint-title"><a href="sprint.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'">'+items.title+'</a></div>'+
+                    '<div class="accordion-heading row-fluid">'+
+                    '<div class="sprint-title"><div class="span10">'+items.title+'</div><div class="span2"><a href="sprintList.html?project='+items.idProject.idProject+'#sprint-'+items.idSprint+'" class="btn">View&nbsp;»</a></div></div>'+
                     '</div>'+
                     '<div id="collapseOne" class="accordion-body collapse in">'+
                     '<div class="accordion-inner">'+
-                    '<div class="sprint-buttons">'+
-                    '<button id="sprint-'+items.idSprint+'-'+items.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
-                    '</div>'+
-                    '<ul>'+
-                    '<li><a href="sprintStoryManagement.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Add/Remove User Stories"><img src="../img/glyphicons_114_list.png" border=0 /></a></li>'+
-                    '<li><a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Sprint Backlog"><img src="../img/glyphicons_119_table.png" border=0 /></a></li>'+
-                    '<li><a href="sprintBurndownChart.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Burndown Chart"><img src="../img/glyphicons_040_stats.png" border=0 /></a></li>'+
-                    '</ul>'+
+                    // '<div class="sprint-buttons">'+
+                    // '<button id="sprint-'+items.idSprint+'-'+items.idProcessStatus.codeStatus+'" class="btn btn-large '+startStopButtonColorClass+' start-stop-btn">'+startStopButtonLbl+'</button>'+
+                    // '</div>'+
+                    // '<ul>'+
+                    // '<li><a href="sprintStoryManagement.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Add/Remove User Stories"><img src="../img/glyphicons_114_list.png" border=0 /></a></li>'+
+                    // '<li><a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Sprint Backlog"><img src="../img/glyphicons_119_table.png" border=0 /></a></li>'+
+                    // '<li><a href="sprintBurndownChart.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" title="Burndown Chart"><img src="../img/glyphicons_040_stats.png" border=0 /></a></li>'+
+                    // '</ul>'+
                     '<div id="sprint-infos" class="row-fluid">';
 
 
@@ -112,7 +113,7 @@ function displaySprint(items)
         //Sprint start
         if (typeof items.dateStart != "undefined")
         {
-            chaine += '<div class="span2">'+
+            chaine += '<div class="span3">'+
                         '<div class="head-sprint-info">'+
                         '<h3>'+items.dateStart.substr(0,10)+
                         '</h3>'+
@@ -126,7 +127,7 @@ function displaySprint(items)
         //Sprint end
         if (typeof items.dateEnd != "undefined")
         {
-            chaine += '<div class="span2">'+
+            chaine += '<div class="span3">'+
                         '<div class="head-sprint-info">'+
                         '<h3>'+items.dateEnd.substr(0,10)+
                         '</h3>'+
@@ -227,7 +228,7 @@ function displaySprint(items)
                                                         "<td>"+data.sprinttaskassignation.member1.firstname+" "+data.sprinttaskassignation.member1.lastname+"</td>"+
                                                         "</tr>");
                     }
-                    $("#runningtasks").append('<a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" class="btn">More »</a>');
+                    $("#runningtasks").append('<a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" class="btn">More&nbsp;»</a>');
                 }
                 else
                 {
@@ -315,7 +316,7 @@ $(document).ready(function()
         //Display the member list
         $.getObjFromDatabase('http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.projects+'/'+idProject+'/'+config.resources.projectMembers);
         if($('#memberList').val()!='undefined' && $('#memberList').val()!= null)
-            $('#memberDetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More »</a>');
+            $('#memberDetails').append('<a href="projectMember.html?project='+idProject+'" class="btn">More&nbsp;»</a>');
     }
 
     //load data on form

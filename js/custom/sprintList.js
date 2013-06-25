@@ -26,6 +26,15 @@ function successGetObjFirstLevel(reponse)
     displayAllItems($.parseJSON(reponse));
 }
 
+//used only if we are adding a new task
+function displaySprintAnchor(){
+
+    var hashVal = window.location.hash.split("#")[1];
+    console.log(hashVal);
+    if(hashVal != '') {
+        $(document).scrollTop( $("a[name='"+ hashVal +"']").offset().top-100 );  
+    }
+}
 
 
 //Display all sprints
@@ -51,7 +60,7 @@ function displayAllItems(items)
 
             chaine += '<div class="accordion-group">'+
                         '<div class="accordion-heading">'+
-                        '<div class="sprint-title"><a href="sprint.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">'+dico.title+'</a></div>'+
+                        '<div class="sprint-title"><a name="sprint-'+dico.idSprint+'"></a><a href="sprint.html?sprint='+dico.idSprint+'&project='+dico.idProject.idProject+'">'+dico.title+'</a></div>'+
                         '</div>'+
                         '<div id="collapseOne" class="accordion-body collapse in">'+
                         '<div class="accordion-inner">'+
@@ -195,7 +204,7 @@ function displayAllItems(items)
 
         chaine += '<div class="accordion-group">'+
                     '<div class="accordion-heading">'+
-                    '<div class="sprint-title"><a href="sprint.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">'+items.sprint.title+'</a></div>'+
+                    '<div class="sprint-title"><a name="sprint-'+items.sprint.idSprint+'"></a><a href="sprint.html?sprint='+items.sprint.idSprint+'&project='+items.sprint.idProject.idProject+'">'+items.sprint.title+'</a></div>'+
                     '</div>'+
                     '<div id="collapseOne" class="accordion-body collapse in">'+
                     '<div class="accordion-inner">'+
@@ -336,6 +345,9 @@ function displayAllItems(items)
             changeSprintStatus(params[2], params[3]);
         });
     });
+
+    //display anchor if needed
+    displaySprintAnchor();
 }
 
 
@@ -423,6 +435,7 @@ function showAlertValidationMsg() {
     showStatusValidation = false;
     statusValidationMsg = '<ul>';
 }
+
 
 
 

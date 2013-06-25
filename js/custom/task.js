@@ -122,7 +122,11 @@ function bindDeleteTaskEvent(idUserstory)
     });
 }
 
-
+//used only if we are adding a new task
+function reloadForAddTask(){
+    window.location.replace('story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
+    window.location.reload();
+}
 
 //submit the task form and add or update a task
 function submitFormTask(idUserstory)
@@ -140,13 +144,14 @@ function submitFormTask(idUserstory)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.postObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
+                $.postObjToDatabaseAndCallback(url, formdata, 'Task', reloadForAddTask);
+                //$.postObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
             }
             else //Case 2 : update an existing task (idTask is not empty)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.putObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
+                $.putObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
 
             }
             

@@ -169,8 +169,6 @@ $(document).ready(function()
     //display the breadcrumb trail
     displayBreadCrumb(idProject,idUserstory);
     
-    //keep in memory last tab visited
-    //$.showLastVisitedTab();
     // Javascript to enable link to tab
     var url = document.location.toString();
     if (url.match('#')) {
