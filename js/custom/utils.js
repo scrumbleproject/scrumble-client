@@ -173,7 +173,7 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
                 if(message!='')
                     bootbox.alert(message+' has been added successfully.');
                 if(redirect!='')
-                    window.location.replace(redirect);
+                    window.location.href = redirect;
             },
             error:function(xhr, status, error)
             {
@@ -193,7 +193,8 @@ $.postObjToDatabase = function(url_ws, form, message, redirect)
                 if(message!='')
                     bootbox.alert(message+' has been added successfully.');
                 if(redirect!='')
-                    window.location.replace(redirect);
+                    window.location.href = redirect;
+                    //window.location.replace(redirect);
             },
             error:function(xhr, status, error)
             {

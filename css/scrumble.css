@@ -813,6 +813,13 @@ div.user_story .btn{
 
 }
 
+#dashboard h2 {
+  background-color:#343537;
+  color:white;
+  padding:3px 5px;
+  border-radius: 0.3em 0.3em 0 0;
+}
+
 #dashboard h3 {
   padding-left: 10px;
 }
@@ -822,27 +829,27 @@ div.user_story .btn{
 }
 
 #dashboard .span7 {
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
 }
 
 #dashboard .span6 {
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
   margin-left : 10px;
   
 }
 
 #dashboard .span5 {
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
   
 }
 
 
 #dashboard .span4 {
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
 }
 
 #dashboard .span3 {
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
   margin: 0;
   margin-left: 10px;
 }

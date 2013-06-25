@@ -45,7 +45,7 @@ function displayProjects(items)
 
                 $("#projectList > tbody").append('<tr>'+
                                                 '<td>'+dico.title+'</td>'+
-                                                '<td><a href="projectDashboard.html?project='+dico.idProject+'" class="btn">More »</a></td>'+
+                                                '<td><a href="projectDashboard.html?project='+dico.idProject+'" class="btn">More&nbsp;»</a></td>'+
                                                 '</tr>');
                 i++;
             });
@@ -54,10 +54,10 @@ function displayProjects(items)
         {
             $("#projectList > tbody").append('<tr>'+
                                             '<td>'+items.project.title+'</td>'+
-                                            '<td><a href="projectDashboard.html?project='+items.project.idProject+'" class="btn">More »</a></td>'+
+                                            '<td><a href="projectDashboard.html?project='+items.project.idProject+'" class="btn">More&nbsp;»</a></td>'+
                                             '</tr>');
         }
-        $('#projectDetails').append('<a href="projectList.html" class="btn"> View details »</a>');
+        $('#projectDetails').append('<a href="projectList.html" class="btn"> View&nbsp;details&nbsp;»</a>');
     }
     else
     {
@@ -82,7 +82,7 @@ function displayTasks(items)
                 $("#taskList > tbody").append('<tr>'+
                                                 '<td>'+dico.task.title+'</td>'+
                                                 '<td>'+dico.sprint.idProject.title+'</td>'+
-                                                '<td><a href="sprintBoard.html?sprint='+dico.sprint.idSprint+'&project='+dico.sprint.idProject.idProject+'" class="btn">More »</a></td>'+
+                                                '<td><a href="sprintBoard.html?sprint='+dico.sprint.idSprint+'&project='+dico.sprint.idProject.idProject+'" class="btn">More&nbsp;»</a></td>'+
                                                 '</tr>');
                 i++;
             });
@@ -92,7 +92,7 @@ function displayTasks(items)
             $("#taskList > tbody").append('<tr>'+
                                             '<td>'+items.sprinttaskassignation.task.title+'</td>'+
                                             '<td>'+items.sprinttaskassignation.sprint.idProject.title+'</td>'+
-                                            '<td><a href="sprintBoard.html?sprint='+items.sprinttaskassignation.sprint.idSprint+'&project='+items.sprinttaskassignation.sprint.idProject.idProject+'" class="btn">More »</a></td>'+
+                                            '<td><a href="sprintBoard.html?sprint='+items.sprinttaskassignation.sprint.idSprint+'&project='+items.sprinttaskassignation.sprint.idProject.idProject+'" class="btn">More&nbsp;»</a></td>'+
                                             '</tr>');
         }
         //$("#taskDetails").append('<a href="sprintBoard.html?sprint='+items.idSprint+'&project='+items.idProject.idProject+'" class="btn">More »</a>');

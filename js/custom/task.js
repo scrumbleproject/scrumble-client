@@ -140,14 +140,13 @@ function submitFormTask(idUserstory)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks/add';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.postObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
-
+                $.postObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
             }
             else //Case 2 : update an existing task (idTask is not empty)
             {
                 var url='http://'+config.hostname+':'+config.port+'/'+config.rootPath+'/'+config.resources.userStories+'/'+idUserstory+'/tasks';
                 var formdata=JSON.stringify($("#"+$(this).attr("id")+"").serializeObject());
-                $.putObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject);
+                $.putObjToDatabase(url, formdata, 'Task', 'story.html?userstory='+idUserstory+'&project='+idProject+'#tasks');
 
             }
             
