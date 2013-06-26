@@ -28,8 +28,14 @@ function successGetObjFirstLevel(reponse)
 //display all items
 function displayAllItems(items)
 {
-    //if more than one user story
-    if (items.userstory.length>1)
+    //If there is no user story
+    if (items==null) 
+    {
+        //warning msg to inform user that user story cannot be edited
+        $("#msg").addClass("alert fade in");
+        $("#msg").html("No user story found.");
+
+    } else if (items.userstory.length>1) //if more than one user story
     { 
         $("#userstories-list").html("");
         $("#userstories-list").prepend("<li class='pin'><img src='../img/more-important-black.png' border=0 /></li>");
@@ -47,7 +53,7 @@ function displayAllItems(items)
     {
         $("#userstories-list").prepend("<li class='pin'><img src='../img/more-important-black.png' border=0 /></li>");
         $("#userstories-list").append("<li class='img-polaroid' id='user-story-"+items.userstory.idUserstory+"'>"+
-                "<a class='edit' href='story.html?userstory="+items.userstory.idUserstory+"&project="+items.userstory.idProject.idProject+"'><img class='icon-pencil'/></a>"+
+                "<a class='edit' href='story.html?userstory="+items.userstory.idUserstory+"&project="+items.userstory.idProject.idProject+"'><img class='icon-eye-open'/></a>"+
                 "<div class='title'>"+ items.userstory.title + "</div>" +
                 "<div class='estimation-label'>Point(s)</div><div class='estimation-value'>"+ $.nvl(items.userstory.estimation, "N/A") + "</div>" +
             "</li>");

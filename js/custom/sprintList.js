@@ -29,10 +29,12 @@ function successGetObjFirstLevel(reponse)
 //used only if we are adding a new task
 function displaySprintAnchor(){
 
-    var hashVal = window.location.hash.split("#")[1];
-    console.log(hashVal);
-    if(hashVal != '') {
-        $(document).scrollTop( $("a[name='"+ hashVal +"']").offset().top-100 );  
+    if (window.location.href.indexOf("#") >= 0) {
+        var hashVal = window.location.hash.split("#")[1];
+        console.log(hashVal);
+        if(hashVal != '') {
+            $(document).scrollTop( $("a[name='"+ hashVal +"']").offset().top-100 );  
+        }
     }
 }
 
@@ -40,11 +42,18 @@ function displaySprintAnchor(){
 //Display all sprints
 function displayAllItems(items)
 {
+    console.log("ZERO");
     $("#sprints").html('');
     var chaine = '';
 
-    //If there are more than one sprint
-    if (items.sprint.length>1)
+    //If there is no sprint
+    if (items==null) 
+    {
+        //warning msg to inform user that user story cannot be edited
+        $("#msg").addClass("alert fade in");
+        $("#msg").html("No sprint found.");
+
+    } else if (items.sprint.length>1) //if more than one sprint
     {
         $.each(items.sprint, function(i, dico)
         {
@@ -455,6 +464,7 @@ $(document).ready(function()
         $('#sprintList').append('<div class="row-fluid">'+ 
                                     '<h2>Sprint List</h2>'+
                                     '<a href="sprint.html?project='+idProject+'" class="btn btn-primary new">New sprint</a>'+
+                                    '<div id="msg"></div>'+
                                     '<div class="sprints" id="sprints">'+
                                     '</div>'+
                                 '</div>');
